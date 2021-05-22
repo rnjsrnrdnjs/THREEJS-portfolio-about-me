@@ -1,0 +1,34 @@
+{
+  "name": "-about-me",
+  "version": "1.0.0",
+  "description": "About Me",
+  "main": "portpolio",
+  "scripts": {
+    "test": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/rnjsrnrdnjs/-About-Me.git"
+  },
+  "author": "090.js",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rnjsrnrdnjs/-About-Me/issues"
+  },
+  "homepage": "https://github.com/rnjsrnrdnjs/-About-Me#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "mysql2": "^2.2.5",
+    "nunjucks": "^3.2.3",
+    "sequelize": "^6.6.2",
+    "sequelize-cli": "^6.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
