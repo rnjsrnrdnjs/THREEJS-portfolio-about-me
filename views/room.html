@@ -1,0 +1,209 @@
+{% extends 'index.html' %}
+{% block content %}
+{% endblock %}
+{% block script %}
+<script>
+	
+	function roomInit(){
+		
+		const firstCameraPosition=[100,-100,1100];		
+		const stats=initStats();
+		scene=new THREE.Scene();
+		camera=new THREE.PerspectiveCamera(45,window.innerWidth/window.innerHeight,0.1,2000);
+		//camera=new THREE.OrthographicCamera(0, window.innerWidth, window.innerHeight, 0, -10, 10);
+		camera.position.x=firstCameraPosition[0];
+		camera.position.y=firstCameraPosition[1];
+		camera.position.z=firstCameraPosition[2];
+		camera.lookAt(new THREE.Vector3(0,0,0));
+		
+		
+		renderer=new THREE.WebGLRenderer();
+		
+		renderer.setClearColor(new THREE.Color(0x2A3B4C,1.0));
+		renderer.setSize(window.innerWidth,window.innerHeight);
+		renderer.shadowMapEnabled=true;
+		
+		const clock = new THREE.Clock();
+		const trackballControls = new THREE.TrackballControls(camera);
+
+        trackballControls.rotateSpeed = 1.0;
+        trackballControls.zoomSpeed = 1.0;
+        trackballControls.panSpeed = 1.0;
+//        trackballControls.noZoom=false;
+//        trackballControls.noPan=false;
+        trackballControls.staticMoving = true;
+//        trackballControls.dynamicDampingFactor=0.3;
+
+		
+		const floor=new THREE.ImageUtils.loadTexture('/imageRoom/floor3.jpg');
+		/*
+		 floor.wrapS = THREE.RepeatWrapping;
+        floor.wrapT = THREE.RepeatWrapping;
+		floor.repeat.set(4,4);*/
+		
+		
+		const floorPlane=new THREE.Mesh(new THREE.BoxGeometry(350,500,100),new THREE.MeshPhongMaterial({
+			color:0xffffff,
+			map:floor,
+		}));
+		floorPlane.position.y=-100;
+		floorPlane.position.z=100;
+		//plane.position.x=Math.min(window.innerWidth,window.innerHeight)/2;
+		
+		floorPlane.rotation.x=-0.3*Math.PI;
+		
+		scene.add(floorPlane);
+		
+		
+		const closet=createMesh(new THREE.BoxGeometry(200,350,5),"/imageRoom/closet3.jpg","","/imageRoom/closet3-bump.png");
+		closet.position.x=-70;
+		closet.position.y=170;
+		closet.position.z=10;
+		closet.rotation.x=0.2*Math.PI;
+		
+		scene.add(closet);
+
+		const wallFront=createMesh(new THREE.BoxGeometry(145,250,5),"/imageRoom/wallFront2.jpg");
+		wallFront.position.x=100;
+		wallFront.position.y=210;
+		wallFront.position.z=45;
+		wallFront.rotation.x=0.2*Math.PI;
+		
+		scene.add(wallFront);
+		
+		const wall=createMesh(new THREE.BoxGeometry(5,350,200),"/imageRoom/wall2.jpg");
+		wall.position.x=-170;
+		wall.position.y=130;
+		wall.position.z=50;
+		wall.rotation.x=0.2*Math.PI;
+		scene.add(wall);
+		
+		const wall2=createMesh(new THREE.BoxGeometry(5,350,200),"/imageRoom/wall2.jpg");
+		wall2.position.x=-170;
+		wall2.position.y=10;
+		wall2.position.z=215;
+		wall2.rotation.x=0.2*Math.PI;
+		scene.add(wall2);
+		
+		
+		const bed=createMesh(new THREE.BoxGeometry(150,300,50),"/imageRoom/bed5.jpg");
+		bed.position.x=100;
+		bed.position.y=5;
+		bed.position.z=80;
+		bed.rotation.x=-0.3*Math.PI;
+		scene.add(bed);
+		const CW=createMesh(new THREE.PlaneGeometry(50,100),"/imageRoom/kinChaewon.jpg");
+		CW.position.x=90;
+		CW.position.y=220;
+		CW.position.z=65;
+		CW.rotation.x=0.2*Math.PI;
+		scene.add(CW);
+		
+		const table=createMesh(new THREE.BoxGeometry(150,100,10),"/imageRoom/table.jpg");
+		table.position.x=-80;
+		table.position.y=-50;
+		table.position.z=130;
+		table.rotation.x=-0.3*Math.PI;
+		scene.add(table);
+		
+		const com=createMesh(new THREE.PlaneGeometry(90,70),"/imageComputer/comm2.jpg");
+		com.position.x=0;
+		com.position.y=180;
+		com.position.z=30;
+		
+		com.rotation.x=0.2*Math.PI;
+		scene.add(com);
+		
+		const guam=createMesh(new THREE.PlaneGeometry(200,150),"/imageRoom/guam.jpg");
+		guam.position.x=-166;
+		guam.position.y=150;
+		guam.position.z=150;
+		guam.rotation.y=0.5*Math.PI;
+		guam.rotation.x=0.2*Math.PI;
+		
+		scene.add(guam);
+		
+		
+		const phone=createMesh(new THREE.BoxGeometry(25,50,3),"/imageRoom/phone.png");
+		phone.position.x=50;
+		phone.position.y=-145;
+		phone.position.z=250;
+		phone.rotation.x=-0.3*Math.PI;
+		scene.add(phone);
+		
+		const ambiLight = new THREE.AmbientLight(0xffffff);
+        scene.add(ambiLight);
+
+        const light = new THREE.SpotLight();
+        light.position.set(firstCameraPosition[0],firstCameraPosition[1], firstCameraPosition[2]);
+        light.intensity = 1;
+        scene.add(light);
+		
+		
+		const projector=new THREE.Projector();
+		let tube;		
+		document.addEventListener('mousedown',onDocumentMouseDown,false);
+		//document.addEventListener('mousemove',onDocumentMouseMove,false);
+		
+		 document.getElementById("WebGL-output").appendChild(renderer.domElement);
+		function onDocumentMouseDown(event){
+			let vector=new THREE.Vector3(( event.clientX / window.innerWidth ) * 2 - 1, -( event.clientY / window.innerHeight ) * 2 + 1, 0.5);
+			vector=vector.unproject(camera);
+			let raycaster=new THREE.Raycaster(camera.position,vector.sub(camera.position).normalize());
+			let intersects=raycaster.intersectObjects([CW,table,com,guam,phone]);
+			if(intersects.length>0){
+				intersects[0].object.material.transparent=true;
+				if(intersects[0].object.material.opacity==0.5)
+					intersects[0].object.material.opacity=1;
+				else intersects[0].object.material.opacity=0.5;
+				
+			}
+		}	
+		/*
+		function onDocumentMouseMove(event) {
+			 var vector = new THREE.Vector3(( event.clientX / window.innerWidth ) * 2 - 1, -( event.clientY / window.innerHeight ) * 2 + 1, 0.5);
+                vector = vector.unproject(camera);
+
+                var raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
+                var intersects = raycaster.intersectObjects([CW,table,com,guam,phone]);
+
+                if (intersects.length > 0) {
+
+                    var points = [];
+                    points.push(new THREE.Vector3(-30, 39.8, 30));
+                    points.push(intersects[0].point);
+
+                    var mat = new THREE.MeshBasicMaterial({color: 0xff0000, transparent: true, opacity: 0.6});
+                    var tubeGeometry = new THREE.TubeGeometry(new THREE.SplineCurve3(points), 60, 0.001);
+
+                    if (tube) scene.remove(tube);
+
+                        tube = new THREE.Mesh(tubeGeometry, mat);
+                        scene.add(tube);
+                }
+		}*/
+		/*
+		const controls=new function(){
+			//this.rotationSpeed=0.02;
+		}
+		
+		//const gui=new dat.GUI();
+		//gui.add(controls,'rotationSpeed',0,0.5);
+		*/
+		render();
+		
+		function render(){
+			stats.update();
+			const delta = clock.getDelta();
+			trackballControls.update(delta);
+			roomAni=requestAnimationFrame(render);
+			renderer.render(scene,camera);
+		}
+		
+	}
+	roomInit();
+	
+	
+	
+</script>
+{% endblock %}

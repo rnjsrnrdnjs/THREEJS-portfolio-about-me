@@ -5,14 +5,14 @@
 		<title>090.js</title>
 		<meta name="viewport" content="width=device-width,user-scalable=no" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<script type="text/javascript" src="/libs/three.js"></script>
+		<script type="text/javascript" src="../libs/three.js"></script>
 		<script type="text/javascript" src="/libs/stats.js"></script>
 		<script type="text/javascript" src="/libs/dat.gui.js"></script>
-		<script type="text/javascript" src="../libs/Projector.js"></script>
-		<script type="text/javascript" src="../libs/OrbitControls.js"></script>
-		 <script type="text/javascript" src="../libs/TrackballControls.js"></script>
-		
-		
+		<script type="text/javascript" src="/libs/Projector.js"></script>
+		<script type="text/javascript" src="/libs/OrbitControls.js"></script>
+		<script type="text/javascript" src="/libs/TrackballControls.js"></script>
+
+		<script type="text/javascript" src="/libs/d3-threeD.js"></script>
 		<script type="text/javascript" src="/assets/fonts/helvetiker_regular.typeface.js"></script>
 		<script type="text/javascript" src="/assets/fonts/helvetiker_bold.typeface.js"></script>
 		<script
@@ -30,16 +30,57 @@
 		</style>
 	</head>
 	<body>
-		{% block content %} {% endblock %}
 		<!-- 프레임 확인-->
+
+		<div id="Stats-output"></div>
 
 		<!-- Div which will hold the Output -->
 		<div id="WebGL-output"></div>
-		
-		
+
+		{% block content %} {% endblock %}
+
 		<!-- Javascript code that runs our Three.js examples -->
-		<script type="text/javascript">
-		
+		<script>
+			let camera, scene, renderer;
+			let roomAni;
+			function initStats() {
+				const stats = new Stats();
+				stats.setMode(0); // 0: fps, 1: ms
+				// Align top-left
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.left = '0px';
+				stats.domElement.style.top = '0px';
+				document.getElementById('Stats-output').appendChild(stats.domElement);
+				return stats;
+			}
+			function onResize() {
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize(window.innerWidth, window.innerHeight);
+			}
+
+			window.addEventListener('resize', onResize, false);
+
+			function createMesh(geom, imageFile, color, bump) {
+				const texture = THREE.ImageUtils.loadTexture(imageFile);
+				geom.computeVertexNormals();
+				const mat = new THREE.MeshPhongMaterial();
+				mat.map = texture;
+				if (color) {
+					mat.color = color;
+				}
+				if (bump) {
+					const bump2 = THREE.ImageUtils.loadTexture(bump);
+					mat.bumpMap = bump2;
+					mat.bumpScale = 1;
+				}
+
+				// create a multimaterial
+				const mesh = new THREE.Mesh(geom, mat);
+
+				return mesh;
+			}
 		</script>
+		{% block script %} {% endblock %}
 	</body>
 </html>
