@@ -19,7 +19,7 @@
 		
 		renderer=new THREE.WebGLRenderer();
 		
-		renderer.setClearColor(new THREE.Color(0x2A3B4C,1.0));
+		renderer.setClearColor(new THREE.Color(0x040107,1.0));
 		renderer.setSize(window.innerWidth,window.innerHeight);
 		renderer.shadowMapEnabled=true;
 		
@@ -42,7 +42,7 @@
 		floor.repeat.set(4,4);*/
 		
 		
-		const floorPlane=new THREE.Mesh(new THREE.BoxGeometry(350,500,100),new THREE.MeshPhongMaterial({
+		const floorPlane=new THREE.Mesh(new THREE.BoxGeometry(370,500,100),new THREE.MeshPhongMaterial({
 			color:0xffffff,
 			map:floor,
 		}));
@@ -63,7 +63,7 @@
 		
 		scene.add(closet);
 
-		const wallFront=createMesh(new THREE.BoxGeometry(145,250,5),"/imageRoom/wallFront2.jpg");
+		const wallFront=createMesh(new THREE.BoxGeometry(165,250,5),"/imageRoom/wallFront2.jpg");
 		wallFront.position.x=100;
 		wallFront.position.y=210;
 		wallFront.position.z=45;
@@ -73,25 +73,54 @@
 		
 		const wall=createMesh(new THREE.BoxGeometry(5,350,200),"/imageRoom/wall2.jpg");
 		wall.position.x=-170;
-		wall.position.y=130;
-		wall.position.z=50;
+		wall.position.y=110;
+		wall.position.z=85;
 		wall.rotation.x=0.2*Math.PI;
 		scene.add(wall);
 		
 		const wall2=createMesh(new THREE.BoxGeometry(5,350,200),"/imageRoom/wall2.jpg");
 		wall2.position.x=-170;
-		wall2.position.y=10;
-		wall2.position.z=215;
+		wall2.position.y=-7;
+		wall2.position.z=247;
 		wall2.rotation.x=0.2*Math.PI;
 		scene.add(wall2);
 		
 		
 		const bed=createMesh(new THREE.BoxGeometry(150,300,50),"/imageRoom/bed5.jpg");
 		bed.position.x=100;
-		bed.position.y=5;
-		bed.position.z=80;
+		bed.position.y=0;
+		bed.position.z=90;
 		bed.rotation.x=-0.3*Math.PI;
+		
 		scene.add(bed);
+		const bedWood1=createMesh(new THREE.BoxGeometry(10,300,50),"imageRoom/wood2.jpg");
+		bedWood1.position.x=20;
+		bedWood1.position.y=0;
+		bedWood1.position.z=90;
+		bedWood1.rotation.x=-0.3*Math.PI;
+		const bedWood2=createMesh(new THREE.BoxGeometry(10,300,50),"imageRoom/wood2.jpg");
+		bedWood2.position.x=180;
+		bedWood2.position.y=0;
+		bedWood2.position.z=90;
+		bedWood2.rotation.x=-0.3*Math.PI;
+		const bedWood3=createMesh(new THREE.BoxGeometry(150,10,50),"imageRoom/wood2.jpg");
+		bedWood3.position.x=100;
+		bedWood3.position.y=-85;
+		bedWood3.position.z=210;
+		bedWood3.rotation.x=-0.3*Math.PI;
+		
+		
+		scene.add(bedWood1);		
+		scene.add(bedWood2);		
+		scene.add(bedWood3);
+		
+		const bedTop=createMesh(new THREE.BoxGeometry(160,80,5),"/imageRoom/bedTop.jpg");
+		bedTop.position.x=105;
+		bedTop.position.y=140;
+		bedTop.position.z=5;
+		bedTop.rotation.x=0.2*Math.PI;
+		scene.add(bedTop);
+		
 		const CW=createMesh(new THREE.PlaneGeometry(50,100),"/imageRoom/kinChaewon.jpg");
 		CW.position.x=90;
 		CW.position.y=220;
@@ -99,17 +128,60 @@
 		CW.rotation.x=0.2*Math.PI;
 		scene.add(CW);
 		
+		
+		const wood1=createMesh(new THREE.BoxGeometry(10,10,50),"/imageRoom/wood.jpg");
+		wood1.position.x=-110;
+		wood1.position.y=-45;
+		wood1.position.z=150;
+		wood1.rotation.x=-0.3*Math.PI;
+		const wood2=createMesh(new THREE.BoxGeometry(10,10,50),"/imageRoom/wood.jpg");
+		wood2.position.x=-30;
+		wood2.position.y=-45;
+		wood2.position.z=150;
+		wood2.rotation.x=-0.3*Math.PI;
+		const wood3=createMesh(new THREE.BoxGeometry(10,10,50),"/imageRoom/wood.jpg");
+		wood3.position.x=-110;
+		wood3.position.y=-15;
+		wood3.position.z=110;
+		wood3.rotation.x=-0.3*Math.PI;
+		const wood4=createMesh(new THREE.BoxGeometry(10,10,50),"/imageRoom/wood.jpg");
+		wood4.position.x=-30;
+		wood4.position.y=-15;
+		wood4.position.z=110;
+		wood4.rotation.x=-0.3*Math.PI;
+		const woodTop=createMesh(new THREE.BoxGeometry(100,100,10),"imageRoom/wood.jpg");
+		woodTop.position.x=-70;
+		woodTop.position.y=-10;
+		woodTop.position.z=150;
+		woodTop.rotation.x=-0.3*Math.PI;
+								 
+		scene.add(wood1);
+		scene.add(wood2);
+		scene.add(wood3);
+		scene.add(wood4);
+		scene.add(woodTop);
+		const food=createMesh(new THREE.PlaneGeometry(90,90),"/imageFood/food1.jpg");
+		food.position.x=-70;
+		food.position.y=-10;
+		food.position.z=160;
+		food.rotation.x=-0.3*Math.PI;
+		scene.add(food);
+		
+		/*
 		const table=createMesh(new THREE.BoxGeometry(150,100,10),"/imageRoom/table.jpg");
 		table.position.x=-80;
 		table.position.y=-50;
 		table.position.z=130;
 		table.rotation.x=-0.3*Math.PI;
 		scene.add(table);
+		*/
+		
+		
 		
 		const com=createMesh(new THREE.PlaneGeometry(90,70),"/imageComputer/comm2.jpg");
 		com.position.x=0;
 		com.position.y=180;
-		com.position.z=30;
+		com.position.z=32;
 		
 		com.rotation.x=0.2*Math.PI;
 		scene.add(com);
@@ -131,6 +203,12 @@
 		phone.rotation.x=-0.3*Math.PI;
 		scene.add(phone);
 		
+		const moon=createMesh(new THREE.SphereGeometry(50,50,50),"/imageRoom/moon.jpg");
+		moon.position.x=80;
+		moon.position.y=250;
+		moon.position.z=300;
+		scene.add(moon);
+		
 		const ambiLight = new THREE.AmbientLight(0xffffff);
         scene.add(ambiLight);
 
@@ -150,7 +228,7 @@
 			let vector=new THREE.Vector3(( event.clientX / window.innerWidth ) * 2 - 1, -( event.clientY / window.innerHeight ) * 2 + 1, 0.5);
 			vector=vector.unproject(camera);
 			let raycaster=new THREE.Raycaster(camera.position,vector.sub(camera.position).normalize());
-			let intersects=raycaster.intersectObjects([CW,table,com,guam,phone]);
+			let intersects=raycaster.intersectObjects([CW,wood1,wood2,wood3,wood4,woodTop,food,com,guam,phone]);
 			if(intersects.length>0){
 				intersects[0].object.material.transparent=true;
 				if(intersects[0].object.material.opacity==0.5)
@@ -190,10 +268,15 @@
 		//const gui=new dat.GUI();
 		//gui.add(controls,'rotationSpeed',0,0.5);
 		*/
-		render();
 		
+		render();
+
 		function render(){
 			stats.update();
+			
+			moon.rotation.x+=0.02;
+			moon.rotation.y+=0.01;
+			
 			const delta = clock.getDelta();
 			trackballControls.update(delta);
 			roomAni=requestAnimationFrame(render);
