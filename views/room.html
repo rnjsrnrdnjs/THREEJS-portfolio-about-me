@@ -23,8 +23,6 @@
 	let CWLookAt=[90,220,65];
 	
 	
-	
-	
 	function roomInit(){
 		
 		let moveCameraPosition=[0,0,0];	
@@ -37,7 +35,6 @@
 		camera.position.y=firstCameraPosition[1];
 		camera.position.z=firstCameraPosition[2];
 		camera.lookAt(new THREE.Vector3(0,0,0));
-		console.log(camera);
 		
 		renderer=new THREE.WebGLRenderer();
 		
@@ -53,6 +50,12 @@
         trackballControls.panSpeed = 1.0;
         trackballControls.staticMoving = true;
 
+		const floor=new THREE.ImageUtils.loadTexture('/imageRoom/floor3.jpg');
+		/*
+		 floor.wrapS = THREE.RepeatWrapping;
+        floor.wrapT = THREE.RepeatWrapping;
+		floor.repeat.set(4,4);*/
+		
 		
 		const floorPlane=new THREE.Mesh(new THREE.BoxGeometry(370,500,100),new THREE.MeshPhongMaterial({
 			color:0xffffff,
