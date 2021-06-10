@@ -3,10 +3,32 @@
 {% endblock %}
 {% block script %}
 <script>
+	let ComputerTOF=false;
+	let PartyTOF=false;
+	let FairyTOF=false;
+	let FoodTOF=false;
+	let CWTOF=false;
+	
+	let ComputerCount=0;
+	let PartyCount=0;
+	let FairyCount=0;
+	let FoodCount=0;
+	let CWCount=0;
+	
+	
+	let ComputerLookAt=[0,180,32];
+	let PartyLookAt=[-166,150,150];
+	let FairyLookAt=[50,-145,250];
+	let FoodLookAt=[-70,-10,160];
+	let CWLookAt=[90,220,65];
+	
+	
+	
 	
 	function roomInit(){
 		
-		const firstCameraPosition=[100,-100,1100];		
+		let moveCameraPosition=[0,0,0];	
+		const firstCameraPosition=[100,-100,1100];	
 		const stats=initStats();
 		scene=new THREE.Scene();
 		camera=new THREE.PerspectiveCamera(45,window.innerWidth/window.innerHeight,0.1,2000);
@@ -15,7 +37,7 @@
 		camera.position.y=firstCameraPosition[1];
 		camera.position.z=firstCameraPosition[2];
 		camera.lookAt(new THREE.Vector3(0,0,0));
-		
+		console.log(camera);
 		
 		renderer=new THREE.WebGLRenderer();
 		
@@ -29,18 +51,8 @@
         trackballControls.rotateSpeed = 1.0;
         trackballControls.zoomSpeed = 1.0;
         trackballControls.panSpeed = 1.0;
-//        trackballControls.noZoom=false;
-//        trackballControls.noPan=false;
         trackballControls.staticMoving = true;
-//        trackballControls.dynamicDampingFactor=0.3;
 
-		
-		const floor=new THREE.ImageUtils.loadTexture('/imageRoom/floor3.jpg');
-		/*
-		 floor.wrapS = THREE.RepeatWrapping;
-        floor.wrapT = THREE.RepeatWrapping;
-		floor.repeat.set(4,4);*/
-		
 		
 		const floorPlane=new THREE.Mesh(new THREE.BoxGeometry(370,500,100),new THREE.MeshPhongMaterial({
 			color:0xffffff,
@@ -126,6 +138,7 @@
 		CW.position.y=220;
 		CW.position.z=65;
 		CW.rotation.x=0.2*Math.PI;
+		CW.name="CW";
 		scene.add(CW);
 		
 		
@@ -165,17 +178,8 @@
 		food.position.y=-10;
 		food.position.z=160;
 		food.rotation.x=-0.3*Math.PI;
+		food.name="food";
 		scene.add(food);
-		
-		/*
-		const table=createMesh(new THREE.BoxGeometry(150,100,10),"/imageRoom/table.jpg");
-		table.position.x=-80;
-		table.position.y=-50;
-		table.position.z=130;
-		table.rotation.x=-0.3*Math.PI;
-		scene.add(table);
-		*/
-		
 		
 		
 		const com=createMesh(new THREE.PlaneGeometry(90,70),"/imageComputer/comm2.jpg");
@@ -184,6 +188,7 @@
 		com.position.z=32;
 		
 		com.rotation.x=0.2*Math.PI;
+		com.name="com"
 		scene.add(com);
 		
 		const guam=createMesh(new THREE.PlaneGeometry(200,150),"/imageRoom/guam.jpg");
@@ -192,7 +197,7 @@
 		guam.position.z=150;
 		guam.rotation.y=0.5*Math.PI;
 		guam.rotation.x=0.2*Math.PI;
-		
+		guam.name="guam";
 		scene.add(guam);
 		
 		
@@ -201,6 +206,7 @@
 		phone.position.y=-145;
 		phone.position.z=250;
 		phone.rotation.x=-0.3*Math.PI;
+		phone.name="phone";
 		scene.add(phone);
 		
 		const moon=createMesh(new THREE.SphereGeometry(50,50,50),"/imageRoom/moon.jpg");
@@ -221,68 +227,161 @@
 		const projector=new THREE.Projector();
 		let tube;		
 		document.addEventListener('mousedown',onDocumentMouseDown,false);
-		//document.addEventListener('mousemove',onDocumentMouseMove,false);
 		
 		 document.getElementById("WebGL-output").appendChild(renderer.domElement);
 		function onDocumentMouseDown(event){
 			let vector=new THREE.Vector3(( event.clientX / window.innerWidth ) * 2 - 1, -( event.clientY / window.innerHeight ) * 2 + 1, 0.5);
 			vector=vector.unproject(camera);
 			let raycaster=new THREE.Raycaster(camera.position,vector.sub(camera.position).normalize());
-			let intersects=raycaster.intersectObjects([CW,wood1,wood2,wood3,wood4,woodTop,food,com,guam,phone]);
+
+			
+			let intersects=raycaster.intersectObjects([CW,food,com,guam,phone]);
 			if(intersects.length>0){
-				intersects[0].object.material.transparent=true;
-				if(intersects[0].object.material.opacity==0.5)
-					intersects[0].object.material.opacity=1;
-				else intersects[0].object.material.opacity=0.5;
+				trackballControls.reset();
+				camera.position.x=firstCameraPosition[0]
+				camera.position.y=firstCameraPosition[1]
+				camera.position.z=firstCameraPosition[2]
 				
+				moveCameraPosition[0]=camera.position.x;
+				moveCameraPosition[1]=camera.position.y;
+				moveCameraPosition[2]=camera.position.z;
+
+				if(intersects[0].object.name=='phone'){
+					
+					FairyTOF=true;
+					trackballControls.target.set(FairyLookAt[0],FairyLookAt[1],FairyLookAt[2]);
+				}
+				if(intersects[0].object.name=='food'){
+					FoodTOF=true;
+					trackballControls.target.set(FoodLookAt[0],FoodLookAt[1],FoodLookAt[2]);					
+				}
+				if(intersects[0].object.name=='com'){
+					ComputerTOF=true;
+					trackballControls.target.set(ComputerLookAt[0],ComputerLookAt[1],ComputerLookAt[2]);
+				}
+				if(intersects[0].object.name=='guam'){
+					PartyTOF=true;
+					trackballControls.target.set(PartyLookAt[0],PartyLookAt[1],PartyLookAt[2]);
+				}
+				if(intersects[0].object.name=='CW'){
+					CWTOF=true;
+					trackballControls.target.set(CWLookAt[0],CWLookAt[1],CWLookAt[2]);
+				}
 			}
 		}	
-		/*
-		function onDocumentMouseMove(event) {
-			 var vector = new THREE.Vector3(( event.clientX / window.innerWidth ) * 2 - 1, -( event.clientY / window.innerHeight ) * 2 + 1, 0.5);
-                vector = vector.unproject(camera);
-
-                var raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
-                var intersects = raycaster.intersectObjects([CW,table,com,guam,phone]);
-
-                if (intersects.length > 0) {
-
-                    var points = [];
-                    points.push(new THREE.Vector3(-30, 39.8, 30));
-                    points.push(intersects[0].point);
-
-                    var mat = new THREE.MeshBasicMaterial({color: 0xff0000, transparent: true, opacity: 0.6});
-                    var tubeGeometry = new THREE.TubeGeometry(new THREE.SplineCurve3(points), 60, 0.001);
-
-                    if (tube) scene.remove(tube);
-
-                        tube = new THREE.Mesh(tubeGeometry, mat);
-                        scene.add(tube);
-                }
-		}*/
-		/*
-		const controls=new function(){
-			//this.rotationSpeed=0.02;
+		
+	
+		
+		
+		
+		function FoodTrue(){
+			
+			if(FoodCount<100){
+				camera.position.x+=((FoodLookAt[0])-moveCameraPosition[0])/100;
+				camera.position.y+=((FoodLookAt[1]+100)-moveCameraPosition[1])/100;
+				camera.position.z+=((FoodLookAt[2]+50)-moveCameraPosition[2])/100;
+			}
+			else if(FoodCount<200){
+				FoodTOF=false; 
+				FoodCount=0;
+			}
+			FoodCount++;
+		}
+		function PartyTrue(){
+			if(PartyCount<100){
+				camera.position.x+=((PartyLookAt[2]+150)-firstCameraPosition[0])/100;
+				camera.position.y+=((PartyLookAt[1])-firstCameraPosition[1])/100;
+				camera.position.z+=((PartyLookAt[2])-firstCameraPosition[2])/100;
+			}
+			else if(PartyCount<200){
+				PartyTOF=false; 
+				PartyCount=0;
+			}
+			PartyCount++;
+		}
+		function ComputerTrue(){
+			if(ComputerCount<100){
+				camera.position.x+=(ComputerLookAt[0]-firstCameraPosition[0])/100;
+				camera.position.y+=(ComputerLookAt[1]-firstCameraPosition[1])/100;
+				camera.position.z+=((ComputerLookAt[2]+100)-firstCameraPosition[2])/100;
+			}
+			else if(ComputerCount<200){
+				ComputerTOF=false; 
+				ComputerCount=0;
+			}
+			ComputerCount++;
+		}
+		function FairyTrue(){
+			if(FairyCount<100){
+				camera.position.x+=(FairyLookAt[0]-firstCameraPosition[0])/100;
+				camera.position.y+=((FairyLookAt[1]+50) -firstCameraPosition[1])/100;
+				camera.position.z+=((FairyLookAt[2]+50)-firstCameraPosition[2])/100;
+			}
+			else if(FairyCount<200){
+				FairyTOF=false; 
+				FairyCount=0;
+			}
+			FairyCount++;
+		}
+		function CWTrue(){
+			if(CWCount<100){
+				camera.position.x+=(CWLookAt[0]-firstCameraPosition[0])/100;
+				camera.position.y+=((CWLookAt[1]-80)-firstCameraPosition[1])/100;
+				camera.position.z+=((CWLookAt[2]+100)-firstCameraPosition[2])/100;
+			}
+			else if(200<=CWCount && CWCount<300){
+				camera.position.x-=(CWLookAt[0]-firstCameraPosition[0])/100;
+				camera.position.y-=((CWLookAt[1]-80)-firstCameraPosition[1])/100;
+				camera.position.z-=((CWLookAt[2]+100)-firstCameraPosition[2])/100;
+			}
+			else if(CWCount>=300){
+				CWTOF=false; 
+				CWCount=0;
+			}
+			CWCount++;
 		}
 		
-		//const gui=new dat.GUI();
-		//gui.add(controls,'rotationSpeed',0,0.5);
-		*/
-		
-		render();
-
 		function render(){
 			stats.update();
 			
-			moon.rotation.x+=0.02;
-			moon.rotation.y+=0.01;
+			moon.rotation.x+=0.01;
+			moon.rotation.y+=0.005;
 			
+			if(FoodTOF===true){
+				FoodTrue();
+			}
+			if(PartyTOF===true){
+				PartyTrue();
+			}
+			if(ComputerTOF===true){
+				ComputerTrue();
+			}
+			if(CWTOF===true){
+				CWTrue();
+			}
+			if(FairyTOF===true){
+				FairyTrue();
+			}
+			/*
+			if( glitter<=30){
+				CW.material.transparent=true;
+				CW.material.opacity=0.5;
+				glitter++;
+			}
+			else if (glitter<=60){
+				glitter++;
+				CW.material.transparent=false;
+				CW.material.opacity=1;
+			}
+			else glitter=0;
+			*/
 			const delta = clock.getDelta();
 			trackballControls.update(delta);
-			roomAni=requestAnimationFrame(render);
+			requestAnimationFrame(render);//? 위치 바꿔야하나
 			renderer.render(scene,camera);
 		}
-		
+		roomAni=requestAnimationFrame(render);
+
 	}
 	roomInit();
 	

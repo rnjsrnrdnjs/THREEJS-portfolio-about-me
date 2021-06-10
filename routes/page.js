@@ -10,5 +10,18 @@ router.use((req,res,next)=>{
 router.get('/',(req,res,next)=>{
 	res.render('room');
 });
+router.get('/party',(req,res,next)=>{
+	res.render('party');
+});
+router.get('/food',(req,res,next)=>{
+	res.render('food');
+});
+router.get('/fairy',(req,res,next)=>{
+	res.render('fairy');
+});
+router.get('/computer',(req,res,next)=>{
+	res.render('computer');
+});
+
 
 module.exports = router;
