@@ -1,7 +1,36 @@
 {% extends 'index.html' %}
 {% block content %}
+	<div class="foodContainer" >
+		<div class="plate">
+			
+			<div class="headline">
+				090's Food
+			</div>
+			
+			<div class="foodImg">
+				<a href="#F0"><img src="/imageFood/F0.jpg"></a>
+				<article id="#F0">
+					<figure>
+						<img src="imageFood/F0.jpg">
+						<figcaption>Pizza &amp; Pasta</figcaption>
+					</figure>
+				</article>
+			</div>
+			
+			<div class="choose">
+				<span>next 
+				</span>
+				<span>prev
+				</span>
+			</div>
+			
+			
+		</div>
+	</div>
+
 {% endblock %}
 {% block script %}
 <script>
+	window.removeEventListener('resize',onResize);
 </script>
 {% endblock %}

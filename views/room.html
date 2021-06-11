@@ -30,7 +30,6 @@
 		const stats=initStats();
 		scene=new THREE.Scene();
 		camera=new THREE.PerspectiveCamera(45,window.innerWidth/window.innerHeight,0.1,2000);
-		//camera=new THREE.OrthographicCamera(0, window.innerWidth, window.innerHeight, 0, -10, 10);
 		camera.position.x=firstCameraPosition[0];
 		camera.position.y=firstCameraPosition[1];
 		camera.position.z=firstCameraPosition[2];
@@ -51,10 +50,6 @@
         trackballControls.staticMoving = true;
 
 		const floor=new THREE.ImageUtils.loadTexture('/imageRoom/floor3.jpg');
-		/*
-		 floor.wrapS = THREE.RepeatWrapping;
-        floor.wrapT = THREE.RepeatWrapping;
-		floor.repeat.set(4,4);*/
 		
 		
 		const floorPlane=new THREE.Mesh(new THREE.BoxGeometry(370,500,100),new THREE.MeshPhongMaterial({
@@ -63,7 +58,6 @@
 		}));
 		floorPlane.position.y=-100;
 		floorPlane.position.z=100;
-		//plane.position.x=Math.min(window.innerWidth,window.innerHeight)/2;
 		
 		floorPlane.rotation.x=-0.3*Math.PI;
 		
@@ -194,7 +188,7 @@
 		com.name="com"
 		scene.add(com);
 		
-		const guam=createMesh(new THREE.PlaneGeometry(200,150),"/imageRoom/guam.jpg");
+		const guam=createMesh(new THREE.PlaneGeometry(200,150),"/imageRoom/guam2.jpg");
 		guam.position.x=-166;
 		guam.position.y=150;
 		guam.position.z=150;
@@ -231,7 +225,7 @@
 		let tube;		
 		document.addEventListener('mousedown',onDocumentMouseDown,false);
 		
-		 document.getElementById("WebGL-output").appendChild(renderer.domElement);
+		document.getElementById("WebGL-output").appendChild(renderer.domElement);
 		function onDocumentMouseDown(event){
 			let vector=new THREE.Vector3(( event.clientX / window.innerWidth ) * 2 - 1, -( event.clientY / window.innerHeight ) * 2 + 1, 0.5);
 			vector=vector.unproject(camera);
@@ -273,9 +267,6 @@
 			}
 		}	
 		
-	
-		
-		
 		
 		function FoodTrue(){
 			
@@ -284,7 +275,8 @@
 				camera.position.y+=((FoodLookAt[1]+100)-moveCameraPosition[1])/100;
 				camera.position.z+=((FoodLookAt[2]+50)-moveCameraPosition[2])/100;
 			}
-			else if(FoodCount<200){
+			else if(FoodCount==150){
+				location.href="/food"	
 				FoodTOF=false; 
 				FoodCount=0;
 			}
@@ -296,7 +288,8 @@
 				camera.position.y+=((PartyLookAt[1])-firstCameraPosition[1])/100;
 				camera.position.z+=((PartyLookAt[2])-firstCameraPosition[2])/100;
 			}
-			else if(PartyCount<200){
+			else if(PartyCount==150){
+				location.href="/party";
 				PartyTOF=false; 
 				PartyCount=0;
 			}
@@ -308,7 +301,8 @@
 				camera.position.y+=(ComputerLookAt[1]-firstCameraPosition[1])/100;
 				camera.position.z+=((ComputerLookAt[2]+100)-firstCameraPosition[2])/100;
 			}
-			else if(ComputerCount<200){
+			else if(ComputerCount=150){
+				location.href="/computer";
 				ComputerTOF=false; 
 				ComputerCount=0;
 			}
@@ -320,7 +314,8 @@
 				camera.position.y+=((FairyLookAt[1]+50) -firstCameraPosition[1])/100;
 				camera.position.z+=((FairyLookAt[2]+50)-firstCameraPosition[2])/100;
 			}
-			else if(FairyCount<200){
+			else if(FairyCount=150){
+				location.href="/fairy";
 				FairyTOF=false; 
 				FairyCount=0;
 			}
@@ -365,19 +360,6 @@
 			if(FairyTOF===true){
 				FairyTrue();
 			}
-			/*
-			if( glitter<=30){
-				CW.material.transparent=true;
-				CW.material.opacity=0.5;
-				glitter++;
-			}
-			else if (glitter<=60){
-				glitter++;
-				CW.material.transparent=false;
-				CW.material.opacity=1;
-			}
-			else glitter=0;
-			*/
 			const delta = clock.getDelta();
 			trackballControls.update(delta);
 			requestAnimationFrame(render);//? 위치 바꿔야하나

@@ -1,0 +1,65 @@
+.foodContainer{
+	margin:0;
+	overflow:hidden;
+	width:100vw;
+	height:100vh;
+	background:url(/imageFood/background.png) no-repeat;
+	background-size:cover;
+}
+.plate{
+	width: 100%;
+    height: 100%;
+    background: url(/imageFood/fork.svg) no-repeat, 
+		url(/imageFood/plate.svg) no-repeat, 
+		url(/imageFood/knife.svg) no-repeat;
+    background-position: left,center,right;
+    background-size: 30% 30%, 90% 90%,30% 30%;
+	animation-name:plate;
+	animation-duration:2s;
+}
+@media screen and (max-width:1200px){
+	.plate{
+    background-position: left,center,right;
+    background-size: 10% 20%, 80% 80%,10% 20%;
+	animation-name:plate2;
+	}	
+}
+.foodImg{
+	max-width:90%;
+	margin:0 auto;
+	box-shadow:0 0 20px rgba(0,0,0,.5);
+}
+
+
+@keyframes plate{
+	33%{
+	    background-size: 10% 10%, 30% 30%,10% 10%;
+	}
+	66%{
+	    background-size: 20% 20%, 60% 60%,20% 20%;
+	}
+	100%{
+	    background-size: 30% 30%, 90% 90%,30% 30%;
+	}
+}
+@keyframes plate2{
+	33%{
+	     background-size: 3% 7%, 26% 26%,3% 7%;
+	}
+	66%{
+	     background-size: 6% 14%, 52% 52%,6% 14%;
+	}
+	100%{
+	     background-size: 10% 20%, 80% 80%,10% 20%;
+	}
+}
+.choose{
+	position:absolute;
+	top:68%;
+}
+@media screen and (max-width:1200px){
+	.choose{
+		top:63%;
+	}	
+}
+
