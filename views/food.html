@@ -1,103 +1,181 @@
-{% extends 'index.html' %}
-{% block content %}
-	<div class="foodContainer" >
-		<div class="plate">
-			<div class="menu">
-			</div>
-			
-			<div class="head" style="text-align:center;">
-				<div class="headline">
-					<div class="foodFont">
-						090's Food
-					</div>
+{% extends 'index.html' %} {% block content %}
+<div class="foodContainer">
+	<div class="plate">
+		<div class="menu"></div>
+
+		<div class="head" style="text-align: center;">
+			<div class="headline">
+				<div class="foodFont">
+					090's Food
 				</div>
 			</div>
-			
-			<div id="allFood">
-				<img src="/imageFood/grid.png" style="width: 20px;
-    height: 20px;
-    margin-top: 5px;
-    margin-left: 5px;">
-				<span id="content" style=" color: white;
-    margin: 2px;">View all</span>
-			</div>
-			
-			<div class="foodImg">
-			<div class="foodImgLeft">
-			</div>
-			<div class="foodImgCenter">
-			</div>
-			<div class="foodImgRight">
-			</div>
-			</div>
-			
-			
-			<ul id="thumbnail" class="thumbnail" style="display:none;">
-				{% for F in image %}
-				<li>
-					<a href="#{{F}}"><img src="/imageFood/{{F}}.jpg" alt="..."></a>
-					<article id="{{F}}">
-						<figure>
-							<img src="/imageFood/{{F}}.jpg">
-							<figcaption>090 eat that!</figcaption>
-						</figure>
-						<nav>
-							<a class="close" href="#close">Close</a>
-						</nav>
-					</article>
-				</li>
-				{% endfor %}
-				
-			</ul>
-			<div class="choose">
-				<span id="foodPrev">prev 
-				</span>
-				<span id="foodNext">next
-				</span>
-			</div>
+		</div>
+		<div class="plateRound">
+			<div class="plateLeft"></div>
+			<div class="plateRight"></div>
+		</div>
+
+		<div id="allFood">
+			<img
+				src="/imageFood/grid.png"
+				style="width: 20px; height: 20px; margin-top: 5px; margin-left: 5px;"
+			/>
+			<span id="content" style="color: white; margin: 2px;">View all</span>
+		</div>
+
+		<div class="foodImg">
+			<div class="foodImgLeft"></div>
+			<div class="foodImgCenter"></div>
+			<div class="foodImgRight"></div>
+		</div>
+
+		<ul id="thumbnail" class="thumbnail" style="display: none;">
+			{% for F in image %}
+			<li>
+				<a href="#{{F}}"><img src="/imageFood/{{F}}.jpg" alt="..." /></a>
+				<article id="{{F}}">
+					<figure>
+						<img src="/imageFood/{{F}}.jpg" />
+						<figcaption>090 eat that!</figcaption>
+					</figure>
+					<nav>
+						<a class="close" href="#close">Close</a>
+					</nav>
+				</article>
+			</li>
+			{% endfor %}
+		</ul>
+		<div class="choose">
+			<span id="foodPrev">prev </span>
+			<span id="foodNext">next </span>
 		</div>
 	</div>
-<div style="display:none;">아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
-<div style="display:none;">아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/srip" title="srip">srip</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
-<div style="display:none;">아이콘 제작자 <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
-{% endblock %}
-{% block script %}
+</div>
+<div style="display: none;">
+	아이콘 제작자
+	<a href="https://www.flaticon.com/kr/authors/smashicons" title="Smashicons">Smashicons</a> from
+	<a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a>
+</div>
+<div style="display: none;">
+	아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/srip" title="srip">srip</a> from
+	<a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a>
+</div>
+<div style="display: none;">
+	아이콘 제작자 <a href="https://www.freepik.com" title="Freepik">Freepik</a> from
+	<a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a>
+</div>
+{% endblock %} {% block script %}
 <script>
-	window.removeEventListener('resize',onResize);
-	const allFood=document.getElementById('allFood');
-	const thumb=document.getElementById('thumbnail');
-	const plate=document.getElementsByClassName('plate')[0];
-	const choose=document.getElementsByClassName('choose')[0];
-	const content=document.getElementById('content');
-	const menu=document.getElementsByClassName('menu')[0];
-	const head=document.getElementsByClassName('headline')[0];
-	let allFoodCount=0;
-	allFood.addEventListener('click',function(){
-		if(allFoodCount==0){
-			thumb.style.display="";
-			plate.style.background="none";
-			choose.style.display="none";
-			content.innerHTML="Pre View";
-			menu.style.display="none";
-			head.style.display="none";
-			allFood.style.position="relative";
-			allFood.style.top=0+"%";
-			allFoodCount=1;
-		}
-		else {
-			thumb.style.display="none";
-			plate.style.background="";
-			choose.style.display="";
-			content.innerHTML="View all";
-			menu.style.display="";
-			head.style.display="";
-			allFood.style.position="absolute";
-			allFood.style.top="5%";
-			allFoodCount=0;
+	window.removeEventListener('resize', onResize);
+	const allFood = document.getElementById('allFood');
+	const thumb = document.getElementById('thumbnail');
+	const plate = document.getElementsByClassName('plate')[0];
+	const choose = document.getElementsByClassName('choose')[0];
+	const content = document.getElementById('content');
+	const menu = document.getElementsByClassName('menu')[0];
+	const head = document.getElementsByClassName('headline')[0];
+	const curr = document.getElementsByClassName('foodImgCenter')[0];
+	const plateLeft = document.getElementsByClassName('plateLeft')[0];
+	const plateRight = document.getElementsByClassName('plateRight')[0];
+	let allFoodCount = 0;
+	allFood.addEventListener('click', function () {
+		if (allFoodCount == 0) {
+			thumb.style.display = '';
+			plate.style.background = 'none';
+			choose.style.display = 'none';
+			content.innerHTML = 'Pre View';
+			menu.style.display = 'none';
+			head.style.display = 'none';
+			allFood.style.position = 'relative';
+			allFood.style.top = 0 + '%';
+			curr.style.display = 'none';
+			plateLeft.style.display = 'none';
+			plateRight.style.display = 'none';
+			allFoodCount = 1;
+		} else {
+			thumb.style.display = 'none';
+			plate.style.background = '';
+			choose.style.display = '';
+			content.innerHTML = 'View all';
+			menu.style.display = '';
+			head.style.display = '';
+			allFood.style.position = 'absolute';
+			allFood.style.top = '5%';
+			curr.style.display = '';
+			plateLeft.style.display = '';
+			plateRight.style.display = '';
+			allFoodCount = 0;
 		}
 	});
-	const prev=document.getElementById('foodPrev');
-	const next=document.getElementById('foodNext');
+	const prev = document.getElementById('foodPrev');
+	const next = document.getElementById('foodNext');
+	const foodImg = document.getElementsByClassName('foodImg')[0];
+	const foodLeft = document.getElementsByClassName('foodImgLeft')[0];
+	const foodCenter = document.getElementsByClassName('foodImgCenter')[0];
+	const foodRight = document.getElementsByClassName('foodImgRight')[0];
 	
+	
+	let leftPoint=24;
+	let currPoint=0;
+	let rightPoint=1;
+	
+	foodImg.style.textAlign="center";
+	
+	prev.addEventListener('mousedown', () => {
+		plateLeft.classList.remove('plateLeft');
+		foodLeft.classList.remove('foodImgLeft');
+	});
+	
+	prev.addEventListener('mouseup', async () => {
+		plateLeft.classList.add('plateLeft');
+		foodLeft.style.display="inline-block";
+		
+		foodImg.style.removeProperty('text-align');
+		foodCenter.style.position="absolute";
+		foodCenter.classList.add('foodImgCenterRight');
+		foodLeft.classList.add('foodImgLeft');
+		
+		setTimeout(()=>{
+			foodImg.style.textAlign="center";
+			foodCenter.style.position="";
+			foodCenter.classList.remove('foodImgCenterRight');
+		},2000);
+		
+		if(currPoint==0){
+			
+		}
+		else if(){
+				
+		}
+		else{
+				
+		}
+		// 이미지 변경하기
+		foodLeft.style.background
+	});
+	
+	
+	next.addEventListener('mousedown', () => {
+		plateRight.classList.remove('plateRight');
+		foodRight.classList.remove('foodImgRight');
+	});
+	next.addEventListener('mouseup', () => {
+		plateRight.classList.add('plateRight');
+		foodRight.style.display="inline-block";
+
+		foodImg.style.removeProperty('text-align');
+		foodCenter.style.position="absolute";
+		foodCenter.classList.add('foodImgCenterLeft');
+		foodRight.classList.add('foodImgRight');
+		
+		setTimeout(()=>{
+			foodImg.style.textAlign="center";
+			foodCenter.style.position="";
+			foodCenter.classList.remove('foodImgCenterLeft');
+		},2000);
+		
+		// 이미지 변경하기
+		
+	});
 </script>
 {% endblock %}

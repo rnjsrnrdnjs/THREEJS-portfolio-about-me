@@ -10,51 +10,108 @@
 .plate{
 	width: 100%;
     height: 100%;
-    background: url(/imageFood/fork.svg) no-repeat, 
-		url(/imageFood/plate.svg) no-repeat, 
-		url(/imageFood/knife.svg) no-repeat;
-    background-position: left,center,right;
-    background-size: 30% 30%, 65% 65%,30% 30%;
+    background:url(/imageFood/plate.svg) no-repeat; 
+    background-position: center;
+    background-size: 65% 65%;
 	animation-name:plate;
-	animation-duration:2s;
-	
+	animation-duration:1s;
 }
+.plateRound{
+	position: absolute;
+    width: 100%;
+	height:30%;
+    top: 30%;
+}
+.plateLeft{
+	z-index:1;
+	position: absolute;
+    width: 10%;
+    height: 100%;
+    background: url(/imageFood/fork.svg) no-repeat;
+    background-size: 100% 100%;
+    left: 12%;
+	animation-name:prevImg;
+	animation-duration:2s;
+}
+.plateRight{
+	z-index:1;
+	position: absolute;
+    width: 10%;
+    height: 100%;
+    background: url(/imageFood/knife.svg) no-repeat;
+    left: 79%;
+    background-size: 100% 100%;
+	animation-name:nextImg;
+	animation-duration:2s;
+}
+
+
 @media screen and (max-width:1200px){
 	.plate{
-    background-position: left,center,right;
-    background-size: 10% 20%, 80% 80%,10% 20%;
-	animation-name:plate2;
-	}	
+   		 background-position: center;
+  	 	 background-size: 80% 80%;
+		animation-name:plate2;
+	}
+	
+}
+@media screen and (max-width:1024px){
+	.plateLeft{
+		left: 2%;
+	}
+	.plateRight{
+		left: 88%;
+	}
 }
 @keyframes plate{
 	33%{
-	    background-size: 10% 10%, 21% 21%,10% 10%;
+	    background-size:  21% 21%;
 	}
 	66%{
-	    background-size: 20% 20%, 43% 43%,20% 20%;
+	    background-size:  43% 43%;
 	}
 	100%{
-	    background-size: 30% 30%, 65% 65%,30% 30%;
+	    background-size: 65% 65%;
 	}
 }
 @keyframes plate2{
 	33%{
-	     background-size: 3% 7%, 26% 26%,3% 7%;
+	     background-size: 26% 26%;
 	}
 	66%{
-	     background-size: 6% 14%, 52% 52%,6% 14%;
+	     background-size: 52% 52%;
 	}
 	100%{
-	     background-size: 10% 20%, 80% 80%,10% 20%;
+	     background-size:  80% 80%;
 	}
 }
-.foodImg{
-	position:absolute;
-	top:50%;
-	width:90%;
-	max-height:90%;
-	margin:0 auto;
+
+@keyframes prevImg{
+	20%{
+		transform:skewX(30deg) skewY(30deg) rotate(90deg);
+	}
+	40%{
+		transform:skewX(30deg) skewY(30deg) rotate(90deg);
+		left:35%;
+	}
+	80%{
+		transform:skewX(30deg) skewY(30deg) rotate(90deg);
+		left:100%;
+	}
 }
+@keyframes nextImg{
+	20%{
+		transform:skewX(-30deg) skewY(-30deg) rotate(-90deg);
+	}
+	40%{
+		transform:skewX(-30deg) skewY(-30deg) rotate(-90deg);
+		left:60%;
+	}
+	80%{
+		transform:skewX(-30deg) skewY(-30deg) rotate(-90deg);
+		left:0%;
+	}
+}
+
 .thumbnail{
 	 list-style:none;
 	max-width:80%;
@@ -251,12 +308,14 @@ article .close:before{
     position: absolute;
 	top: 30%;
 	height: 40%;
-    text-align: center
+	max-height:90%;
+	margin:0 auto;
 }
+
 .foodImgCenter{
 	background: url(/imageFood/F0.jpg) no-repeat;
     background-size: 100% 100%;
-	width: 35%;
+	width: 30%;
     height: 100%;
     display: inline-block;
 	border-radius: 10px;
@@ -265,25 +324,91 @@ article .close:before{
 .foodImgCenter:hover{
 	
 }
+.foodImgCenterRight{
+	animation-name:imgRightCenter;
+	animation-duration:2s;
+}
+.foodImgCenterLeft{
+	animation-name:imgLeftCenter;
+	animation-duration:2s;
+}
+
 .foodImgLeft{
-	display:none;
-	background-size: 100% 100%;
-	width: 35%;
+	background: url(/imageFood/F24.jpg) no-repeat;
+	display: none;
+    background-size: 100% 100%;
+    width: 30%;
     height: 100%;
-	border-radius: 10px;
-	cursor:pointer;
+    left: -50%;
+    border-radius: 10px;
+    position: absolute;
+	animation-name:imgRight;
+	animation-duration:2s;
 }
 .foodImgRight{
-	display:none;
-	background-size: 100% 100%;
-	width: 35%;
+	background: url(/imageFood/F1.jpg) no-repeat;
+	display: none;
+    background-size: 100% 100%;
+    width: 30%;
     height: 100%;
-	border-radius: 10px;
-	cursor:pointer;
+    right: -50%;
+    border-radius: 10px;
+    position: absolute;
+	animation-name:imgLeft;
+	animation-duration:2s;
+}
+@keyframes imgRight{
+	40%{
+		left:-20%;
+	}
+	80%{
+		left:35%;
+	}
+	100%{
+		left:30%;
+	}
+}
+@keyframes imgRightCenter{
+	0%{
+		left:20%;
+	}
+	45%{
+		left:30%;
+	}
+	80%{
+		left:100%;
+	}
+	100%{
+		left:110%;
+	}
+}
+@keyframes imgLeft{
+	40%{
+		right:-20%;
+	}
+	80%{
+		right:35%;
+	}
+	100%{
+		right:30%;
+	}
+}
+@keyframes imgLeftCenter{
+	0%{
+		right:20%;
+	}
+	45%{
+		right:30%;
+	}
+	80%{
+		right:100%;
+	}
+	100%{
+		right:110%;
+	}
 }
 
-
-@media screen and (max-width:1200px){
+@media screen and (max-width:1024px){
 	.choose{
 		top:63%;
 	}	
@@ -300,11 +425,19 @@ article .close:before{
 	    height: 30%;
 	}
 	.foodImgCenter{
-	    width: 50%;
+	    width: 45%;
 	}
 	.foodImgLeft{
+		width: 45%;
 	}
 	.foodImgRight{
+		width: 45%;
 	}
 }
+
+/* party */
+
+
+
+
 
