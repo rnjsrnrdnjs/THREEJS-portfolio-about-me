@@ -14,9 +14,10 @@
 		url(/imageFood/plate.svg) no-repeat, 
 		url(/imageFood/knife.svg) no-repeat;
     background-position: left,center,right;
-    background-size: 30% 30%, 90% 90%,30% 30%;
+    background-size: 30% 30%, 65% 65%,30% 30%;
 	animation-name:plate;
 	animation-duration:2s;
+	
 }
 @media screen and (max-width:1200px){
 	.plate{
@@ -24,6 +25,28 @@
     background-size: 10% 20%, 80% 80%,10% 20%;
 	animation-name:plate2;
 	}	
+}
+@keyframes plate{
+	33%{
+	    background-size: 10% 10%, 21% 21%,10% 10%;
+	}
+	66%{
+	    background-size: 20% 20%, 43% 43%,20% 20%;
+	}
+	100%{
+	    background-size: 30% 30%, 65% 65%,30% 30%;
+	}
+}
+@keyframes plate2{
+	33%{
+	     background-size: 3% 7%, 26% 26%,3% 7%;
+	}
+	66%{
+	     background-size: 6% 14%, 52% 52%,6% 14%;
+	}
+	100%{
+	     background-size: 10% 20%, 80% 80%,10% 20%;
+	}
 }
 .foodImg{
 	position:absolute;
@@ -100,10 +123,6 @@
 	color:white;
 	font-size:1.2rem;
 }
-.choose{
-	color:white;
-	font-size:1.2rem;
-}
 .thumbnail article:target img{
 	opacity:1;
 }
@@ -135,7 +154,10 @@ article .close:before{
 	background:#EBAA5F;
 }
 #allFood{
-	position: relative;
+	transition:1s;
+	cursor:pointer;
+	position: absolute;
+    top: 5%;
     left: 80vw;
     font-size: 1.2rem;
     background-color: #323232;
@@ -145,39 +167,144 @@ article .close:before{
 }
 @media screen and (max-width:1200px){
 	#allFood{
-		left:60vw;
+		left:62vw;
 	}	
 }
-
-@keyframes plate{
-	33%{
-	    background-size: 10% 10%, 30% 30%,10% 10%;
-	}
-	66%{
-	    background-size: 20% 20%, 60% 60%,20% 20%;
-	}
-	100%{
-	    background-size: 30% 30%, 90% 90%,30% 30%;
-	}
+.menu{
+	cursor:pointer;
+	position:absolute;
+	width:80px;
+	height:80px;
+	background:url(/imageFood/menu.png) no-repeat;
+	background-size:cover;
+	top:5%;
+	left:5%;
 }
-@keyframes plate2{
-	33%{
-	     background-size: 3% 7%, 26% 26%,3% 7%;
+.headline{
+    background: url(/imageFood/headline.png) no-repeat;
+    background-size: 100% 100%;
+	display: inline-block;
+    height: 180px;
+    width: 145px;
+	animation-name:wobble;
+	animation-duration:4s;
+}
+@media screen and (max-width:1200px){
+	.headline{
+	    height: 150px;
+	    width: 120px;
+	}	
+}
+.foodFont{
+	color: white;
+    margin-top: 95%;
+    background: firebrick;
+    font-size: 1.2rem;
+    border-radius: 10px;
+}
+
+@keyframes wobble{
+	15%{
+		transform:translateX(-25%) rotate(5deg);
 	}
-	66%{
-	     background-size: 6% 14%, 52% 52%,6% 14%;
+	30%{
+		transform:translateX(20%) rotate(-3deg);
 	}
-	100%{
-	     background-size: 10% 20%, 80% 80%,10% 20%;
+	45%{
+		transform:translateX(-15%) rotate(3deg);
+	}
+	60%{
+		transform:translateX(10%) rotate(-2deg);
+	}
+	75%{
+		transform:translateX(-5%) rotate(1deg);
 	}
 }
 .choose{
 	position:absolute;
+	width:100%;
 	top:68%;
+	color:darkblue;
 }
+#foodPrev{
+	cursor:pointer;
+	float: left;
+   	margin-left:14%;
+	border-radius: 10px;
+	padding:1%;
+    background: linear-gradient(
+0.25turn
+, #FF0000, #ebf8e1, #282828);
+}
+#foodNext{
+	cursor:pointer;
+	margin-right:14%;
+   	float: right;
+	padding:1%;
+	border-radius: 10px;
+    background: linear-gradient(
+0.25turn
+, #FF0000, #ebf8e1, #282828);
+}
+.foodImg{
+	width: 100%;
+    position: absolute;
+	top: 30%;
+	height: 40%;
+    text-align: center
+}
+.foodImgCenter{
+	background: url(/imageFood/F0.jpg) no-repeat;
+    background-size: 100% 100%;
+	width: 35%;
+    height: 100%;
+    display: inline-block;
+	border-radius: 10px;
+	cursor:pointer;
+}
+.foodImgCenter:hover{
+	
+}
+.foodImgLeft{
+	display:none;
+	background-size: 100% 100%;
+	width: 35%;
+    height: 100%;
+	border-radius: 10px;
+	cursor:pointer;
+}
+.foodImgRight{
+	display:none;
+	background-size: 100% 100%;
+	width: 35%;
+    height: 100%;
+	border-radius: 10px;
+	cursor:pointer;
+}
+
+
 @media screen and (max-width:1200px){
 	.choose{
 		top:63%;
 	}	
+	#foodPrev{
+		float: left;
+   		margin-left: 2%;
+	}
+	#foodNext{
+		margin-right: 2%;
+   		float: right;
+	}
+	.foodImg{
+	    top: 35%;
+	    height: 30%;
+	}
+	.foodImgCenter{
+	    width: 50%;
+	}
+	.foodImgLeft{
+	}
+	.foodImgRight{
+	}
 }
 

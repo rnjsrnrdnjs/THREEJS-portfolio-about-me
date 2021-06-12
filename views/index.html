@@ -43,6 +43,8 @@
 
 		<!-- Javascript code that runs our Three.js examples -->
 		<script>
+			history.pushState(null, null, location.href); 
+
 			let camera, scene, renderer;
 			let roomAni;
 			function initStats() {

@@ -2,12 +2,15 @@
 {% block content %}
 	<div class="foodContainer" >
 		<div class="plate">
-			<div>
-				<img src="/imageFood/menu.png" style="width:20px; height:20px;">menu
+			<div class="menu">
 			</div>
 			
-			<div class="headline">
-				090's Food
+			<div class="head" style="text-align:center;">
+				<div class="headline">
+					<div class="foodFont">
+						090's Food
+					</div>
+				</div>
 			</div>
 			
 			<div id="allFood">
@@ -19,11 +22,13 @@
     margin: 2px;">View all</span>
 			</div>
 			
+			<div class="foodImg">
 			<div class="foodImgLeft">
 			</div>
 			<div class="foodImgCenter">
 			</div>
 			<div class="foodImgRight">
+			</div>
 			</div>
 			
 			
@@ -45,16 +50,16 @@
 				
 			</ul>
 			<div class="choose">
-				<span>prev 
+				<span id="foodPrev">prev 
 				</span>
-				<span>next
+				<span id="foodNext">next
 				</span>
 			</div>
 		</div>
 	</div>
 <div style="display:none;">아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
 <div style="display:none;">아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/srip" title="srip">srip</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
-
+<div style="display:none;">아이콘 제작자 <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
 {% endblock %}
 {% block script %}
 <script>
@@ -64,6 +69,8 @@
 	const plate=document.getElementsByClassName('plate')[0];
 	const choose=document.getElementsByClassName('choose')[0];
 	const content=document.getElementById('content');
+	const menu=document.getElementsByClassName('menu')[0];
+	const head=document.getElementsByClassName('headline')[0];
 	let allFoodCount=0;
 	allFood.addEventListener('click',function(){
 		if(allFoodCount==0){
@@ -71,6 +78,10 @@
 			plate.style.background="none";
 			choose.style.display="none";
 			content.innerHTML="Pre View";
+			menu.style.display="none";
+			head.style.display="none";
+			allFood.style.position="relative";
+			allFood.style.top=0+"%";
 			allFoodCount=1;
 		}
 		else {
@@ -78,8 +89,15 @@
 			plate.style.background="";
 			choose.style.display="";
 			content.innerHTML="View all";
+			menu.style.display="";
+			head.style.display="";
+			allFood.style.position="absolute";
+			allFood.style.top="5%";
 			allFoodCount=0;
 		}
 	});
+	const prev=document.getElementById('foodPrev');
+	const next=document.getElementById('foodNext');
+	
 </script>
 {% endblock %}
