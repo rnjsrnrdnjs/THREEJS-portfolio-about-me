@@ -13,8 +13,19 @@ router.get('/',(req,res,next)=>{
 router.get('/party',(req,res,next)=>{
 	res.render('party');
 });
-router.get('/food',(req,res,next)=>{
-	res.render('food');
+router.get('/food',async(req,res,next)=>{
+	try{
+		const image=[];
+		const foodCount=25
+		for(let i=0;i<foodCount;i++){
+			image.push(`F${i}`);
+		}
+		res.render('food',{
+			image:image,
+		});
+	}catch(err){
+		console.log(err);
+	}
 });
 router.get('/fairy',(req,res,next)=>{
 	res.render('fairy');

@@ -1,3 +1,4 @@
+/* food */
 .foodContainer{
 	margin:0;
 	overflow:hidden;
@@ -25,11 +26,128 @@
 	}	
 }
 .foodImg{
-	max-width:90%;
+	position:absolute;
+	top:50%;
+	width:90%;
+	max-height:90%;
 	margin:0 auto;
-	box-shadow:0 0 20px rgba(0,0,0,.5);
+}
+.thumbnail{
+	 list-style:none;
+	max-width:80%;
+	padding:10px;
+	margin:0 auto;
+	border:1px solid #ccc;
+	background:#323232	;
+	border-radius:10px;
+	box-shadow:0 0 2px rgba(0,0,0,.5);
+}
+.thumbnail:after{
+	content:"";
+	display:block;
+	clear:both;
+}
+.thumbnail li{
+	float:left;
+	width:18%;
+	margin:1%;
+}
+.thumbnail li > a img{
+	max-width:100%;
+	height: 15vh;
+	width: 100%;
+	box-shadow:0 0 5px rgba(0,0,0,.3);
+	transition:.5s;
 }
 
+.thumbnail li > a{
+	float:left;
+	transition:.5s;
+	position:relative;
+}
+.thumbnail li > a:hover{
+	z-index:1;
+}
+.thumbnail li > a:hover img{
+	transform:scale(1.8);
+	box-shadow:0 0 15px rgba(0,0,0,.8);
+}
+.thumbnail article{
+	width:0;
+	height:0;
+	overflow:hidden;
+	position:absolute;
+	top:0;
+	left:0;
+}
+.thumbnail article img{
+	margin-top:10vh;
+	text-align:center;
+	max-width: 100%;
+	max-height: 80vh;
+	box-sizing:border-box;
+	border:10px solid #fff;
+	box-shadow:0 0 20px rgba(0,0,0,.5);
+	opacity:0;
+	transition:.7s;
+}
+.thumbnail article:target{
+	width:100%;
+	height:100%;
+	text-align:center;
+	background:rgba(0,0,0,.8);
+	z-index:1;
+	color:white;
+	font-size:1.2rem;
+}
+.choose{
+	color:white;
+	font-size:1.2rem;
+}
+.thumbnail article:target img{
+	opacity:1;
+}
+article .close{
+	text-decoration:none;
+	color:black;
+	background:#fff;
+	position:absolute;
+	top:5vh;
+	left:50%;
+	margin-left:-50px;
+	width:100px;
+	padding:6px 6px 6px 25px;
+	box-sizing:border-box;
+	border-radius:15px;
+	transition:.5s;
+}
+article .close:before{
+	color:white;
+	content:"X";
+	position:absolute;
+	font-size:1.2rem;
+	top:3px;
+	left:5px;
+	margin-top: 4px;
+	width:24px;
+	height:24px;
+	border-radius:50%;
+	background:#EBAA5F;
+}
+#allFood{
+	position: relative;
+    left: 80vw;
+    font-size: 1.2rem;
+    background-color: #323232;
+    border-radius: 10px;
+    border: 1px solid white;
+    width: 120px;
+}
+@media screen and (max-width:1200px){
+	#allFood{
+		left:60vw;
+	}	
+}
 
 @keyframes plate{
 	33%{

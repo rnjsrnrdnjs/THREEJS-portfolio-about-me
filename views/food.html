@@ -2,35 +2,84 @@
 {% block content %}
 	<div class="foodContainer" >
 		<div class="plate">
+			<div>
+				<img src="/imageFood/menu.png" style="width:20px; height:20px;">menu
+			</div>
 			
 			<div class="headline">
 				090's Food
 			</div>
 			
-			<div class="foodImg">
-				<a href="#F0"><img src="/imageFood/F0.jpg"></a>
-				<article id="#F0">
-					<figure>
-						<img src="imageFood/F0.jpg">
-						<figcaption>Pizza &amp; Pasta</figcaption>
-					</figure>
-				</article>
+			<div id="allFood">
+				<img src="/imageFood/grid.png" style="width: 20px;
+    height: 20px;
+    margin-top: 5px;
+    margin-left: 5px;">
+				<span id="content" style=" color: white;
+    margin: 2px;">View all</span>
 			</div>
 			
+			<div class="foodImgLeft">
+			</div>
+			<div class="foodImgCenter">
+			</div>
+			<div class="foodImgRight">
+			</div>
+			
+			
+			<ul id="thumbnail" class="thumbnail" style="display:none;">
+				{% for F in image %}
+				<li>
+					<a href="#{{F}}"><img src="/imageFood/{{F}}.jpg" alt="..."></a>
+					<article id="{{F}}">
+						<figure>
+							<img src="/imageFood/{{F}}.jpg">
+							<figcaption>090 eat that!</figcaption>
+						</figure>
+						<nav>
+							<a class="close" href="#close">Close</a>
+						</nav>
+					</article>
+				</li>
+				{% endfor %}
+				
+			</ul>
 			<div class="choose">
-				<span>next 
+				<span>prev 
 				</span>
-				<span>prev
+				<span>next
 				</span>
 			</div>
-			
-			
 		</div>
 	</div>
+<div style="display:none;">아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
+<div style="display:none;">아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/srip" title="srip">srip</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
 
 {% endblock %}
 {% block script %}
 <script>
 	window.removeEventListener('resize',onResize);
+	const allFood=document.getElementById('allFood');
+	const thumb=document.getElementById('thumbnail');
+	const plate=document.getElementsByClassName('plate')[0];
+	const choose=document.getElementsByClassName('choose')[0];
+	const content=document.getElementById('content');
+	let allFoodCount=0;
+	allFood.addEventListener('click',function(){
+		if(allFoodCount==0){
+			thumb.style.display="";
+			plate.style.background="none";
+			choose.style.display="none";
+			content.innerHTML="Pre View";
+			allFoodCount=1;
+		}
+		else {
+			thumb.style.display="none";
+			plate.style.background="";
+			choose.style.display="";
+			content.innerHTML="View all";
+			allFoodCount=0;
+		}
+	});
 </script>
 {% endblock %}
