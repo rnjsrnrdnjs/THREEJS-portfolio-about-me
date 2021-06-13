@@ -236,7 +236,46 @@ article .close:before{
 	background-size:cover;
 	top:5%;
 	left:5%;
+	transition:1s;
 }
+.foodMenu{
+	cursor:pointer;
+	position:absolute;
+	width:80px;
+	height:50px;
+	background:url(/imageFood/list.png) no-repeat;
+	background-size:100% 100%;
+	top:13.3%;
+	left:5%;
+}
+#foodMenu1{
+	transition:.5s;
+	display:none;
+}
+#foodMenu2{
+	transition:.5s .5s;
+	transform:translateY(40px);
+	display:none;
+}
+#foodMenu3{
+	transition:1s .5s;
+	transform:translateY(80px);
+	display:none;
+}
+#foodMenu4{
+	transition:1.5s .5s;
+	transform:translateY(120px);
+	display:none;
+}
+
+.foodMenuFont{
+	font-size: 0.4rem;
+    font-weight: bold;
+    width: 50px;
+    margin-left: 12px;
+    border-radius: 5px;
+}
+
 .headline{
     background: url(/imageFood/headline.png) no-repeat;
     background-size: 100% 100%;
@@ -362,10 +401,10 @@ article .close:before{
 		left:-20%;
 	}
 	80%{
-		left:35%;
+		left:45%;
 	}
 	100%{
-		left:30%;
+		left:35%;
 	}
 }
 @keyframes imgRightCenter{
@@ -387,10 +426,10 @@ article .close:before{
 		right:-20%;
 	}
 	80%{
-		right:35%;
+		right:45%;
 	}
 	100%{
-		right:30%;
+		right:35%;
 	}
 }
 @keyframes imgLeftCenter{
@@ -434,7 +473,6 @@ article .close:before{
 		width: 45%;
 	}
 }
-
 /* party */
 
 

@@ -2,7 +2,27 @@
 <div class="foodContainer">
 	<div class="plate">
 		<div class="menu"></div>
-
+		<div class="foodMenu" id="foodMenu1" onClick="location.href='/'">
+			<div class="foodMenuFont">
+				Main Page
+			</div>
+		</div>
+		<div class="foodMenu" id="foodMenu2" onClick="location.href='/fairy'">
+			<div class="foodMenuFont">
+			Ani Page
+			</div>
+		</div>
+		<div class="foodMenu" id="foodMenu3" onClick="location.href='/party'">
+			<div class="foodMenuFont">
+			Party Page
+			</div>
+		</div>
+		<div class="foodMenu" id="foodMenu4" onClick="location.href='/computer'">
+			<div class="foodMenuFont">
+			Computer Page
+			</div>
+		</div>
+		
 		<div class="head" style="text-align: center;">
 			<div class="headline">
 				<div class="foodFont">
@@ -64,6 +84,7 @@
 	아이콘 제작자 <a href="https://www.freepik.com" title="Freepik">Freepik</a> from
 	<a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a>
 </div>
+<div style="display:none;">아이콘 제작자 <a href="" title="Icongeek26">Icongeek26</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
 {% endblock %} {% block script %}
 <script>
 	window.removeEventListener('resize', onResize);
@@ -134,24 +155,24 @@
 		foodCenter.style.position="absolute";
 		foodCenter.classList.add('foodImgCenterRight');
 		foodLeft.classList.add('foodImgLeft');
-		
 		setTimeout(()=>{
 			foodImg.style.textAlign="center";
 			foodCenter.style.position="";
 			foodCenter.classList.remove('foodImgCenterRight');
+			leftPoint-=1;
+			leftPoint=leftPoint<0?24:leftPoint;
+			currPoint-=1;
+			currPoint=currPoint<0?24:currPoint;
+			rightPoint-=1;
+			rightPoint=rightPoint<0?24:rightPoint;
+			foodLeft.style.background=`url(/imageFood/F${leftPoint}.jpg) no-repeat`;
+foodLeft.style.backgroundSize="100% 100%";
+			foodCenter.style.background=`url(/imageFood/F${currPoint}.jpg) no-repeat`;
+foodCenter.style.backgroundSize="100% 100%";
+			foodRight.style.background=`url(/imageFood/F${rightPoint}.jpg) no-repeat`;
+foodRight.style.backgroundSize="100% 100%";
 		},2000);
 		
-		if(currPoint==0){
-			
-		}
-		else if(){
-				
-		}
-		else{
-				
-		}
-		// 이미지 변경하기
-		foodLeft.style.background
 	});
 	
 	
@@ -172,10 +193,49 @@
 			foodImg.style.textAlign="center";
 			foodCenter.style.position="";
 			foodCenter.classList.remove('foodImgCenterLeft');
+			leftPoint+=1;
+			leftPoint=leftPoint>24?0:leftPoint;
+			currPoint+=1;
+			currPoint=currPoint>24?0:currPoint;
+			rightPoint+=1;
+			rightPoint=rightPoint>24?0:rightPoint;
+			foodLeft.style.background=`url(/imageFood/F${leftPoint}.jpg) no-repeat`;
+foodLeft.style.backgroundSize="100% 100%";
+			foodCenter.style.background=`url(/imageFood/F${currPoint}.jpg) no-repeat`;
+foodCenter.style.backgroundSize="100% 100%";
+			foodRight.style.background=`url(/imageFood/F${rightPoint}.jpg) no-repeat`;
+foodRight.style.backgroundSize="100% 100%";
 		},2000);
 		
-		// 이미지 변경하기
-		
 	});
+	let menuTOF=false;
+	
+	const foodMenu=document.getElementsByClassName('foodMenu');
+	for(let i=0;i<foodMenu.length;i++){
+		foodMenu[i].style.display="none";
+	}
+	menu.addEventListener('mousedown',()=>{
+		if(menuTOF==false){
+			for(let i=0;i<foodMenu.length;i++){
+				foodMenu[i].id='';
+				foodMenu[i].style.display="inline";
+			}	
+			menuTOF=true;
+		}
+		else {
+			for(let i=0;i<foodMenu.length;i++){
+				foodMenu[i].id=`foodMenu${i+1}`;
+				foodMenu[i].style.display="none";
+			}	
+			menuTOF=false;
+		}
+	});
+	menu.addEventListener('click',()=>{
+		for(let i=0;i<foodMenu.length;i++){
+			foodMenu[i].id=`foodMenu${i+1}`;
+		}
+	});
+	
+	
 </script>
 {% endblock %}
