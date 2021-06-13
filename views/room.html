@@ -26,7 +26,7 @@
 		const firstCameraPosition = [100, -100, 1100];
 		const stats = initStats();
 		scene = new THREE.Scene();
-		camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 2000);
+		camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1500);
 		camera.position.x = firstCameraPosition[0];
 		camera.position.y = firstCameraPosition[1];
 		camera.position.z = firstCameraPosition[2];
@@ -213,6 +213,8 @@
 		moon.position.z = 300;
 		scene.add(moon);
 
+		
+		
 		/* svg 불러오는법 
 		const options={
 			amount: 2,
@@ -390,7 +392,7 @@
 			requestAnimationFrame(render); //? 위치 바꿔야하나
 			renderer.render(scene, camera);
 		}
-		roomAni = requestAnimationFrame(render);
+		let roomAni = requestAnimationFrame(render);
 	}
 	roomInit();
 </script>

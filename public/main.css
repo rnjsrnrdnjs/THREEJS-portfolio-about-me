@@ -10,7 +10,7 @@
     left: -15%;
 	animation-name:airplaneMove;
 	animation-timing-function:cubic-bezier(.29,.1,.43,1.58);
-	animation-duration:2s;
+	animation-duration:3s;
 }
 
 @keyframes airplaneMove{
@@ -507,6 +507,30 @@ article .close:before{
 }
 
 /* party */
+
+.PartyContainer{
+	margin: 0;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    background: url(/imageParty/club.jpg) no-repeat;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    background-size: 100% 100%;
+	z-index:0;
+}
+/* 모바일 세로모드 인식 */
+@media screen and (max-width:1000px) and (orientation: portrait){
+	.PartyContainer{
+	transform: rotate(-90deg);
+      transform-origin: top left;
+      top: 100%;
+      left: 0;
+      width: 100vh;
+      height: 100vw;
+	}
+}
 
 
 

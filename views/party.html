@@ -1,11 +1,62 @@
 {% extends 'index.html' %}
 {% block content %}
-
+<div class="PartyContainer">
+	
+</div>
 {% endblock %}
 {% block script %}
-<script>
-	function pratyInit(){
+<script type="module">
+	import * as THREE from '/build/three.module.js';
+	
+	import { RectAreaLightHelper } from '/jsm/helpers/RectAreaLightHelper.js';
+			import { RectAreaLightUniformsLib } from '/jsm/lights/RectAreaLightUniformsLib.js';
+	
+	function partyInit(){
+		const stats = initStats();
+		scene = new THREE.Scene();
+		camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+		renderer = new THREE.WebGLRenderer({
+			alpha: true,
+			antialias: true
+		});
+		// renderer 에 알파값을 투명으로주고, 색상을 부여하지않음으로써 배경색을 투명하게 만들수있음
+		renderer.domElement.style.position="absolute";
+		renderer.domElement.style.zIndex=2;
+		renderer.setSize(window.innerWidth, window.innerHeight);
+		renderer.shadowMap.enabled = true;
 		
+		/*
+		const sphereGeometry=new THREE.SphereGeometry( 50, 32, 32 );
+		const sphereMaterial=new THREE.MeshBasicMaterial( {color: 0xffff00} );
+		
+		const discoBall=new THREE.Mesh(sphereGeometry,sphereMaterial);
+		
+		discoBall.position.x=0;
+		discoBall.position.y=0;
+		discoBall.position.z=0;
+		
+		
+		scene.add(discoBall);
+		*/
+		
+		
+		
+		
+		
+		render();
+		
+		
+
+		function render() {
+			stats.update();
+
+			
+			requestAnimationFrame(render); //? 위치 바꿔야하나
+			renderer.render(scene, camera);
+		}
+		let PartyAni = requestAnimationFrame(render);
 	}
+	partyInit();
 </script>
 {% endblock %}
