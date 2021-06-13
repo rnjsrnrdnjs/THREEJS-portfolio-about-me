@@ -99,6 +99,8 @@
 	const plateLeft = document.getElementsByClassName('plateLeft')[0];
 	const plateRight = document.getElementsByClassName('plateRight')[0];
 	let allFoodCount = 0;
+	const foodMenu=document.getElementsByClassName('foodMenu');
+
 	allFood.addEventListener('click', function () {
 		if (allFoodCount == 0) {
 			thumb.style.display = '';
@@ -112,6 +114,10 @@
 			curr.style.display = 'none';
 			plateLeft.style.display = 'none';
 			plateRight.style.display = 'none';
+			for(let i=0;i<foodMenu.length;i++){
+				foodMenu[i].style.display="none";
+			}
+
 			allFoodCount = 1;
 		} else {
 			thumb.style.display = 'none';
@@ -126,6 +132,10 @@
 			plateLeft.style.display = '';
 			plateRight.style.display = '';
 			allFoodCount = 0;
+			for(let i=0;i<foodMenu.length;i++){
+				foodMenu[i].style.display="inline";
+			}
+
 		}
 	});
 	const prev = document.getElementById('foodPrev');
@@ -210,7 +220,6 @@ foodRight.style.backgroundSize="100% 100%";
 	});
 	let menuTOF=false;
 	
-	const foodMenu=document.getElementsByClassName('foodMenu');
 	for(let i=0;i<foodMenu.length;i++){
 		foodMenu[i].style.display="none";
 	}

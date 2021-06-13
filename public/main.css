@@ -1,3 +1,27 @@
+/* room */
+
+#airplane{
+	width: 210px;
+    height: 140px;
+    background: url(/imageRoom/airplane.svg) no-repeat;
+    position: absolute;
+    background-size: 100% 100%;
+    top: 45%;
+    left: -15%;
+	animation-name:airplaneMove;
+	animation-timing-function:cubic-bezier(.29,.1,.43,1.58);
+	animation-duration:2s;
+}
+
+@keyframes airplaneMove{
+	20%{
+		top: 55%;left: -5%;
+	}
+	100%{
+		top: 10%;left: 120%;
+	}
+}
+
 /* food */
 .foodContainer{
 	margin:0;
@@ -180,6 +204,7 @@
 	color:white;
 	font-size:1.2rem;
 }
+
 .thumbnail article:target img{
 	opacity:1;
 }
@@ -361,7 +386,14 @@ article .close:before{
 	cursor:pointer;
 }
 .foodImgCenter:hover{
-	
+	z-index:1;
+	box-sizing:border-box;
+	border:10px solid #fff;
+	box-shadow:0 0 20px rgba(0,0,0,.5);
+	transition:.7s;
+	transform:scale(2);
+	position: relative;
+    z-index: 2;
 }
 .foodImgCenterRight{
 	animation-name:imgRightCenter;
@@ -473,6 +505,7 @@ article .close:before{
 		width: 45%;
 	}
 }
+
 /* party */
 
 

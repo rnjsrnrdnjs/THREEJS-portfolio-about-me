@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width,user-scalable=no" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<link rel="stylesheet" href="/main.css" />
-		
+
 		<script type="text/javascript" src="../libs/three.js"></script>
 		<script type="text/javascript" src="/libs/stats.js"></script>
 		<script type="text/javascript" src="/libs/dat.gui.js"></script>
@@ -21,7 +21,7 @@
 			type="text/javascript"
 			src="/assets/fonts/bitstream_vera_sans_mono_roman.typeface.js"
 		></script>
-		
+
 		<style>
 			body {
 				/* set margin to 0 and overflow to hidden, to
@@ -43,7 +43,7 @@
 
 		<!-- Javascript code that runs our Three.js examples -->
 		<script>
-			history.pushState(null, null, location.href); 
+			history.pushState(null, null, location.href);
 
 			let camera, scene, renderer;
 			let roomAni;
@@ -82,6 +82,29 @@
 				// create a multimaterial
 				const mesh = new THREE.Mesh(geom, mat);
 
+				return mesh;
+			}
+			
+			function drawShape(query) {
+				const svgString = document.querySelector(`#${query}`).getAttribute("d");
+				const shape = transformSVGPathExposed(svgString);
+				return shape;
+			}
+			function createSVGMesh(geom) {
+				geom.applyMatrix(new THREE.Matrix4().makeTranslation(-390, -74, 0));
+
+				// assign two materials
+				var meshMaterial = new THREE.MeshPhongMaterial({
+					color: 0x333333,
+					shininess: 100,
+					metal: true,
+				});
+				var mesh = new THREE.Mesh(geom, meshMaterial);
+				mesh.scale.x = 0.1;
+				mesh.scale.y = 0.1;
+
+				mesh.rotation.z = Math.PI;
+				mesh.rotation.x = -1.1;
 				return mesh;
 			}
 		</script>
