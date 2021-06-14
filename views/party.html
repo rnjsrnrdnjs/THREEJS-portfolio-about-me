@@ -1,62 +1,97 @@
-{% extends 'index.html' %}
-{% block content %}
-<div class="PartyContainer">
-	
-</div>
-{% endblock %}
-{% block script %}
+{% extends 'index.html' %} {% block content %}
+<div class="PartyContainer"></div>
+{% endblock %} {% block script %}
 <script type="module">
-	import * as THREE from '/build/three.module.js';
-	
+	import  * as THREE from '/build/three.module.js';
+
 	import { RectAreaLightHelper } from '/jsm/helpers/RectAreaLightHelper.js';
-			import { RectAreaLightUniformsLib } from '/jsm/lights/RectAreaLightUniformsLib.js';
-	
-	function partyInit(){
+	import { RectAreaLightUniformsLib } from '/jsm/lights/RectAreaLightUniformsLib.js';
+	partyInit();
+
+	function partyInit() {
 		const stats = initStats();
 		scene = new THREE.Scene();
 		camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-
+		camera.position.set(0, 5, -35);
+		camera.lookAt(0, 0, 0);
+		
+		
+		// renderer 에 알파값을 투명으로주고, 색상을 부여하지않음으로써 배경색을 투명하게 만들수있음
 		renderer = new THREE.WebGLRenderer({
 			alpha: true,
-			antialias: true
+			antialias: true,
 		});
-		// renderer 에 알파값을 투명으로주고, 색상을 부여하지않음으로써 배경색을 투명하게 만들수있음
-		renderer.domElement.style.position="absolute";
-		renderer.domElement.style.zIndex=2;
+		renderer.domElement.style.position = 'absolute';
+		renderer.domElement.style.zIndex = 2;
+
+		renderer.setPixelRatio(window.devicePixelRatio);
 		renderer.setSize(window.innerWidth, window.innerHeight);
-		renderer.shadowMap.enabled = true;
+		renderer.outputEncoding = THREE.sRGBEncoding;
+		document.body.appendChild(renderer.domElement);
+
+
+		RectAreaLightUniformsLib.init();
+
 		
-		/*
-		const sphereGeometry=new THREE.SphereGeometry( 50, 32, 32 );
-		const sphereMaterial=new THREE.MeshBasicMaterial( {color: 0xffff00} );
+		const lightRight = new THREE.RectAreaLight(0xff0000, 120, 10,10);
+		lightRight.position.set(-5, 15, 120);
+		lightRight.lookAt(0,-30,0);
+		scene.add(lightRight);
+
+		const lightCenter = new THREE.RectAreaLight(0x00ff00, 120, 10,10);
+		lightCenter.position.set(0, 15, 120);
+		lightCenter.lookAt(0,-30,0);
+		scene.add(lightCenter);
+
+		const lightLeft = new THREE.RectAreaLight(0x0000ff, 120, 10,10);
+		lightLeft.position.set(5, 15, 120);
+		lightLeft.lookAt(0,-30,0);
+		scene.add(lightLeft);
+
+		scene.add(new RectAreaLightHelper(lightRight));
+		scene.add(new RectAreaLightHelper(lightCenter));
+		scene.add(new RectAreaLightHelper(lightLeft));
+
+		const geoFloor = new THREE.BoxGeometry(100, 0.1, 100);
+		const matStdFloor = new THREE.MeshStandardMaterial({
+			color: 0x808080,
+			roughness: 0.1,
+			metalness: 0,
+		});
+		const mshStdFloor = new THREE.Mesh(geoFloor, matStdFloor);
+		mshStdFloor.position.set(0,-35,0);
+		scene.add(mshStdFloor);
+
 		
-		const discoBall=new THREE.Mesh(sphereGeometry,sphereMaterial);
-		
-		discoBall.position.x=0;
-		discoBall.position.y=0;
-		discoBall.position.z=0;
 		
 		
-		scene.add(discoBall);
+		const sphereMaterial=new THREE.MeshBasicMaterial( {color: 0xff0000} );
+		
+		const discoBallF = createMesh(new THREE.SphereGeometry(7, 32, 32), '/imageRoom/moon.jpg');
+		//const discoBallF=createMesh(new THREE.SphereGeometry( 7, 32, 32 ),'/imageParty/disco-ball.png',0xff0000);
+		discoBallF.position.set(-5, 15, 120);
+		scene.add(discoBallF);
+		
+		const discoBallS=new THREE.Mesh(new THREE.SphereGeometry(7, 32, 32),sphereMaterial);
+		discoBallS.position.set(0, 15, 120);
+		//discoBallS.material.color=new THREE.Color("rgb(0,255,0)");
+		scene.add(discoBallS);
+		
+		/*		
+		const discoBallT=new THREE.Mesh(sphereGeometry,sphereMaterial);
+		discoBallT.position.set(5, 15, 120);
+		scene.add(discoBallT);
 		*/
+		//합치고 세로모드 
 		
-		
-		
-		
-		
-		render();
-		
-		
-
-		function render() {
+		function render(time) {
 			stats.update();
-
+			
 			
 			requestAnimationFrame(render); //? 위치 바꿔야하나
 			renderer.render(scene, camera);
 		}
 		let PartyAni = requestAnimationFrame(render);
 	}
-	partyInit();
 </script>
 {% endblock %}
