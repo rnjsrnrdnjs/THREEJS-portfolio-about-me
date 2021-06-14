@@ -521,16 +521,8 @@ article .close:before{
 	z-index:0;
 }
 /* 모바일 세로모드 인식 */
-@media screen and (max-width:1000px) and (orientation: portrait){
-	.PartyContainer{
-	transform: rotate(-90deg);
-      transform-origin: top left;
-      top: 100%;
-      left: 0;
-      width: 100vh;
-      height: 100vw;
-	}
-}
+
+
 
 
 

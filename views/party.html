@@ -1,21 +1,55 @@
 {% extends 'index.html' %} {% block content %}
+
+<!--
+<style type="text/css">
+    #warning-message { display: none; }
+    @media only screen and (orientation:portrait){
+        #wrapper { display:none; }
+        #warning-message { display:block; }
+    }
+    @media only screen and (orientation:landscape){
+        #warning-message { display:none; }
+    }
+</style>
+
+....
+
+<div id="wrapper">
+    <!-- your html for your website -->
+<!--
+</div>
+<div id="warning-message">
+    this website is only viewable in landscape mode
+</div>
+-->
+<style type="text/css">
+	@media (orientation: portrait) {
+		html {
+			transform: rotate(-90deg);
+			transform-origin: top left;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			width: 100vh;
+			height: 100vw;
+		}
+	}
+</style>
 <div class="PartyContainer"></div>
+
 {% endblock %} {% block script %}
 <script type="module">
-	import  * as THREE from '/build/three.module.js';
-
+	import * as THREE from '/build/three.module.js';
 	import { RectAreaLightHelper } from '/jsm/helpers/RectAreaLightHelper.js';
 	import { RectAreaLightUniformsLib } from '/jsm/lights/RectAreaLightUniformsLib.js';
-	partyInit();
 
+	partyInit();
 	function partyInit() {
 		const stats = initStats();
 		scene = new THREE.Scene();
 		camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 		camera.position.set(0, 5, -35);
 		camera.lookAt(0, 0, 0);
-		
-		
 		// renderer 에 알파값을 투명으로주고, 색상을 부여하지않음으로써 배경색을 투명하게 만들수있음
 		renderer = new THREE.WebGLRenderer({
 			alpha: true,
@@ -29,23 +63,25 @@
 		renderer.outputEncoding = THREE.sRGBEncoding;
 		document.body.appendChild(renderer.domElement);
 
+		if (window.innerWidth < window.innerHeight) {
+			camera.aspect = window.innerHeight / window.innerWidth;
+		}
 
 		RectAreaLightUniformsLib.init();
 
-		
-		const lightRight = new THREE.RectAreaLight(0xff0000, 120, 10,10);
-		lightRight.position.set(-5, 15, 120);
-		lightRight.lookAt(0,-30,0);
+		const lightRight = new THREE.RectAreaLight(0xff0000, 120, 10, 10);
+		lightRight.position.set(-50, 15, 120);
+		lightRight.lookAt(0, -30, 0);
 		scene.add(lightRight);
 
-		const lightCenter = new THREE.RectAreaLight(0x00ff00, 120, 10,10);
-		lightCenter.position.set(0, 15, 120);
-		lightCenter.lookAt(0,-30,0);
+		const lightCenter = new THREE.RectAreaLight(0x00ff00, 120, 10, 10);
+		lightCenter.position.set(0, 20, 120);
+		lightCenter.lookAt(0, -30, 0);
 		scene.add(lightCenter);
 
-		const lightLeft = new THREE.RectAreaLight(0x0000ff, 120, 10,10);
-		lightLeft.position.set(5, 15, 120);
-		lightLeft.lookAt(0,-30,0);
+		const lightLeft = new THREE.RectAreaLight(0x0000ff, 120, 10, 10);
+		lightLeft.position.set(50, 15, 120);
+		lightLeft.lookAt(0, -30, 0);
 		scene.add(lightLeft);
 
 		scene.add(new RectAreaLightHelper(lightRight));
@@ -59,39 +95,103 @@
 			metalness: 0,
 		});
 		const mshStdFloor = new THREE.Mesh(geoFloor, matStdFloor);
-		mshStdFloor.position.set(0,-35,0);
+		mshStdFloor.position.set(0, -35, 0);
 		scene.add(mshStdFloor);
 
-		
-		
-		
-		const sphereMaterial=new THREE.MeshBasicMaterial( {color: 0xff0000} );
-		
-		const discoBallF = createMesh(new THREE.SphereGeometry(7, 32, 32), '/imageRoom/moon.jpg');
-		//const discoBallF=createMesh(new THREE.SphereGeometry( 7, 32, 32 ),'/imageParty/disco-ball.png',0xff0000);
-		discoBallF.position.set(-5, 15, 120);
+
+
+		const discoBallF = createMeshNew(
+			new THREE.SphereGeometry(7, 50, 50),
+			'/imageParty/disco-ball2.png',
+			0xff0000
+		);
+		discoBallF.position.set(-50, 15, 120);
 		scene.add(discoBallF);
-		
-		const discoBallS=new THREE.Mesh(new THREE.SphereGeometry(7, 32, 32),sphereMaterial);
-		discoBallS.position.set(0, 15, 120);
-		//discoBallS.material.color=new THREE.Color("rgb(0,255,0)");
+
+		const discoBallS = createMeshNew(
+			new THREE.SphereGeometry(7, 32, 32),
+			'/imageParty/disco-ball2.png',
+			0x00ff00
+		);
+		discoBallS.position.set(0, 20, 120);
 		scene.add(discoBallS);
-		
-		/*		
-		const discoBallT=new THREE.Mesh(sphereGeometry,sphereMaterial);
-		discoBallT.position.set(5, 15, 120);
+
+		const discoBallT = createMeshNew(
+			new THREE.SphereGeometry(7, 32, 32),
+			'/imageParty/disco-ball2.png',
+			0x0000ff
+		);
+		discoBallT.position.set(50, 15, 120);
 		scene.add(discoBallT);
-		*/
-		//합치고 세로모드 
 		
+		const Fleg=new THREE.Mesh(new THREE.BoxGeometry(0.3,80,1),new THREE.MeshBasicMaterial({color:0xff0000}));
+		Fleg.position.set(-50,60,120);
+		scene.add(Fleg);
+
+		const Sleg=new THREE.Mesh(new THREE.BoxGeometry(0.3,80,1),new THREE.MeshBasicMaterial({color:0x00ff00}));
+		Sleg.position.set(0,65,120);
+		scene.add(Sleg);
+
+		const Tleg=new THREE.Mesh(new THREE.BoxGeometry(0.3,80,1),new THREE.MeshBasicMaterial({color:0x0000ff}));
+		Tleg.position.set(50,60,120);
+		scene.add(Tleg);
+
+		let Fcolor=0,Scolor=0,Tcolor=0;
+		let stepx=0,stepy=0;
 		function render(time) {
 			stats.update();
 			
+			lightRight.position.x-=(Math.cos(stepx));
+			discoBallF.position.x-=(Math.cos(stepx));
+			discoBallF.rotation.y+=0.01;
+			Fleg.position.x-=(Math.cos(stepx));
 			
+			lightCenter.position.x+=(Math.cos(stepx));
+			lightCenter.position.y-=(Math.sin(stepy));
+			discoBallS.position.x+=(Math.cos(stepx));
+			discoBallS.position.y-=(Math.sin(stepy));
+			discoBallS.rotation.y+=0.02;
+			Sleg.position.x+=(Math.cos(stepx));
+			Sleg.position.y-=(Math.sin(stepy));
+			
+			lightLeft.position.x-=(Math.cos(stepx));
+			discoBallT.position.x-=(Math.cos(stepx));
+			discoBallT.rotation.y+=0.01;
+			Tleg.position.x-=(Math.cos(stepx));
+			
+			stepx+=0.02;
+			stepy+=0.07;
+			
+			Fcolor=Math.random()*100;
+			lightRight.color=new THREE.Color(`rgb(${Fcolor}%, 0%, 0%)`);
+			discoBallF
+			Fleg
+			
+			lightCenter
+			discoBallS
+			Sleg
+			
+			lightLeft
+			discoBallT
+			Tleg
 			requestAnimationFrame(render); //? 위치 바꿔야하나
 			renderer.render(scene, camera);
 		}
+		
 		let PartyAni = requestAnimationFrame(render);
+		
+		
+		function createMeshNew(geom, imageFile, color, bump) {
+			const texture = new THREE.TextureLoader().load(imageFile);
+			geom.computeVertexNormals();
+			const mat = new THREE.MeshBasicMaterial({
+				map: texture,
+				color: color,
+			});
+			// create a multimaterial
+			const mesh = new THREE.Mesh(geom, mat);
+			return mesh;
+		}
 	}
 </script>
 {% endblock %}

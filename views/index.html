@@ -27,6 +27,7 @@
 			src="/assets/fonts/bitstream_vera_sans_mono_roman.typeface.js"
 		></script>
 		
+		
 
 		<style>
 			body {
@@ -71,6 +72,7 @@
 
 			window.addEventListener('resize', onResize, false);
 
+			//책을 기준으로 옛날버전에만 사용가능한 함수
 			function createMesh(geom, imageFile, color, bump) {
 				const texture = THREE.ImageUtils.loadTexture(imageFile);
 				geom.computeVertexNormals();
