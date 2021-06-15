@@ -520,7 +520,65 @@ article .close:before{
     background-size: 100% 100%;
 	z-index:0;
 }
-/* 모바일 세로모드 인식 */
+
+.dj{
+	position: absolute;
+    background: url(/imageParty/DJ.png) no-repeat;
+    background-size: 100% 100%;
+    width: 8vw;
+    height: 10vh;
+    top: 45vh;
+    left: 46vw;
+}
+.speakerLeft{
+	position: absolute;
+    background: url(/imageParty/speakerLeft.png) no-repeat;
+    background-size: 100% 100%;
+    width: 5vw;
+    height: 25vh;
+    left: 35vw;
+    top: 45vh;
+}
+.booth{
+	position: absolute;
+    background: url(/imageParty/dj-booth.png) no-repeat;
+    background-size: 100% 100%;
+    width: 20vw;
+    height: 15vh;
+    left: 40vw;
+    top: 54vh;
+}
+.speakerRight{
+	position: absolute;
+    background: url(/imageParty/speakerRight.png) no-repeat;
+    background-size: 100% 100%;
+    width: 5vw;
+    height: 25vh;
+    right: 35vw;
+    top: 45vh;
+}
+.note1{
+	
+}
+.note2{
+	
+}
+.alcohol1{
+	
+}
+.alcohol2{
+	
+}
+.alcohol3{
+	
+}
+.alcohol4{
+	
+}
+.clubBoard{
+	
+}
+
 
 
 

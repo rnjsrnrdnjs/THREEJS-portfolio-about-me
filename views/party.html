@@ -1,43 +1,76 @@
 {% extends 'index.html' %} {% block content %}
 
-<!--
 <style type="text/css">
-    #warning-message { display: none; }
-    @media only screen and (orientation:portrait){
-        #wrapper { display:none; }
-        #warning-message { display:block; }
-    }
-    @media only screen and (orientation:landscape){
-        #warning-message { display:none; }
-    }
-</style>
-
-....
-
-<div id="wrapper">
-    <!-- your html for your website -->
-<!--
-</div>
-<div id="warning-message">
-    this website is only viewable in landscape mode
-</div>
--->
-<style type="text/css">
-	@media (orientation: portrait) {
-		html {
-			transform: rotate(-90deg);
-			transform-origin: top left;
-			position: absolute;
-			top: 100%;
-			left: 0;
-			width: 100vh;
-			height: 100vw;
+	#warning-message {
+		display: none;
+	}
+	@media only screen and (orientation: portrait) {
+		#wrapper {
+			display: none;
+		}
+		#warning-message {
+			display: block;
+		}
+	}
+	@media only screen and (orientation: landscape) {
+		#warning-message {
+			display: none;
 		}
 	}
 </style>
-<div class="PartyContainer"></div>
+
+<div id="wrapper">
+	<div class="PartyContainer">
+		<div class="clubBoard">
+			
+		</div>
+		
+		<div class="dj">
+		</div>	
+		<div class="speakerLeft">
+		</div>	
+		<div class="booth">
+		</div>	
+		<div class="speakerRight">
+		</div>	
+		
+		<div class="note1">
+		</div>	
+		<div class="note2">
+		</div>	
+		
+		<div class="alcohol1">
+		</div>	
+		<div class="alcohol2">
+		</div>	
+		<div class="alcohol3">
+		</div>	
+		<div class="alcohol4">
+		</div>	
+	</div>
+</div>
+<div
+	id="warning-message"
+	style="
+		background: url(/imageParty/alcohol1.png);
+		background-size: 100% 100%;
+		width: 100vw;
+		height: 100vh;
+	"
+>
+	<div style="font-size: x-large; font-weight: bold;">
+		<div>
+			This page does not support portrait mode.
+		</div>
+		<div>
+			(이 페이지는 세로모드를 지원하지 않습니다.)
+		</div>
+	</div>
+</div>
 
 {% endblock %} {% block script %}
+<script></script>
+
 <script type="module">
 	import * as THREE from '/build/three.module.js';
 	import { RectAreaLightHelper } from '/jsm/helpers/RectAreaLightHelper.js';
@@ -98,11 +131,9 @@
 		mshStdFloor.position.set(0, -35, 0);
 		scene.add(mshStdFloor);
 
-
-
 		const discoBallF = createMeshNew(
 			new THREE.SphereGeometry(7, 50, 50),
-			'/imageParty/disco-ball2.png',
+			'/imageParty/disco-ball1.png',
 			0xff0000
 		);
 		discoBallF.position.set(-50, 15, 120);
@@ -110,7 +141,7 @@
 
 		const discoBallS = createMeshNew(
 			new THREE.SphereGeometry(7, 32, 32),
-			'/imageParty/disco-ball2.png',
+			'/imageParty/disco-ball1.png',
 			0x00ff00
 		);
 		discoBallS.position.set(0, 20, 120);
@@ -118,69 +149,89 @@
 
 		const discoBallT = createMeshNew(
 			new THREE.SphereGeometry(7, 32, 32),
-			'/imageParty/disco-ball2.png',
+			'/imageParty/disco-ball1.png',
 			0x0000ff
 		);
 		discoBallT.position.set(50, 15, 120);
 		scene.add(discoBallT);
-		
-		const Fleg=new THREE.Mesh(new THREE.BoxGeometry(0.3,80,1),new THREE.MeshBasicMaterial({color:0xff0000}));
-		Fleg.position.set(-50,60,120);
+
+		const Fleg = new THREE.Mesh(
+			new THREE.BoxGeometry(0.3, 80, 1),
+			new THREE.MeshBasicMaterial({ color: 0xa7a7a7 })
+		);
+		Fleg.position.set(-50, 60, 120);
 		scene.add(Fleg);
 
-		const Sleg=new THREE.Mesh(new THREE.BoxGeometry(0.3,80,1),new THREE.MeshBasicMaterial({color:0x00ff00}));
-		Sleg.position.set(0,65,120);
+		const Sleg = new THREE.Mesh(
+			new THREE.BoxGeometry(0.3, 80, 1),
+			new THREE.MeshBasicMaterial({ color: 0xa7a7a7 })
+		);
+		Sleg.position.set(0, 65, 120);
 		scene.add(Sleg);
 
-		const Tleg=new THREE.Mesh(new THREE.BoxGeometry(0.3,80,1),new THREE.MeshBasicMaterial({color:0x0000ff}));
-		Tleg.position.set(50,60,120);
+		const Tleg = new THREE.Mesh(
+			new THREE.BoxGeometry(0.3, 80, 1),
+			new THREE.MeshBasicMaterial({ color: 0xa7a7a7 })
+		);
+		Tleg.position.set(50, 60, 120);
 		scene.add(Tleg);
-
-		let Fcolor=0,Scolor=0,Tcolor=0;
-		let stepx=0,stepy=0;
+		let color16 = '#' + sixlength(parseInt(Math.random() * 0xffffff).toString(16));
+		let Rcolor = 0,
+			Gcolor = 0,
+			Bcolor = 0;
+		let stepx = 0,
+			stepy = 0;
+		let RGBstep = 0;
 		function render(time) {
 			stats.update();
-			
-			lightRight.position.x-=(Math.cos(stepx));
-			discoBallF.position.x-=(Math.cos(stepx));
-			discoBallF.rotation.y+=0.01;
-			Fleg.position.x-=(Math.cos(stepx));
-			
-			lightCenter.position.x+=(Math.cos(stepx));
-			lightCenter.position.y-=(Math.sin(stepy));
-			discoBallS.position.x+=(Math.cos(stepx));
-			discoBallS.position.y-=(Math.sin(stepy));
-			discoBallS.rotation.y+=0.02;
-			Sleg.position.x+=(Math.cos(stepx));
-			Sleg.position.y-=(Math.sin(stepy));
-			
-			lightLeft.position.x-=(Math.cos(stepx));
-			discoBallT.position.x-=(Math.cos(stepx));
-			discoBallT.rotation.y+=0.01;
-			Tleg.position.x-=(Math.cos(stepx));
-			
-			stepx+=0.02;
-			stepy+=0.07;
-			
-			Fcolor=Math.random()*100;
-			lightRight.color=new THREE.Color(`rgb(${Fcolor}%, 0%, 0%)`);
-			discoBallF
-			Fleg
-			
-			lightCenter
-			discoBallS
-			Sleg
-			
-			lightLeft
-			discoBallT
-			Tleg
+
+			lightRight.position.x -= Math.cos(stepx);
+			discoBallF.position.x -= Math.cos(stepx);
+			discoBallF.rotation.y += 0.01;
+			Fleg.position.x -= Math.cos(stepx);
+
+			lightCenter.position.x += Math.cos(stepx);
+			lightCenter.position.y -= Math.sin(stepy);
+			discoBallS.position.x += Math.cos(stepx);
+			discoBallS.position.y -= Math.sin(stepy);
+			discoBallS.rotation.y += 0.02;
+			Sleg.position.x += Math.cos(stepx);
+			Sleg.position.y -= Math.sin(stepy);
+
+			lightLeft.position.x -= Math.cos(stepx);
+			discoBallT.position.x -= Math.cos(stepx);
+			discoBallT.rotation.y += 0.01;
+			Tleg.position.x -= Math.cos(stepx);
+
+			stepx += 0.02;
+			stepy += 0.07;
+			RGBstep++;
+			if (RGBstep % 70 == 0) {
+				color16 = '#' + sixlength(parseInt(Math.random() * 0xffffff).toString(16));
+				lightRight.color = new THREE.Color(`${color16}`);
+				discoBallF.material.color = new THREE.Color(`${color16}`);
+				color16 = '#' + sixlength(parseInt(Math.random() * 0xffffff).toString(16));
+				discoBallS.material.color = new THREE.Color(`${color16}`);
+
+				color16 = '#' + sixlength(parseInt(Math.random() * 0xffffff).toString(16));
+				lightLeft.color = new THREE.Color(`${color16}`);
+				discoBallT.material.color = new THREE.Color(`${color16}`);
+				RGBstep = 0;
+			}
 			requestAnimationFrame(render); //? 위치 바꿔야하나
 			renderer.render(scene, camera);
 		}
-		
+
 		let PartyAni = requestAnimationFrame(render);
-		
-		
+
+		function sixlength(number) {
+			var result = number;
+			while (result.length < 6) {
+				result += '0';
+			}
+			return result;
+		}
+
 		function createMeshNew(geom, imageFile, color, bump) {
 			const texture = new THREE.TextureLoader().load(imageFile);
 			geom.computeVertexNormals();
