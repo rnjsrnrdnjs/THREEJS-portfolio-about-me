@@ -1,5 +1,6 @@
 {% extends 'index.html' %} {% block content %}
 
+<!--
 <style type="text/css">
 	#warning-message {
 		display: none;
@@ -18,11 +19,17 @@
 		}
 	}
 </style>
+-->
 
-<div id="wrapper">
+<!--<div id="wrapper">-->
 	<div class="PartyContainer">
 		<div class="clubBoard">
-			
+			<div class="prevMusic">
+			</div>
+			<div class="playMusic">
+			</div>
+			<div class="nextMusic">
+			</div>
 		</div>
 		
 		<div class="dj">
@@ -40,15 +47,28 @@
 		</div>	
 		
 		<div class="alcohol1">
+			<div class="partyFont">
+				Main Page
+			</div>
 		</div>	
 		<div class="alcohol2">
+			<div class="partyFont">
+			Food Page
+			</div>
 		</div>	
 		<div class="alcohol3">
+			<div class="partyFont">
+			Computer Page
+			</div>
 		</div>	
 		<div class="alcohol4">
+			<div class="partyFont">
+			Ani Page
+			</div>
 		</div>	
 	</div>
-</div>
+<!--</div>-->
+<!--
 <div
 	id="warning-message"
 	style="
@@ -67,9 +87,9 @@
 		</div>
 	</div>
 </div>
-
+-->
 {% endblock %} {% block script %}
-<script></script>
+
 
 <script type="module">
 	import * as THREE from '/build/three.module.js';
@@ -90,6 +110,7 @@
 		});
 		renderer.domElement.style.position = 'absolute';
 		renderer.domElement.style.zIndex = 2;
+		renderer.domElement.id = "party3D";
 
 		renderer.setPixelRatio(window.devicePixelRatio);
 		renderer.setSize(window.innerWidth, window.innerHeight);
@@ -211,6 +232,7 @@
 				lightRight.color = new THREE.Color(`${color16}`);
 				discoBallF.material.color = new THREE.Color(`${color16}`);
 				color16 = '#' + sixlength(parseInt(Math.random() * 0xffffff).toString(16));
+				lightCenter.color= new THREE.Color(`${color16}`);
 				discoBallS.material.color = new THREE.Color(`${color16}`);
 
 				color16 = '#' + sixlength(parseInt(Math.random() * 0xffffff).toString(16));
@@ -244,5 +266,49 @@
 			return mesh;
 		}
 	}
+	const main=document.getElementsByClassName('alcohol1')[0];
+	const food=document.getElementsByClassName('alcohol2')[0];
+	const com=document.getElementsByClassName('alcohol3')[0];
+	const ani=document.getElementsByClassName('alcohol4')[0];
+	
+	
+	const party3D=document.getElementById('party3D');
+	party3D.addEventListener('click',(e)=>{
+		const x=e.clientX,y=e.clientY;
+		const mainlocation=main.getBoundingClientRect();
+		const foodlocation=food.getBoundingClientRect();
+		const comlocation=com.getBoundingClientRect();
+		const anilocation=ani.getBoundingClientRect();
+		const Py=window.pageYOffset,Px=window.pageXOffset;
+		
+		if(Py+mainlocation.top<=y && y<=Py+mainlocation.bottom && Px+mainlocation.left<=x && x<=Px+mainlocation.right){
+			main.style.transition="1s";
+			main.style.transform="scale(1.4) translateY(-5vw)";
+			setTimeout(()=>{
+				location.href="/";
+			},1200);
+		}
+		else if(Py+foodlocation.top<=y && y<=Py+foodlocation.bottom && Px+foodlocation.left<=x && x<=Px+foodlocation.right){
+			food.style.transition="1s";
+			food.style.transform="scale(1.4) translateY(-5vw)";
+			setTimeout(()=>{
+				location.href="/food";
+			},1200);
+		}
+		else if(Py+comlocation.top<=y && y<=Py+comlocation.bottom && Px+comlocation.left<=x && x<=Px+comlocation.right){
+			com.style.transition="1s";
+			com.style.transform="scale(1.4) translateY(-5vw)";
+			setTimeout(()=>{
+				location.href="/computer";
+			},1200);
+		}
+		else if(Py+anilocation.top<=y && y<=Py+anilocation.bottom && Px+anilocation.left<=x && x<=Px+anilocation.right){
+			ani.style.transition="1s";
+			ani.style.transform="scale(1.4) translateY(-5vw)";
+			setTimeout(()=>{
+				location.href="/fairy";
+			},1200);
+		}
+	},false);
 </script>
 {% endblock %}
