@@ -1,28 +1,8 @@
 {% extends 'index.html' %} {% block content %}
-
-<!--
-<style type="text/css">
-	#warning-message {
-		display: none;
-	}
-	@media only screen and (orientation: portrait) {
-		#wrapper {
-			display: none;
-		}
-		#warning-message {
-			display: block;
-		}
-	}
-	@media only screen and (orientation: landscape) {
-		#warning-message {
-			display: none;
-		}
-	}
-</style>
--->
-
-<!--<div id="wrapper">-->
 	<div class="PartyContainer">
+		<audio id="audio">
+			<source src="/imageParty/music1.mp3" type="audio/mp3">
+		</audio>
 		<div class="clubBoard">
 			<div class="prevMusic">
 			</div>
@@ -67,27 +47,7 @@
 			</div>
 		</div>	
 	</div>
-<!--</div>-->
-<!--
-<div
-	id="warning-message"
-	style="
-		background: url(/imageParty/alcohol1.png);
-		background-size: 100% 100%;
-		width: 100vw;
-		height: 100vh;
-	"
->
-	<div style="font-size: x-large; font-weight: bold;">
-		<div>
-			This page does not support portrait mode.
-		</div>
-		<div>
-			(이 페이지는 세로모드를 지원하지 않습니다.)
-		</div>
-	</div>
-</div>
--->
+
 {% endblock %} {% block script %}
 
 
@@ -95,6 +55,7 @@
 	import * as THREE from '/build/three.module.js';
 	import { RectAreaLightHelper } from '/jsm/helpers/RectAreaLightHelper.js';
 	import { RectAreaLightUniformsLib } from '/jsm/lights/RectAreaLightUniformsLib.js';
+	
 
 	partyInit();
 	function partyInit() {
@@ -240,7 +201,7 @@
 				discoBallT.material.color = new THREE.Color(`${color16}`);
 				RGBstep = 0;
 			}
-			requestAnimationFrame(render); //? 위치 바꿔야하나
+			requestAnimationFrame(render); 
 			renderer.render(scene, camera);
 		}
 
@@ -266,11 +227,27 @@
 			return mesh;
 		}
 	}
+	
+	let src = ['music1','music2','music3'];
+	const audio=document.getElementById('audio');
+	let audioSize=3;
+	audio.addEventListener('ended',nextPlay);
+	audio.volume=0.2;
+	let audioCnt=0;
+	function nextPlay(){
+		audioCnt=(audioCnt+1)%3;
+		audio.src=`/imageParty/${src[audioCnt]}.mp3`;
+	}
+	
 	const main=document.getElementsByClassName('alcohol1')[0];
 	const food=document.getElementsByClassName('alcohol2')[0];
 	const com=document.getElementsByClassName('alcohol3')[0];
 	const ani=document.getElementsByClassName('alcohol4')[0];
-	
+	const clubBoard=document.getElementsByClassName('clubBoard')[0]; 
+	const prev=document.getElementsByClassName('prevMusic')[0]; 
+	const next=document.getElementsByClassName('nextMusic')[0]; 
+	const play=document.getElementsByClassName('playMusic')[0]; 
+	let playTOF=false;
 	
 	const party3D=document.getElementById('party3D');
 	party3D.addEventListener('click',(e)=>{
@@ -279,6 +256,9 @@
 		const foodlocation=food.getBoundingClientRect();
 		const comlocation=com.getBoundingClientRect();
 		const anilocation=ani.getBoundingClientRect();
+		const prevlocation=prev.getBoundingClientRect();
+		const nextlocation=next.getBoundingClientRect();
+		const playlocation=play.getBoundingClientRect();
 		const Py=window.pageYOffset,Px=window.pageXOffset;
 		
 		if(Py+mainlocation.top<=y && y<=Py+mainlocation.bottom && Px+mainlocation.left<=x && x<=Px+mainlocation.right){
@@ -309,6 +289,47 @@
 				location.href="/fairy";
 			},1200);
 		}
+		else if(Py+prevlocation.top<=y && y<=Py+prevlocation.bottom && Px+prevlocation.left<=x && x<=Px+prevlocation.right){
+			audioCnt-=1;
+			audioCnt=audioCnt<0?audioSize-1:audioCnt;
+				clubBoard.style.background=`url(/imageParty/${src[audioCnt]}.jpg) no-repeat`;
+			clubBoard.style.backgroundSize="100% 100%";
+			audio.src=`/imageParty/${src[audioCnt]}.mp3`;
+			if(playTOF==true){
+				audio.pause();
+				play.style.background="url(/imageParty/play.png) no-repeat";
+				play.style.backgroundSize="100% 100%";
+				playTOF=false;
+			}
+		}
+		else if(Py+nextlocation.top<=y && y<=Py+nextlocation.bottom && Px+nextlocation.left<=x && x<=Px+nextlocation.right){
+			audioCnt+=1;
+			audioCnt=audioCnt==audioSize?0:audioCnt;
+				clubBoard.style.background=`url(/imageParty/${src[audioCnt]}.jpg) no-repeat`;
+			clubBoard.style.backgroundSize="100% 100%";
+			audio.src=`/imageParty/${src[audioCnt]}.mp3`;
+			if(playTOF==true){
+				audio.pause();
+				play.style.background="url(/imageParty/play.png) no-repeat";
+				play.style.backgroundSize="100% 100%";
+				playTOF=false;
+			}
+		}
+		else if(Py+playlocation.top<=y && y<=Py+playlocation.bottom && Px+playlocation.left<=x && x<=Px+playlocation.right){
+			if(playTOF==false){
+				audio.play();
+				play.style.background="url(/imageParty/pause.png) no-repeat";
+				play.style.backgroundSize="100% 100%";
+				playTOF=true;
+			}
+			else{
+				audio.pause();
+				play.style.background="url(/imageParty/play.png) no-repeat";
+				play.style.backgroundSize="100% 100%";
+				playTOF=false;
+			}
+		}
+		
 	},false);
 </script>
 {% endblock %}

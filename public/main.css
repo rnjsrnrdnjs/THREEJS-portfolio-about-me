@@ -644,7 +644,8 @@ article .close:before{
 .clubBoard{
 	position: absolute;
     background-size: 100% 100%;
-    background:white;
+    background:url(/imageParty/music1.jpg) no-repeat;
+	background-size:100% 100%;
 	border:10px solid black;
 	border-radius:10px;
 	width: 40vw;
@@ -698,6 +699,8 @@ article .close:before{
 		font: 1.5rem Bebas;
 	}
 }
+
+/* ani */
 
 
 
