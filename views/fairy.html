@@ -1,10 +1,119 @@
 {% extends 'index.html' %}
 {% block content %}
+<div class="ani">
+	<audio id="audio">
+		<source src="/imageFairyTale/bgm1.mp3" type="audio/mp3">
+	</audio>
+	<div class="phone">
+		<div class="yourName">
+			<div class="background">
+			</div>
+			<div class="Mitsuha">
+				<img class="mCharacter"src="/imageFairyTale/m0.png" style="width: 100%;position:absolute;">
+			</div>
+			<div class="yourStory">
+			</div>
+			<div class="play">
+				<div class="playFont">
+					Start by touching
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="hand">
+	</div>
+</div>
+<!--
+{% for m in imageAni %}
+<div id="{{m}}"style="display:none;">123123
+</div>
+{% endfor %}
+-->
+
+<div style="display:none;">Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 <div style="display:none;">
-	제작자-https://mynowisgood.tistory.com/112
+	자전거타는 미츠하 제작자-https://mynowisgood.tistory.com/112
 </div>
 {% endblock %}
 {% block script %}
 <script>
+	window.removeEventListener('resize', onResize);
+	let img=[]
+	function imageLoad(){
+		for(let i=0;i<=26;i++){
+			img[i]=new Image();
+			img[i].src=`/imageFairyTale/m${i}.png`;
+		}
+	}
+	imageLoad();
+	
+	const yourStory=document.getElementsByClassName('yourStory')[0];
+	const Mitsuha=document.getElementsByClassName('Mitsuha')[0];
+	const Picture=document.getElementsByClassName('mCharacter')[0];
+	const play=document.getElementsByClassName('play')[0];
+	const audio=document.getElementById('audio');
+	
+	
+	
+	let yourAni;
+	let MitsuhaCnt=0,storyCnt=0;
+	let MitsuhaPicture=0;
+	let mRight=0;
+	let rightEndTOF=true;
+	
+	function MitsuhaMove(){
+		if(MitsuhaCnt%60==0){
+			if(rightEndTOF==false && MitsuhaCnt%180==0)rightEndTOF=true;
+			else if(rightEndTOF==true) rightEndTOF=false;
+		}
+		if(rightEndTOF==true){
+			mRight+=2;
+		}
+		else{
+			mRight-=1;
+		}
+		if(MitsuhaCnt%5==0){
+			MitsuhaPicture++;
+		}
+		if(MitsuhaPicture>26)MitsuhaPicture=0;
+		Picture.src=img[MitsuhaPicture].src;
+		Picture.style.right=`${mRight}px`;
+	}
+	function storyMove(){
+		
+	}
+	
+	//초당 60번 실행함 
+	function render(){
+		MitsuhaCnt++,storyCnt++;
+		MitsuhaMove();
+		storyMove();
+		yourAni=requestAnimationFrame(render);
+	}
+	
+	
+	window.addEventListener('mousedown',()=>{
+		yourAni=requestAnimationFrame(render);
+		play.style.display="none";
+		
+	},false);
+	window.addEventListener('touchstart',()=>{
+		yourAni=requestAnimationFrame(render);
+		play.style.display="none";
+		
+	},false);
+	
+	window.addEventListener('mouseup',()=>{
+		cancelAnimationFrame(yourAni);
+		play.style.display="";
+		
+	},false);
+	window.addEventListener('touchend',()=>{
+		cancelAnimationFrame(yourAni);
+		play.style.display="";
+		
+	},false);
+	
+	
 </script>
 {% endblock %}

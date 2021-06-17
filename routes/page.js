@@ -27,8 +27,20 @@ router.get('/food',async(req,res,next)=>{
 		console.log(err);
 	}
 });
-router.get('/fairy',(req,res,next)=>{
-	res.render('fairy');
+router.get('/fairy',async(req,res,next)=>{
+	try{
+		/*
+		const image=[];
+		const aniCount=27
+		for(let i=0;i<aniCount;i++){
+			image.push(`${i}`);
+		}
+		console.log(image);
+		*/
+		res.render('fairy');
+	}catch(err){
+		console.log(err);
+	}
 });
 router.get('/computer',(req,res,next)=>{
 	res.render('computer');

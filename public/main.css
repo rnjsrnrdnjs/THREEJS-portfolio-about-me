@@ -702,8 +702,91 @@ article .close:before{
 
 /* ani */
 
-
-
+.ani{
+	width:100vw;
+	height:100vh;
+    background: url(/imageFairyTale/aniRoom.jpg) no-repeat;
+    background-size: 100% 100%;
+}
+.phone{
+	position: absolute;
+    background: url(/imageFairyTale/phone.png) no-repeat;
+    background-size: 100% 100%;
+    width: 70vw;
+    height: 90vh;
+    left: 15vw;
+    top: 5vh;
+}
+.hand{
+	position: absolute;
+    background: url(/imageFairyTale/hand2.png) no-repeat;
+    background-size: 100% 100%;
+    width: 60vw;
+    height: 110vh;
+    top: -5vh;
+    left: 15%;
+	transform:rotatez(0deg);
+}
+.yourName{
+	position: absolute;
+    width: 82%;
+    height: 73%;
+    left: 9%;
+    top: 13.5%;
+	background:url(/imageFairyTale/background.gif);
+	background-size:100% 100%;
+}
+.Mitsuha{
+	position: fixed;
+    width: 25vh;
+    height: 20vh;
+	transform: rotateX(180deg) rotateZ(90deg);
+}
+.yourStory{
+	
+}
+.play{
+	position: absolute;
+    background: url(/imageFairyTale/tap.png) no-repeat;
+    background-size: 100% 100%;
+    width: 20vw;
+    height: 20vw;
+    top:  60%;
+    left: 40%;
+	transform:rotateZ(90deg);
+	transition:1s;
+}
+.playFont{
+	font-size: 1.5rem;
+    font-weight: bold;
+    position: absolute;
+    top: 100%;
+}
+@media screen and (min-width:1025px){
+	.phone{
+		width: 60vw;
+    	height: 120vh;
+    	left: 20vw;
+    	top: -10vh;
+    	transform: rotateZ(-90deg);
+	}
+	.hand{
+    	background: url(/imageFairyTale/hand.png) no-repeat;
+    	background-size: 100% 100%;
+    	width: 100vw;
+   		height: 60vh;
+   		top: 35vh;
+		left:0%;
+	}
+	.Mitsuha{
+		width: 25vw;
+    	height: 20vw;
+	}
+	.play{
+		width: 20vh;
+    	height: 20vh;
+	}
+}
 
 
 
