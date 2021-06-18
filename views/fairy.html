@@ -1,6 +1,27 @@
 {% extends 'index.html' %}
 {% block content %}
 <div class="ani">
+	<div class="aniMenu" style="text-align:center;">
+		<div class="aniMenuFont">
+			Menu
+		</div>
+		<div class="aniMenu1" onClick="location.href='/';">
+			<div class="aniMenuFont2">Main Page
+			</div>
+		</div>
+		<div class="aniMenu2" onClick="location.href='/party';">
+			<div class="aniMenuFont2">Party Page
+			</div>
+		</div>
+		<div class="aniMenu3" onClick="location.href='/food';">
+			<div class="aniMenuFont2">Food Page
+			</div>
+		</div>
+		<div class="aniMenu4" onClick="location.href='/computer';">
+			<div class="aniMenuFont2">computer Page
+			</div>
+		</div>
+	</div>
 	<audio id="audio">
 		<source src="/imageFairyTale/bgm1.mp3" type="audio/mp3">
 	</audio>
@@ -56,7 +77,6 @@
 	let namelocation=yourName.getBoundingClientRect();
 	let storylocation=yourStory.getBoundingClientRect();
 	let initStoryP=window.innerWidth>1024?phone.getBoundingClientRect().top+storylocation.top:Py+storylocation.right;
-	console.log(storylocation);
 	let moveStoryP=initStoryP;
 	
 	yourStory.style.display="none";
@@ -67,7 +87,32 @@
 	const play=document.getElementsByClassName('play')[0];
 	const audio=document.getElementById('audio');
 	
-	
+	const aniMenu=document.getElementsByClassName('aniMenu')[0];
+	const aniMenu1=document.getElementsByClassName('aniMenu1')[0];
+	const aniMenu2=document.getElementsByClassName('aniMenu2')[0];
+	const aniMenu3=document.getElementsByClassName('aniMenu3')[0];
+	const aniMenu4=document.getElementsByClassName('aniMenu4')[0];
+	let aniMenuTOF=false;
+	aniMenu.addEventListener('click',()=>{
+		if(aniMenuTOF==false){
+			aniMenu1.style.display="inline";
+			aniMenu2.style.display="inline";
+			aniMenu3.style.display="inline";
+			aniMenu4.style.display="inline";
+			aniMenu1.classList.add('aniMenuMove');
+			aniMenu2.classList.add('aniMenuMove');
+			aniMenu3.classList.add('aniMenuMove');
+			aniMenu4.classList.add('aniMenuMove');
+			aniMenuTOF=true;
+		}
+		else{
+			aniMenu1.style.display="none";
+			aniMenu2.style.display="none";
+			aniMenu3.style.display="none";
+			aniMenu4.style.display="none";
+			aniMenuTOF=false;
+		}
+	});
 	
 	let yourAni;
 	let MitsuhaCnt=0,storyCnt=0;
@@ -111,7 +156,7 @@
 				moveStoryP=initStoryP;
 			 }
 			 else{
-				 moveStoryP-=0.7;
+				 moveStoryP-=1.3;
 			     yourStory.style.left=moveStoryP+"px";
 			 }
 		}
@@ -124,7 +169,7 @@
 				moveStoryP=initStoryP;
 			}
 			else{
-				moveStoryP--;
+				moveStoryP-=1.3;
 			    yourStory.style.top=moveStoryP+"px";
 			}
 		}
@@ -137,17 +182,26 @@
 		storyMove();
 		yourAni=requestAnimationFrame(render);
 	}
-	
+	let src=['bgm1','bgm2'];
+	audio.addEventListener('ended',nextPlay);
+	audio.volume=0.2;
+	let audioCnt=0;
+	function nextPlay(){
+		audioCnt=(audioCnt+1)%3;
+		audio.src=`/imageFairyTale/${src[audioCnt]}.mp3`;
+	}
 	
 	phone.addEventListener('mousedown',()=>{
 		yourAni=requestAnimationFrame(render);
 		play.style.display="none";
 		yourStory.style.display="";
+		audio.play();
 	},false);
 	phone.addEventListener('touchstart',()=>{
 		yourAni=requestAnimationFrame(render);
 		play.style.display="none";
 		yourStory.style.display="";
+		audio.play();
 		
 	},false);
 	
@@ -155,12 +209,14 @@
 		cancelAnimationFrame(yourAni);
 		play.style.display="";
 		yourStory.style.display="none";
+		audio.pause();
 
 	},false);
 	phone.addEventListener('touchend',()=>{
 		cancelAnimationFrame(yourAni);
 		play.style.display="";
 		yourStory.style.display="none";
+		audio.pause();
 
 	},false);
 	hand.addEventListener('mousedown',()=>{
@@ -168,11 +224,13 @@
 		play.style.display="none";
 		yourStory.style.display="";
 	
+		audio.play();
 	},false);
 	hand.addEventListener('touchstart',()=>{
 		yourAni=requestAnimationFrame(render);
 		play.style.display="none";
 		yourStory.style.display="";
+		audio.play();
 
 	},false);
 	
@@ -180,12 +238,14 @@
 		cancelAnimationFrame(yourAni);
 		play.style.display="";
 		yourStory.style.display="none";
+		audio.pause();
 	
 	},false);
 	hand.addEventListener('touchend',()=>{
 		cancelAnimationFrame(yourAni);
 		play.style.display="";
 		yourStory.style.display="none";
+		audio.pause();
 	
 	},false);
 	
