@@ -46,8 +46,22 @@
 		}
 	}
 	imageLoad();
+	const phone=document.getElementsByClassName('phone')[0];
+	const hand=document.getElementsByClassName('hand')[0];
 	
+	const yourName=document.getElementsByClassName('yourName')[0];
 	const yourStory=document.getElementsByClassName('yourStory')[0];
+
+	const Py=window.pageYOffset,Px=window.pageXOffset;
+	let namelocation=yourName.getBoundingClientRect();
+	let storylocation=yourStory.getBoundingClientRect();
+	let initStoryP=window.innerWidth>1024?phone.getBoundingClientRect().top+storylocation.top:Py+storylocation.right;
+	console.log(storylocation);
+	let moveStoryP=initStoryP;
+	
+	yourStory.style.display="none";
+	
+	
 	const Mitsuha=document.getElementsByClassName('Mitsuha')[0];
 	const Picture=document.getElementsByClassName('mCharacter')[0];
 	const play=document.getElementsByClassName('play')[0];
@@ -79,8 +93,41 @@
 		Picture.src=img[MitsuhaPicture].src;
 		Picture.style.right=`${mRight}px`;
 	}
+	
+	
+	const story=['s0.gif','s1.gif','ss0.gif','ss1.gif','ss2.gif','ss3.gif', 's2.gif','ss4.gif', 's3.gif','s4.gif','s5.gif','s6.gif','s7.gif','s8.gif','s9.gif','s10.gif','s11.gif','s12.png','s13.gif','s14.gif','a0.png','a1.png','a2.png','a3.png','a4.png','a5.png','a6.png','a7.png','a8.png','a9.png','a10.png','a11.png','a12.png'];
+	let storyIndex=0;
+	
 	function storyMove(){
+		namelocation=yourName.getBoundingClientRect();
+		storylocation=yourStory.getBoundingClientRect();
 		
+		if(window.innerWidth>1024){
+			if(Py+namelocation.bottom<Py+storylocation.bottom){
+			   storyIndex++;storyIndex=storyIndex>=story.length?0:storyIndex;
+				yourStory.style.background=`url(/imageFairyTale/${story[storyIndex]})`;
+				yourStory.style.backgroundSize="100% 100%";
+				yourStory.style.left=initStoryP+"px";
+				moveStoryP=initStoryP;
+			 }
+			 else{
+				 moveStoryP-=0.7;
+			     yourStory.style.left=moveStoryP+"px";
+			 }
+		}
+		else{
+			if(Py+namelocation.top>Py+storylocation.top){
+			   storyIndex++;storyIndex=storyIndex>=story.length?0:storyIndex;
+				yourStory.style.background=`url(/imageFairyTale/${story[storyIndex]}) no-repeat`;
+				yourStory.style.backgroundSize="100% 100%";
+				yourStory.style.top=initStoryP+"px";
+				moveStoryP=initStoryP;
+			}
+			else{
+				moveStoryP--;
+			    yourStory.style.top=moveStoryP+"px";
+			}
+		}
 	}
 	
 	//초당 60번 실행함 
@@ -92,28 +139,55 @@
 	}
 	
 	
-	window.addEventListener('mousedown',()=>{
+	phone.addEventListener('mousedown',()=>{
 		yourAni=requestAnimationFrame(render);
 		play.style.display="none";
-		
+		yourStory.style.display="";
 	},false);
-	window.addEventListener('touchstart',()=>{
+	phone.addEventListener('touchstart',()=>{
 		yourAni=requestAnimationFrame(render);
 		play.style.display="none";
+		yourStory.style.display="";
 		
 	},false);
 	
-	window.addEventListener('mouseup',()=>{
+	phone.addEventListener('mouseup',()=>{
 		cancelAnimationFrame(yourAni);
 		play.style.display="";
-		
+		yourStory.style.display="none";
+
 	},false);
-	window.addEventListener('touchend',()=>{
+	phone.addEventListener('touchend',()=>{
 		cancelAnimationFrame(yourAni);
 		play.style.display="";
-		
+		yourStory.style.display="none";
+
+	},false);
+	hand.addEventListener('mousedown',()=>{
+		yourAni=requestAnimationFrame(render);
+		play.style.display="none";
+		yourStory.style.display="";
+	
+	},false);
+	hand.addEventListener('touchstart',()=>{
+		yourAni=requestAnimationFrame(render);
+		play.style.display="none";
+		yourStory.style.display="";
+
 	},false);
 	
+	hand.addEventListener('mouseup',()=>{
+		cancelAnimationFrame(yourAni);
+		play.style.display="";
+		yourStory.style.display="none";
+	
+	},false);
+	hand.addEventListener('touchend',()=>{
+		cancelAnimationFrame(yourAni);
+		play.style.display="";
+		yourStory.style.display="none";
+	
+	},false);
 	
 </script>
 {% endblock %}

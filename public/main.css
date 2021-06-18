@@ -716,6 +716,7 @@ article .close:before{
     height: 90vh;
     left: 15vw;
     top: 5vh;
+	animation-name:phoneMove;
 }
 .hand{
 	position: absolute;
@@ -726,7 +727,15 @@ article .close:before{
     top: -5vh;
     left: 15%;
 	transform:rotatez(0deg);
+	animation-name:handMove;
 }
+@keyframes phoneMove{
+	
+}
+@keyframes handMove{
+	
+}
+
 .yourName{
 	position: absolute;
     width: 82%;
@@ -741,9 +750,20 @@ article .close:before{
     width: 25vh;
     height: 20vh;
 	transform: rotateX(180deg) rotateZ(90deg);
+	z-index:2;
 }
 .yourStory{
-	
+	background: url(/imageFairyTale/s0.gif) no-repeat;
+    background-size: 100% 100%;
+    width: 20vh;
+    height: 20vh;
+    top: 65%;
+    left: 30%;
+    position: absolute;
+    transform: rotateZ(90deg);
+	border: 5px solid black;
+    border-radius: 10px;
+    box-shadow: 7px 7px 2px 1px rgb(0 0 255 / 20%);
 }
 .play{
 	position: absolute;
@@ -785,6 +805,12 @@ article .close:before{
 	.play{
 		width: 20vh;
     	height: 20vh;
+	}
+	.yourStory{
+		width: 25vw;
+   		height: 25vw;
+		top: 55%;
+    	left: 45%;
 	}
 }
 
