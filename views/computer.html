@@ -1,7 +1,65 @@
 {% extends 'index.html' %}
 {% block content %}
+
+<div class="computer">
+	<div class="comBackground">
+		<div class="comMenu1">
+			<div class="comBackFont">
+				090톡
+			</div>
+		</div>
+		<div class="comMenu2">
+			<div class="comBackFont">
+				090.html
+			</div>
+		</div>
+		<div class="comMenu3">
+			<div class="comBackFont">
+				github
+			</div>
+		</div>
+		<div class="comMenu4">
+		</div>
+		<div class="talk">
+		</div>
+		<div class="html">
+		</div>
+		<div class="github">
+		</div>
+		<div class="folder">
+		</div>
+		<div class="tistory">
+		</div>
+		<div class="cmd">
+		</div>
+	</div>
+</div>
+<div class="computerBottom">
+</div>
+
 {% endblock %}
 {% block script %}
 <script>
+	window.removeEventListener('resize', onResize);
+	const computer=document.getElementsByClassName('computer')[0];
+	const comBackground=document.getElementsByClassName('comBackground')[0];
+	const bird=document.getElementsByClassName('bird')[0];
+	const comMenu1=document.getElementsByClassName('comMenu1')[0];
+	const comMenu2=document.getElementsByClassName('comMenu2')[0];
+	const comMenu3=document.getElementsByClassName('comMenu3')[0];
+	const comMenu4=document.getElementsByClassName('comMenu4')[0];
+	const talk=document.getElementsByClassName('talk')[0];
+	const html=document.getElementsByClassName('html')[0];
+	const github=document.getElementsByClassName('github')[0];
+	const folder=document.getElementsByClassName('folder')[0];
+	const tistory=document.getElementsByClassName('tistory')[0];
+	const cmd=document.getElementsByClassName('cmd')[0];
+	
+	
+	//드래그 앤 드롭
+	
+	//소켓 프로그래밍 
+	
+	//
 </script>
 {% endblock %}

@@ -921,8 +921,8 @@ article .close:before{
     	height: 20vh;
 	}
 	.yourStory{
-		width: 20vw;
-   		height: 20vw;
+		width: 18vw;
+   		height: 18vw;
 		top: 55%;
     	left: 45%;
 	}
@@ -965,5 +965,86 @@ article .close:before{
 
 /* computer */
 
+.computer{
+	width: 100vw;
+    height: 80vh;
+    box-sizing: border-box;
+    border-radius: 10px 10px 0px 0px;
+    border: 20px solid black;
+}
+.computerBottom{
+	background:url(/imageComputer/computerBottom.png) no-repeat;
+	background-size:100% 100%;
+	width:100vw;
+	height:20vh;
+	box-sizing:border-box;
+}
+.comBackground{
+	width:100%;
+	height:100%;
+	background:url(/imageComputer/windowBackground3.jpg) no-repeat;
+	background-size:100% 100%;
+}
+.bird{
+	
+}
+.comBackFont{
+	/*
+	position: absolute;
+    top: 100%;
+    width: 150%;
+    font-size: 0.8rem;*/
+}
+/* 처음에만 top=0, 그후 top+=9 */
+.comMenu1{
+	/*
+	width:5vw;
+	height:5vw;
+	position:absolute;
+	background:url(/imageComputer/talk.png) no-repeat;
+	background-size:100% 100%;
+	margin:10px;
+	z-index:1;*/
+}
 
-
+.comMenu2{
+	/*
+	width:5vw;
+	height:5vw;
+	position:absolute;
+	background:url(/imageComputer/chrome.png) no-repeat;
+	background-size:100% 100%;
+	margin:10px;z-index:1;
+	top:16vw;*/
+}
+.comMenu3{
+	/*
+	width:5vw;
+	height:5vw;
+	position:absolute;
+	background:url(/imageComputer/github.png) no-repeat;
+	background-size:100% 100%;
+	margin:10px;z-index:1;
+	top:25vw;*/
+}
+.comMenu4{
+	
+}
+.talk{
+	
+}
+.html{
+	
+}
+.github{
+	
+}
+.folder{
+	
+}
+.tistory{
+	
+}
+.cmd{
+	
+}
