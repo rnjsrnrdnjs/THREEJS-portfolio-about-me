@@ -1,1050 +1,1330 @@
 /* room */
 
-#airplane{
+#airplane {
 	width: 210px;
-    height: 140px;
-    background: url(/imageRoom/airplane.svg) no-repeat;
-    position: absolute;
-    background-size: 100% 100%;
-    top: 45%;
-    left: -15%;
-	animation-name:airplaneMove;
-	animation-timing-function:cubic-bezier(.29,.1,.43,1.58);
-	animation-duration:3s;
+	height: 140px;
+	background: url(/imageRoom/airplane.svg) no-repeat;
+	position: absolute;
+	background-size: 100% 100%;
+	top: 45%;
+	left: -15%;
+	animation-name: airplaneMove;
+	animation-timing-function: cubic-bezier(0.29, 0.1, 0.43, 1.58);
+	animation-duration: 3s;
 }
 
-@keyframes airplaneMove{
-	20%{
-		top: 55%;left: -5%;
+@keyframes airplaneMove {
+	20% {
+		top: 55%;
+		left: -5%;
 	}
-	100%{
-		top: 10%;left: 120%;
+	100% {
+		top: 10%;
+		left: 120%;
 	}
 }
 
 /* food */
-.foodContainer{
-	margin:0;
-	overflow:hidden;
-	width:100vw;
-	height:100vh;
-	background:url(/imageFood/background.png) no-repeat;
-	background-size:cover;
+.foodContainer {
+	margin: 0;
+	overflow: hidden;
+	width: 100vw;
+	height: 100vh;
+	background: url(/imageFood/background.png) no-repeat;
+	background-size: cover;
 }
-.plate{
+.plate {
 	width: 100%;
-    height: 100%;
-    background:url(/imageFood/plate.svg) no-repeat; 
-    background-position: center;
-    background-size: 65% 65%;
-	animation-name:plate;
-	animation-duration:1s;
+	height: 100%;
+	background: url(/imageFood/plate.svg) no-repeat;
+	background-position: center;
+	background-size: 65% 65%;
+	animation-name: plate;
+	animation-duration: 1s;
 }
-.plateRound{
+.plateRound {
 	position: absolute;
-    width: 100%;
-	height:30%;
-    top: 30%;
+	width: 100%;
+	height: 30%;
+	top: 30%;
 }
-.plateLeft{
-	z-index:1;
+.plateLeft {
+	z-index: 1;
 	position: absolute;
-    width: 10%;
-    height: 100%;
-    background: url(/imageFood/fork.svg) no-repeat;
-    background-size: 100% 100%;
-    left: 12%;
-	animation-name:prevImg;
-	animation-duration:2s;
+	width: 10%;
+	height: 100%;
+	background: url(/imageFood/fork.svg) no-repeat;
+	background-size: 100% 100%;
+	left: 12%;
+	animation-name: prevImg;
+	animation-duration: 2s;
 }
-.plateRight{
-	z-index:1;
+.plateRight {
+	z-index: 1;
 	position: absolute;
-    width: 10%;
-    height: 100%;
-    background: url(/imageFood/knife.svg) no-repeat;
-    left: 79%;
-    background-size: 100% 100%;
-	animation-name:nextImg;
-	animation-duration:2s;
+	width: 10%;
+	height: 100%;
+	background: url(/imageFood/knife.svg) no-repeat;
+	left: 79%;
+	background-size: 100% 100%;
+	animation-name: nextImg;
+	animation-duration: 2s;
 }
 
-
-@media screen and (max-width:1200px){
-	.plate{
-   		 background-position: center;
-  	 	 background-size: 80% 80%;
-		animation-name:plate2;
+@media screen and (max-width: 1200px) {
+	.plate {
+		background-position: center;
+		background-size: 80% 80%;
+		animation-name: plate2;
 	}
-	
 }
-@media screen and (max-width:1024px){
-	.plateLeft{
+@media screen and (max-width: 1024px) {
+	.plateLeft {
 		left: 2%;
 	}
-	.plateRight{
+	.plateRight {
 		left: 88%;
 	}
 }
-@keyframes plate{
-	33%{
-	    background-size:  21% 21%;
+@keyframes plate {
+	33% {
+		background-size: 21% 21%;
 	}
-	66%{
-	    background-size:  43% 43%;
+	66% {
+		background-size: 43% 43%;
 	}
-	100%{
-	    background-size: 65% 65%;
-	}
-}
-@keyframes plate2{
-	33%{
-	     background-size: 26% 26%;
-	}
-	66%{
-	     background-size: 52% 52%;
-	}
-	100%{
-	     background-size:  80% 80%;
+	100% {
+		background-size: 65% 65%;
 	}
 }
-
-@keyframes prevImg{
-	20%{
-		transform:skewX(30deg) skewY(30deg) rotate(90deg);
+@keyframes plate2 {
+	33% {
+		background-size: 26% 26%;
 	}
-	40%{
-		transform:skewX(30deg) skewY(30deg) rotate(90deg);
-		left:35%;
+	66% {
+		background-size: 52% 52%;
 	}
-	80%{
-		transform:skewX(30deg) skewY(30deg) rotate(90deg);
-		left:100%;
-	}
-}
-@keyframes nextImg{
-	20%{
-		transform:skewX(-30deg) skewY(-30deg) rotate(-90deg);
-	}
-	40%{
-		transform:skewX(-30deg) skewY(-30deg) rotate(-90deg);
-		left:60%;
-	}
-	80%{
-		transform:skewX(-30deg) skewY(-30deg) rotate(-90deg);
-		left:0%;
+	100% {
+		background-size: 80% 80%;
 	}
 }
 
-.thumbnail{
-	 list-style:none;
-	max-width:80%;
-	padding:10px;
-	margin:0 auto;
-	border:1px solid #ccc;
-	background:#323232	;
-	border-radius:10px;
-	box-shadow:0 0 2px rgba(0,0,0,.5);
+@keyframes prevImg {
+	20% {
+		transform: skewX(30deg) skewY(30deg) rotate(90deg);
+	}
+	40% {
+		transform: skewX(30deg) skewY(30deg) rotate(90deg);
+		left: 35%;
+	}
+	80% {
+		transform: skewX(30deg) skewY(30deg) rotate(90deg);
+		left: 100%;
+	}
 }
-.thumbnail:after{
-	content:"";
-	display:block;
-	clear:both;
+@keyframes nextImg {
+	20% {
+		transform: skewX(-30deg) skewY(-30deg) rotate(-90deg);
+	}
+	40% {
+		transform: skewX(-30deg) skewY(-30deg) rotate(-90deg);
+		left: 60%;
+	}
+	80% {
+		transform: skewX(-30deg) skewY(-30deg) rotate(-90deg);
+		left: 0%;
+	}
 }
-.thumbnail li{
-	float:left;
-	width:18%;
-	margin:1%;
+
+.thumbnail {
+	list-style: none;
+	max-width: 80%;
+	padding: 10px;
+	margin: 0 auto;
+	border: 1px solid #ccc;
+	background: #323232;
+	border-radius: 10px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
 }
-.thumbnail li > a img{
-	max-width:100%;
+.thumbnail:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+.thumbnail li {
+	float: left;
+	width: 18%;
+	margin: 1%;
+}
+.thumbnail li > a img {
+	max-width: 100%;
 	height: 15vh;
 	width: 100%;
-	box-shadow:0 0 5px rgba(0,0,0,.3);
-	transition:.5s;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+	transition: 0.5s;
 }
 
-.thumbnail li > a{
-	float:left;
-	transition:.5s;
-	position:relative;
+.thumbnail li > a {
+	float: left;
+	transition: 0.5s;
+	position: relative;
 }
-.thumbnail li > a:hover{
-	z-index:1;
+.thumbnail li > a:hover {
+	z-index: 1;
 }
-.thumbnail li > a:hover img{
-	transform:scale(1.8);
-	box-shadow:0 0 15px rgba(0,0,0,.8);
+.thumbnail li > a:hover img {
+	transform: scale(1.8);
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
 }
-.thumbnail article{
-	width:0;
-	height:0;
-	overflow:hidden;
-	position:absolute;
-	top:0;
-	left:0;
+.thumbnail article {
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
-.thumbnail article img{
-	margin-top:10vh;
-	text-align:center;
+.thumbnail article img {
+	margin-top: 10vh;
+	text-align: center;
 	max-width: 100%;
 	max-height: 80vh;
-	box-sizing:border-box;
-	border:10px solid #fff;
-	box-shadow:0 0 20px rgba(0,0,0,.5);
-	opacity:0;
-	transition:.7s;
+	box-sizing: border-box;
+	border: 10px solid #fff;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+	opacity: 0;
+	transition: 0.7s;
 }
-.thumbnail article:target{
-	width:100%;
-	height:100%;
-	text-align:center;
-	background:rgba(0,0,0,.8);
-	z-index:1;
-	color:white;
-	font-size:1.2rem;
-}
-
-.thumbnail article:target img{
-	opacity:1;
-}
-article .close{
-	text-decoration:none;
-	color:black;
-	background:#fff;
-	position:absolute;
-	top:5vh;
-	left:50%;
-	margin-left:-50px;
-	width:100px;
-	padding:6px 6px 6px 25px;
-	box-sizing:border-box;
-	border-radius:15px;
-	transition:.5s;
-}
-article .close:before{
-	color:white;
-	content:"X";
-	position:absolute;
-	font-size:1.2rem;
-	top:3px;
-	left:5px;
-	margin-top: 4px;
-	width:24px;
-	height:24px;
-	border-radius:50%;
-	background:#EBAA5F;
-}
-#allFood{
-	transition:1s;
-	cursor:pointer;
-	position: absolute;
-    top: 5%;
-    left: 80vw;
-    font-size: 1.2rem;
-    background-color: #323232;
-    border-radius: 10px;
-    border: 1px solid white;
-    width: 120px;
-}
-@media screen and (max-width:1200px){
-	#allFood{
-		left:62vw;
-	}	
-}
-.menu{
-	cursor:pointer;
-	position:absolute;
-	width:80px;
-	height:80px;
-	background:url(/imageFood/menu.png) no-repeat;
-	background-size:cover;
-	top:5%;
-	left:5%;
-	transition:1s;
-}
-.foodMenu{
-	cursor:pointer;
-	position:absolute;
-	width:80px;
-	height:50px;
-	background:url(/imageFood/list.png) no-repeat;
-	background-size:100% 100%;
-	top:13.3%;
-	left:5%;
-}
-#foodMenu1{
-	transition:.5s;
-	display:none;
-}
-#foodMenu2{
-	transition:.5s .5s;
-	transform:translateY(40px);
-	display:none;
-}
-#foodMenu3{
-	transition:1s .5s;
-	transform:translateY(80px);
-	display:none;
-}
-#foodMenu4{
-	transition:1.5s .5s;
-	transform:translateY(120px);
-	display:none;
-}
-
-.foodMenuFont{
-	font-size: 0.4rem;
-    font-weight: bold;
-    width: 50px;
-    margin-left: 12px;
-    border-radius: 5px;
-}
-
-.headline{
-    background: url(/imageFood/headline.png) no-repeat;
-    background-size: 100% 100%;
-	display: inline-block;
-    height: 180px;
-    width: 145px;
-	animation-name:wobble;
-	animation-duration:4s;
-}
-@media screen and (max-width:1200px){
-	.headline{
-	    height: 150px;
-	    width: 120px;
-	}	
-}
-.foodFont{
-	color: white;
-    margin-top: 95%;
-    background: firebrick;
-    font-size: 1.2rem;
-    border-radius: 10px;
-}
-
-@keyframes wobble{
-	15%{
-		transform:translateX(-25%) rotate(5deg);
-	}
-	30%{
-		transform:translateX(20%) rotate(-3deg);
-	}
-	45%{
-		transform:translateX(-15%) rotate(3deg);
-	}
-	60%{
-		transform:translateX(10%) rotate(-2deg);
-	}
-	75%{
-		transform:translateX(-5%) rotate(1deg);
-	}
-}
-.choose{
-	position:absolute;
-	width:100%;
-	top:68%;
-	color:darkblue;
-}
-#foodPrev{
-	cursor:pointer;
-	float: left;
-   	margin-left:14%;
-	border-radius: 10px;
-	padding:1%;
-    background: linear-gradient(
-0.25turn
-, #FF0000, #ebf8e1, #282828);
-}
-#foodNext{
-	cursor:pointer;
-	margin-right:14%;
-   	float: right;
-	padding:1%;
-	border-radius: 10px;
-    background: linear-gradient(
-0.25turn
-, #FF0000, #ebf8e1, #282828);
-}
-.foodImg{
+.thumbnail article:target {
 	width: 100%;
-    position: absolute;
+	height: 100%;
+	text-align: center;
+	background: rgba(0, 0, 0, 0.8);
+	z-index: 1;
+	color: white;
+	font-size: 1.2rem;
+}
+
+.thumbnail article:target img {
+	opacity: 1;
+}
+article .close {
+	text-decoration: none;
+	color: black;
+	background: #fff;
+	position: absolute;
+	top: 5vh;
+	left: 50%;
+	margin-left: -50px;
+	width: 100px;
+	padding: 6px 6px 6px 25px;
+	box-sizing: border-box;
+	border-radius: 15px;
+	transition: 0.5s;
+}
+article .close:before {
+	color: white;
+	content: 'X';
+	position: absolute;
+	font-size: 1.2rem;
+	top: 3px;
+	left: 5px;
+	margin-top: 4px;
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	background: #ebaa5f;
+}
+#allFood {
+	transition: 1s;
+	cursor: pointer;
+	position: absolute;
+	top: 5%;
+	left: 80vw;
+	font-size: 1.2rem;
+	background-color: #323232;
+	border-radius: 10px;
+	border: 1px solid white;
+	width: 120px;
+}
+@media screen and (max-width: 1200px) {
+	#allFood {
+		left: 62vw;
+	}
+}
+.menu {
+	cursor: pointer;
+	position: absolute;
+	width: 80px;
+	height: 80px;
+	background: url(/imageFood/menu.png) no-repeat;
+	background-size: cover;
+	top: 5%;
+	left: 5%;
+	transition: 1s;
+}
+.foodMenu {
+	cursor: pointer;
+	position: absolute;
+	width: 80px;
+	height: 50px;
+	background: url(/imageFood/list.png) no-repeat;
+	background-size: 100% 100%;
+	top: 13.3%;
+	left: 5%;
+}
+#foodMenu1 {
+	transition: 0.5s;
+	display: none;
+}
+#foodMenu2 {
+	transition: 0.5s 0.5s;
+	transform: translateY(40px);
+	display: none;
+}
+#foodMenu3 {
+	transition: 1s 0.5s;
+	transform: translateY(80px);
+	display: none;
+}
+#foodMenu4 {
+	transition: 1.5s 0.5s;
+	transform: translateY(120px);
+	display: none;
+}
+
+.foodMenuFont {
+	font-size: 0.4rem;
+	font-weight: bold;
+	width: 50px;
+	margin-left: 12px;
+	border-radius: 5px;
+}
+
+.headline {
+	background: url(/imageFood/headline.png) no-repeat;
+	background-size: 100% 100%;
+	display: inline-block;
+	height: 180px;
+	width: 145px;
+	animation-name: wobble;
+	animation-duration: 4s;
+}
+@media screen and (max-width: 1200px) {
+	.headline {
+		height: 150px;
+		width: 120px;
+	}
+}
+.foodFont {
+	color: white;
+	margin-top: 95%;
+	background: firebrick;
+	font-size: 1.2rem;
+	border-radius: 10px;
+}
+
+@keyframes wobble {
+	15% {
+		transform: translateX(-25%) rotate(5deg);
+	}
+	30% {
+		transform: translateX(20%) rotate(-3deg);
+	}
+	45% {
+		transform: translateX(-15%) rotate(3deg);
+	}
+	60% {
+		transform: translateX(10%) rotate(-2deg);
+	}
+	75% {
+		transform: translateX(-5%) rotate(1deg);
+	}
+}
+.choose {
+	position: absolute;
+	width: 100%;
+	top: 68%;
+	color: darkblue;
+}
+#foodPrev {
+	cursor: pointer;
+	float: left;
+	margin-left: 14%;
+	border-radius: 10px;
+	padding: 1%;
+	background: linear-gradient(0.25turn, #ff0000, #ebf8e1, #282828);
+}
+#foodNext {
+	cursor: pointer;
+	margin-right: 14%;
+	float: right;
+	padding: 1%;
+	border-radius: 10px;
+	background: linear-gradient(0.25turn, #ff0000, #ebf8e1, #282828);
+}
+.foodImg {
+	width: 100%;
+	position: absolute;
 	top: 30%;
 	height: 40%;
-	max-height:90%;
-	margin:0 auto;
+	max-height: 90%;
+	margin: 0 auto;
 }
 
-.foodImgCenter{
+.foodImgCenter {
 	background: url(/imageFood/F0.jpg) no-repeat;
-    background-size: 100% 100%;
+	background-size: 100% 100%;
 	width: 30%;
-    height: 100%;
-    display: inline-block;
+	height: 100%;
+	display: inline-block;
 	border-radius: 10px;
-	cursor:pointer;
+	cursor: pointer;
 }
-.foodImgCenter:hover{
-	z-index:1;
-	box-sizing:border-box;
-	border:10px solid #fff;
-	box-shadow:0 0 20px rgba(0,0,0,.5);
-	transition:.7s;
-	transform:scale(2);
+.foodImgCenter:hover {
+	z-index: 1;
+	box-sizing: border-box;
+	border: 10px solid #fff;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+	transition: 0.7s;
+	transform: scale(2);
 	position: relative;
-    z-index: 2;
+	z-index: 2;
 }
-.foodImgCenterRight{
-	animation-name:imgRightCenter;
-	animation-duration:2s;
+.foodImgCenterRight {
+	animation-name: imgRightCenter;
+	animation-duration: 2s;
 }
-.foodImgCenterLeft{
-	animation-name:imgLeftCenter;
-	animation-duration:2s;
+.foodImgCenterLeft {
+	animation-name: imgLeftCenter;
+	animation-duration: 2s;
 }
 
-.foodImgLeft{
+.foodImgLeft {
 	background: url(/imageFood/F24.jpg) no-repeat;
 	display: none;
-    background-size: 100% 100%;
-    width: 30%;
-    height: 100%;
-    left: -50%;
-    border-radius: 10px;
-    position: absolute;
-	animation-name:imgRight;
-	animation-duration:2s;
+	background-size: 100% 100%;
+	width: 30%;
+	height: 100%;
+	left: -50%;
+	border-radius: 10px;
+	position: absolute;
+	animation-name: imgRight;
+	animation-duration: 2s;
 }
-.foodImgRight{
+.foodImgRight {
 	background: url(/imageFood/F1.jpg) no-repeat;
 	display: none;
-    background-size: 100% 100%;
-    width: 30%;
-    height: 100%;
-    right: -50%;
-    border-radius: 10px;
-    position: absolute;
-	animation-name:imgLeft;
-	animation-duration:2s;
+	background-size: 100% 100%;
+	width: 30%;
+	height: 100%;
+	right: -50%;
+	border-radius: 10px;
+	position: absolute;
+	animation-name: imgLeft;
+	animation-duration: 2s;
 }
-@keyframes imgRight{
-	40%{
-		left:-20%;
+@keyframes imgRight {
+	40% {
+		left: -20%;
 	}
-	80%{
-		left:45%;
+	80% {
+		left: 45%;
 	}
-	100%{
-		left:35%;
-	}
-}
-@keyframes imgRightCenter{
-	0%{
-		left:20%;
-	}
-	45%{
-		left:30%;
-	}
-	80%{
-		left:100%;
-	}
-	100%{
-		left:110%;
+	100% {
+		left: 35%;
 	}
 }
-@keyframes imgLeft{
-	40%{
-		right:-20%;
+@keyframes imgRightCenter {
+	0% {
+		left: 20%;
 	}
-	80%{
-		right:45%;
+	45% {
+		left: 30%;
 	}
-	100%{
-		right:35%;
+	80% {
+		left: 100%;
+	}
+	100% {
+		left: 110%;
 	}
 }
-@keyframes imgLeftCenter{
-	0%{
-		right:20%;
+@keyframes imgLeft {
+	40% {
+		right: -20%;
 	}
-	45%{
-		right:30%;
+	80% {
+		right: 45%;
 	}
-	80%{
-		right:100%;
+	100% {
+		right: 35%;
 	}
-	100%{
-		right:110%;
+}
+@keyframes imgLeftCenter {
+	0% {
+		right: 20%;
+	}
+	45% {
+		right: 30%;
+	}
+	80% {
+		right: 100%;
+	}
+	100% {
+		right: 110%;
 	}
 }
 
-@media screen and (max-width:1024px){
-	.choose{
-		top:63%;
-	}	
-	#foodPrev{
+@media screen and (max-width: 1024px) {
+	.choose {
+		top: 63%;
+	}
+	#foodPrev {
 		float: left;
-   		margin-left: 2%;
+		margin-left: 2%;
 	}
-	#foodNext{
+	#foodNext {
 		margin-right: 2%;
-   		float: right;
+		float: right;
 	}
-	.foodImg{
-	    top: 35%;
-	    height: 30%;
+	.foodImg {
+		top: 35%;
+		height: 30%;
 	}
-	.foodImgCenter{
-	    width: 45%;
-	}
-	.foodImgLeft{
+	.foodImgCenter {
 		width: 45%;
 	}
-	.foodImgRight{
+	.foodImgLeft {
+		width: 45%;
+	}
+	.foodImgRight {
 		width: 45%;
 	}
 }
 
 /* party */
 
-.PartyContainer{
+.PartyContainer {
 	margin: 0;
-    overflow: hidden;
-    width: 100vw;
-    height: 100vh;
-    background: url(/imageParty/club.jpg) no-repeat;
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    background-size: 100% 100%;
-	z-index:0;
+	overflow: hidden;
+	width: 100vw;
+	height: 100vh;
+	background: url(/imageParty/club.jpg) no-repeat;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	background-size: 100% 100%;
+	z-index: 0;
 }
 
-.dj{
+.dj {
 	position: absolute;
-    background: url(/imageParty/DJ.png) no-repeat;
-    background-size: 100% 100%;
-    width: 8vw;
-    height: 10vh;
-    top: 45vh;
-    left: 46vw;
+	background: url(/imageParty/DJ.png) no-repeat;
+	background-size: 100% 100%;
+	width: 8vw;
+	height: 10vh;
+	top: 45vh;
+	left: 46vw;
 }
-.speakerLeft{
+.speakerLeft {
 	position: absolute;
-    background: url(/imageParty/speakerLeft.png) no-repeat;
-    background-size: 100% 100%;
-    width: 5vw;
-    height: 25vh;
-    left: 35vw;
-    top: 45vh;
-	animation:speaker 2s linear infinite;
+	background: url(/imageParty/speakerLeft.png) no-repeat;
+	background-size: 100% 100%;
+	width: 5vw;
+	height: 25vh;
+	left: 35vw;
+	top: 45vh;
+	animation: speaker 2s linear infinite;
 }
-.booth{
+.booth {
 	position: absolute;
-    background: url(/imageParty/dj-booth.png) no-repeat;
-    background-size: 100% 100%;
-    width: 20vw;
-    height: 15vh;
-    left: 40vw;
-    top: 54vh;
+	background: url(/imageParty/dj-booth.png) no-repeat;
+	background-size: 100% 100%;
+	width: 20vw;
+	height: 15vh;
+	left: 40vw;
+	top: 54vh;
 }
-.speakerRight{
+.speakerRight {
 	position: absolute;
-    background: url(/imageParty/speakerRight.png) no-repeat;
-    background-size: 100% 100%;
-    width: 5vw;
-    height: 25vh;
-    right: 35vw;
-    top: 45vh;
-	animation:speaker 2s 1s linear infinite;
+	background: url(/imageParty/speakerRight.png) no-repeat;
+	background-size: 100% 100%;
+	width: 5vw;
+	height: 25vh;
+	right: 35vw;
+	top: 45vh;
+	animation: speaker 2s 1s linear infinite;
 }
-.note1{
+.note1 {
 	position: absolute;
-    background: url(/imageParty/note1.png) no-repeat;
-    background-size: 100% 100%;
-    width: 10vw;
-    height: 10vh;
-    left: 30vw;
-    top: 45vh;
-	animation:note 2s linear infinite;
+	background: url(/imageParty/note1.png) no-repeat;
+	background-size: 100% 100%;
+	width: 10vw;
+	height: 10vh;
+	left: 30vw;
+	top: 45vh;
+	animation: note 2s linear infinite;
 }
-.note2{
+.note2 {
 	position: absolute;
-    background: url(/imageParty/note2.png) no-repeat;
-    background-size: 100% 100%;
-    width: 10vw;
-    height: 14vh;
-    right: 32vw;
-    top: 52vh;
-	animation:note 2s 1s linear infinite;
+	background: url(/imageParty/note2.png) no-repeat;
+	background-size: 100% 100%;
+	width: 10vw;
+	height: 14vh;
+	right: 32vw;
+	top: 52vh;
+	animation: note 2s 1s linear infinite;
 }
-@keyframes note{
-	0%{
-		transform:scale(1);
+@keyframes note {
+	0% {
+		transform: scale(1);
 	}
-	50%{
-		transform:scale(1.8) rotateY(360deg);
+	50% {
+		transform: scale(1.8) rotateY(360deg);
 	}
-	0%{
-		transform:scale(1);
-	}
-}
-@keyframes speaker{
-	0%{
-		transform:scale(1);
-	}
-	50%{
-		transform:scale(1.2);
-	}
-	0%{
-		transform:scale(1);
+	0% {
+		transform: scale(1);
 	}
 }
-.alcohol1{
+@keyframes speaker {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.2);
+	}
+	0% {
+		transform: scale(1);
+	}
+}
+.alcohol1 {
 	position: fixed;
-    background: url(/imageParty/alcohol1.png) no-repeat;
-    background-size: 100% 100%;
-    width: 8vw;
-    height: 25vh;
-    left: 13.6vw;
-    top: 62vh;
-	text-align:center;
+	background: url(/imageParty/alcohol1.png) no-repeat;
+	background-size: 100% 100%;
+	width: 8vw;
+	height: 25vh;
+	left: 13.6vw;
+	top: 62vh;
+	text-align: center;
 }
-.alcohol2{
+.alcohol2 {
 	position: fixed;
-    background: url(/imageParty/alcohol2.png) no-repeat;
-    background-size: 100% 100%;
-    width: 8vw;
-    height: 25vh;
-    left: 35.2vw;
-    top: 62vh;
-	text-align:center;
+	background: url(/imageParty/alcohol2.png) no-repeat;
+	background-size: 100% 100%;
+	width: 8vw;
+	height: 25vh;
+	left: 35.2vw;
+	top: 62vh;
+	text-align: center;
 }
-.alcohol3{
+.alcohol3 {
 	position: fixed;
-    background: url(/imageParty/alcohol3.png) no-repeat;
-    background-size: 100% 100%;
-    width: 8vw;
-    height: 25vh;
-    right: 35.2vw;
-    top: 62vh;
-	text-align:center;
+	background: url(/imageParty/alcohol3.png) no-repeat;
+	background-size: 100% 100%;
+	width: 8vw;
+	height: 25vh;
+	right: 35.2vw;
+	top: 62vh;
+	text-align: center;
 }
-.alcohol4{
+.alcohol4 {
 	position: fixed;
-    background: url(/imageParty/alcohol4.png) no-repeat;
-    background-size: 100% 100%;
-    width: 8vw;
-    height: 25vh;
-    right:13.6vw;
-    top: 62vh;
-	text-align:center;
+	background: url(/imageParty/alcohol4.png) no-repeat;
+	background-size: 100% 100%;
+	width: 8vw;
+	height: 25vh;
+	right: 13.6vw;
+	top: 62vh;
+	text-align: center;
 }
-.clubBoard{
+.clubBoard {
 	position: absolute;
-    background-size: 100% 100%;
-    background:url(/imageParty/music1.jpg) no-repeat;
-	background-size:100% 100%;
-	border:10px solid black;
-	border-radius:10px;
+	background-size: 100% 100%;
+	background: url(/imageParty/music1.jpg) no-repeat;
+	background-size: 100% 100%;
+	border: 10px solid black;
+	border-radius: 10px;
 	width: 40vw;
-    height: 30vh;
-	left:30vw;
-    top: 20vh;
+	height: 30vh;
+	left: 30vw;
+	top: 20vh;
 }
-.prevMusic{
+.prevMusic {
 	position: absolute;
-    background: url(/imageParty/prev.png) no-repeat;
-    background-size: 100% 100%;
+	background: url(/imageParty/prev.png) no-repeat;
+	background-size: 100% 100%;
 	width: 5vw;
-    height: 5vh;
-	top:40%;
+	height: 5vh;
+	top: 40%;
 }
-.playMusic{
+.playMusic {
 	position: absolute;
-    background: url(/imageParty/play.png) no-repeat;
-    background-size: 100% 100%;
-    width: 4vw;
-    height: 5vh;
-    left: 43%;
-    top: 40%;	
+	background: url(/imageParty/play.png) no-repeat;
+	background-size: 100% 100%;
+	width: 4vw;
+	height: 5vh;
+	left: 43%;
+	top: 40%;
 }
-.nextMusic{
+.nextMusic {
 	position: absolute;
-    background: url(/imageParty/next.png) no-repeat;
-    background-size: 100% 100%;
+	background: url(/imageParty/next.png) no-repeat;
+	background-size: 100% 100%;
 	width: 5vw;
-    height: 6vh;
-	left:87%;
-	top:40%;
+	height: 6vh;
+	left: 87%;
+	top: 40%;
 }
-.partyFont{
+.partyFont {
 	background: url(/imageParty/fontP.jpg);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: #000;
-    font: 0.9rem Bebas;
-    position: absolute;
-    width: 28vw;
-    left: -10vw;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	color: #000;
+	font: 0.9rem Bebas;
+	position: absolute;
+	width: 28vw;
+	left: -10vw;
 }
-@media (min-width: 768px) and (max-width:1024px){
-	.partyFont{
+@media (min-width: 768px) and (max-width: 1024px) {
+	.partyFont {
 		font: 1.2rem Bebas;
 	}
 }
-@media screen and (min-width:1024px){
-	.partyFont{
+@media screen and (min-width: 1024px) {
+	.partyFont {
 		font: 1.5rem Bebas;
 	}
 }
 
 /* ani */
 
-.ani{
-	width:100vw;
-	height:100vh;
-    background: url(/imageFairyTale/aniRoom.jpg) no-repeat;
-    background-size: 100% 100%;
+.ani {
+	width: 100vw;
+	height: 100vh;
+	background: url(/imageFairyTale/aniRoom.jpg) no-repeat;
+	background-size: 100% 100%;
 }
-.phone{
-	cursor:pointer;
+.phone {
+	cursor: pointer;
 	position: absolute;
-    background: url(/imageFairyTale/phone.png) no-repeat;
-    background-size: 100% 100%;
-    width: 70vw;
-    height: 90vh;
-    left: 15vw;
-    top: 5vh;
-	animation-name:phoneMove;
-	animation-duration:4s;
+	background: url(/imageFairyTale/phone.png) no-repeat;
+	background-size: 100% 100%;
+	width: 70vw;
+	height: 90vh;
+	left: 15vw;
+	top: 5vh;
+	animation-name: phoneMove;
+	animation-duration: 4s;
 }
-.hand{
-	cursor:pointer;
+.hand {
+	cursor: pointer;
 	position: absolute;
-    background: url(/imageFairyTale/hand2.png) no-repeat;
-    background-size: 100% 100%;
-    width: 60vw;
-    height: 110vh;
-    top: -5vh;
-    left: 15%;
-	transform:rotatez(0deg);
-	transition:1s;
-	animation-name:handMove;
-	animation-duration:4s;
+	background: url(/imageFairyTale/hand2.png) no-repeat;
+	background-size: 100% 100%;
+	width: 60vw;
+	height: 110vh;
+	top: -5vh;
+	left: 15%;
+	transform: rotatez(0deg);
+	transition: 1s;
+	animation-name: handMove;
+	animation-duration: 4s;
 }
-@keyframes phoneMove{
-	0%{
-		transform:translateY(-50%);
+@keyframes phoneMove {
+	0% {
+		transform: translateY(-50%);
 	}
-	50%{
-		transform:translateY(-25%);
+	50% {
+		transform: translateY(-25%);
 	}
-	100%{
-		transform:translateY(0%);
-	}
-}
-@keyframes phoneMove2{
-	0%{
-		transform:translateX(-50%) rotatez(0deg);
-}
-	50%{
-		transform:translateX(-25%) rotatez(-45deg);
-	}
-	100%{
-		transform:translateX(0%) rotatez(-90deg);
+	100% {
+		transform: translateY(0%);
 	}
 }
-@keyframes handMove{
-	0%{
-		transform:translateX(-100%);
+@keyframes phoneMove2 {
+	0% {
+		transform: translateX(-50%) rotatez(0deg);
 	}
-	100%{
-		transform:translateX(0%);
+	50% {
+		transform: translateX(-25%) rotatez(-45deg);
 	}
-}
-@keyframes handMove2{
-	0%{
-		transform:translateY(-100%);
-	}
-	100%{
-		transform:translateY(0%);
+	100% {
+		transform: translateX(0%) rotatez(-90deg);
 	}
 }
-.yourName{
+@keyframes handMove {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(0%);
+	}
+}
+@keyframes handMove2 {
+	0% {
+		transform: translateY(-100%);
+	}
+	100% {
+		transform: translateY(0%);
+	}
+}
+.yourName {
 	position: absolute;
-    width: 82%;
-    height: 73%;
-    left: 9%;
-    top: 13.5%;
-	background:url(/imageFairyTale/background.gif);
-	background-size:100% 100%;
+	width: 82%;
+	height: 73%;
+	left: 9%;
+	top: 13.5%;
+	background: url(/imageFairyTale/background.gif);
+	background-size: 100% 100%;
 }
-.Mitsuha{
+.Mitsuha {
 	position: fixed;
-    width: 25vh;
-    height: 20vh;
+	width: 25vh;
+	height: 20vh;
 	transform: rotateX(180deg) rotateZ(90deg);
-	z-index:2;
+	z-index: 2;
 }
-.yourStory{
+.yourStory {
 	background: url(/imageFairyTale/s0.gif) no-repeat;
-    background-size: 100% 100%;
-    width: 20vh;
-    height: 20vh;
-    top: 65%;
-    left: 30%;
-    position: absolute;
-    transform: rotateZ(90deg);
-	border: 5px solid black;
-    border-radius: 10px;
-    box-shadow: 7px 7px 2px 1px rgb(0 0 255 / 20%);
-}
-.play{
+	background-size: 100% 100%;
+	width: 20vh;
+	height: 20vh;
+	top: 65%;
+	left: 30%;
 	position: absolute;
-    background: url(/imageFairyTale/tap.png) no-repeat;
-    background-size: 100% 100%;
-    width: 20vw;
-    height: 20vw;
-    top:  60%;
-    left: 40%;
-	transform:rotateZ(90deg);
-	transition:1s;
-}
-.playFont{
-	font-size: 1.5rem;
-    font-weight: bold;
-    position: absolute;
-    top: 100%;
-}
-.aniMenu{
-	cursor:pointer;
-	position: absolute;
-    background: url(/imageFairyTale/menu.png) no-repeat;
-    background-size: 100% 100%;
 	transform: rotateZ(90deg);
-    width: 20vw;
-    height: 15vw;
-    top: 5vh;
-    left: 80vw;
-    z-index: 4;
+	border: 5px solid black;
+	border-radius: 10px;
+	box-shadow: 7px 7px 2px 1px rgb(0 0 255 / 20%);
 }
-.aniMenuMove{
-	animation-name:fadeIn;
-	animation-duration:1.5s;
+.play {
+	position: absolute;
+	background: url(/imageFairyTale/tap.png) no-repeat;
+	background-size: 100% 100%;
+	width: 20vw;
+	height: 20vw;
+	top: 60%;
+	left: 40%;
+	transform: rotateZ(90deg);
+	transition: 1s;
 }
-@keyframes fadeIn{
-	0%{
-		opacity:0;
-		transform:translateX(100%) skewX(-30deg);
+.playFont {
+	font-size: 1.5rem;
+	font-weight: bold;
+	position: absolute;
+	top: 100%;
+}
+.aniMenu {
+	cursor: pointer;
+	position: absolute;
+	background: url(/imageFairyTale/menu.png) no-repeat;
+	background-size: 100% 100%;
+	transform: rotateZ(90deg);
+	width: 20vw;
+	height: 15vw;
+	top: 5vh;
+	left: 80vw;
+	z-index: 4;
+}
+.aniMenuMove {
+	animation-name: fadeIn;
+	animation-duration: 1.5s;
+}
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+		transform: translateX(100%) skewX(-30deg);
 	}
-	60%{
-		opacity:1;
-		transform:translateX(-20%) skewX(30deg);
+	60% {
+		opacity: 1;
+		transform: translateX(-20%) skewX(30deg);
 	}
-	100%{
-		transform:translateX(0) skewX(-15deg);
+	100% {
+		transform: translateX(0) skewX(-15deg);
 	}
 }
-.aniMenu1{
-	display:none;
+.aniMenu1 {
+	display: none;
 	background: url(/imageFairyTale/menu1.png) no-repeat;
-    background-size: 100% 100%;
+	background-size: 100% 100%;
 	width: 10vw;
-    height: 10vw;
-    position: absolute;
-    margin-left: 15vw;
+	height: 10vw;
+	position: absolute;
+	margin-left: 15vw;
 }
-.aniMenu2{
-	display:none;	
+.aniMenu2 {
+	display: none;
 	background: url(/imageFairyTale/menu2.png) no-repeat;
-    background-size: 100% 100%;
+	background-size: 100% 100%;
 	width: 10vw;
-    height: 10vw;
-    position: absolute;
-    margin-left: 25vw;
+	height: 10vw;
+	position: absolute;
+	margin-left: 25vw;
 }
-.aniMenu3{
-	display:none;
+.aniMenu3 {
+	display: none;
 	background: url(/imageFairyTale/menu3.png) no-repeat;
-    background-size: 100% 100%;
+	background-size: 100% 100%;
 	width: 10vw;
-    height: 10vw;
-    position: absolute;
-    margin-left: 35vw;
+	height: 10vw;
+	position: absolute;
+	margin-left: 35vw;
 }
-.aniMenu4{
-	display:none;
+.aniMenu4 {
+	display: none;
 	background: url(/imageFairyTale/menu4.png) no-repeat;
-    background-size: 100% 100%;width: 10vw;
-    height: 10vw;
-    position: absolute;
-    margin-left: 45vw;
+	background-size: 100% 100%;
+	width: 10vw;
+	height: 10vw;
+	position: absolute;
+	margin-left: 45vw;
 }
-.aniMenuFont{
+.aniMenuFont {
 	background: url(/imageFairyTale/aniFont.jpg);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font: 1.3rem Bebas;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font: 1.3rem Bebas;
 }
-.aniMenuFont2{
+.aniMenuFont2 {
 	background: url(/imageFairyTale/aniFont.jpg);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font: 0.7rem Bebas;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font: 0.7rem Bebas;
 }
-@media screen and (min-width:1025px){
-	.phone{
+@media screen and (min-width: 1025px) {
+	.phone {
 		width: 60vw;
-    	height: 120vh;
-    	left: 20vw;
-    	top: -10vh;
-    	transform: rotateZ(-90deg);
-		animation-name:phoneMove2;
+		height: 120vh;
+		left: 20vw;
+		top: -10vh;
+		transform: rotateZ(-90deg);
+		animation-name: phoneMove2;
 	}
-	.hand{
-    	background: url(/imageFairyTale/hand.png) no-repeat;
-    	background-size: 100% 100%;
-    	width: 100vw;
-   		height: 60vh;
-   		top: 35vh;
-		left:0%;
-		animation-name:handMove2;
+	.hand {
+		background: url(/imageFairyTale/hand.png) no-repeat;
+		background-size: 100% 100%;
+		width: 100vw;
+		height: 60vh;
+		top: 35vh;
+		left: 0%;
+		animation-name: handMove2;
 	}
-	.Mitsuha{
+	.Mitsuha {
 		width: 25vw;
-    	height: 20vw;
+		height: 20vw;
 	}
-	.play{
+	.play {
 		width: 20vh;
-    	height: 20vh;
+		height: 20vh;
 	}
-	.yourStory{
+	.yourStory {
 		width: 18vw;
-   		height: 18vw;
+		height: 18vw;
 		top: 55%;
-    	left: 45%;
+		left: 45%;
 	}
-	.aniMenu{
-	    width: 15vw;
-	    height: 15vh;
-	    top: 5vh;
-		left:0vw;
+	.aniMenu {
+		width: 15vw;
+		height: 15vh;
+		top: 5vh;
+		left: 0vw;
 		transform: rotateZ(0deg);
 	}
-	.aniMenu1{
+	.aniMenu1 {
 		width: 6vw;
-    	height: 6vw;
-    	top: 100%;
-    	left: 30%;
-		margin-left:0;
+		height: 6vw;
+		top: 100%;
+		left: 30%;
+		margin-left: 0;
 	}
-	.aniMenu2{
+	.aniMenu2 {
 		width: 6vw;
-    	height: 6vw;
-    	top: 170%;
-    	left: 30%;
-		margin-left:0;
+		height: 6vw;
+		top: 170%;
+		left: 30%;
+		margin-left: 0;
 	}
-	.aniMenu3{
+	.aniMenu3 {
 		width: 6vw;
-    	height: 6vw;
-    	top: 240%;
-    	left: 30%;
-		margin-left:0;
+		height: 6vw;
+		top: 240%;
+		left: 30%;
+		margin-left: 0;
 	}
-	.aniMenu4{
+	.aniMenu4 {
 		width: 6vw;
-    	height: 6vw;
-    	top: 310%;
-    	left: 30%;
-		margin-left:0;
+		height: 6vw;
+		top: 310%;
+		left: 30%;
+		margin-left: 0;
 	}
 }
 
 /* computer */
 
-.computer{
+.computer {
 	width: 100vw;
-    height: 80vh;
-    box-sizing: border-box;
-    border-radius: 10px 10px 0px 0px;
-    border: 20px solid black;
+	height: 80vh;
+	box-sizing: border-box;
+	border-radius: 10px 10px 0px 0px;
+	border: 20px solid black;
 }
-.computerBottom{
-	background:url(/imageComputer/computerBottom.png) no-repeat;
-	background-size:100% 100%;
-	width:100vw;
-	height:20vh;
-	box-sizing:border-box;
+.computerBottom {
+	background: url(/imageComputer/computerBottom.png) no-repeat;
+	background-size: 100% 100%;
+	width: 100vw;
+	height: 20vh;
+	box-sizing: border-box;
 }
-.comBackground{
-	width:100%;
-	height:100%;
-	background:url(/imageComputer/windowBackground3.jpg) no-repeat;
-	background-size:100% 100%;
+.comBackground {
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-content: flex-start;
+	width: 100%;
+	height: 98%;
+	background: url(/imageComputer/windowBackground3.jpg) no-repeat;
+	background-size: 100% 100%;
+	z-index:3;
 }
-.bird{
-	
-}
-.comBackFont{
-	/*
+.bird1 {
+	width: 3vw;
+	height: 3vw;
+	background: url(/imageComputer/bird1.png) no-repeat;
+	background-size: 100% 100%;
 	position: absolute;
-    top: 100%;
-    width: 150%;
-    font-size: 0.8rem;*/
+	animation-name: bird1Move;
+	animation-iteration-count: infinite;
+	animation-timing-function: cubic-bezier(0.8, 0.16, 0.58, 1);
+	left: 0%;
+	transform: rotateY(180deg);
+	z-index: 0;
 }
-/* 처음에만 top=0, 그후 top+=9 */
-.comMenu1{
-	/*
-	width:5vw;
-	height:5vw;
-	position:absolute;
-	background:url(/imageComputer/talk.png) no-repeat;
-	background-size:100% 100%;
-	margin:10px;
-	z-index:1;*/
+.bird2 {
+	width: 2vw;
+	height: 2vw;
+	background: url(/imageComputer/bird4.png) no-repeat;
+	background-size: 100% 100%;
+	position: absolute;
+	left: 0%;
+	transform: rotateY(180deg);
+	animation-name: bird2Move;
+	animation-iteration-count: infinite;
+	animation-timing-function: cubic-bezier(0.42, 0.2, 0.51, 0.84);
+	z-index: 0;
+}
+@keyframes bird1Move {
+	0% {
+		left: 0%;
+		background: url(/imageComputer/bird1.png) no-repeat;
+		background-size: 100% 100%;
+		transform: rotateY(180deg) skewX(30deg) translateY(50px);
+	}
+	20% {
+		left: 10%;
+		background: url(/imageComputer/bird2.png) no-repeat;
+		background-size: 100% 100%;
+		transform: rotateY(180deg) skewX(50deg) translateY(40px);
+	}
+	40% {
+		left: 25%;
+		background: url(/imageComputer/bird3.png) no-repeat;
+		background-size: 100% 100%;
+		transform: rotateY(180deg) skewX(30deg) translateY(30px);
+	}
+	60% {
+		left: 45%;
+		background: url(/imageComputer/bird1.png) no-repeat;
+		background-size: 100% 100%;
+		transform: rotateY(180deg) skewX(0deg) translateY(10px);
+	}
+	80% {
+		left: 70%;
+		background: url(/imageComputer/bird2.png) no-repeat;
+		background-size: 100% 100%;
+		transform: rotateY(180deg) skewX(-30deg) translateY(-10px);
+	}
+	100% {
+		left: 100%;
+		background: url(/imageComputer/bird1.png) no-repeat;
+		background-size: 100% 100%;
+		transform: rotateY(180deg) skewX(0deg) translateY(0px);
+	}
+}
+@keyframes bird2Move {
+	0% {
+		left: 0%;
+		background: url(/imageComputer/bird4.png) no-repeat;
+		background-size: 100% 100%;
+		transform: rotateY(180deg) skewX(30deg) translateY(10px);
+	}
+	20% {
+		left: 10%;
+		background: url(/imageComputer/bird5.png) no-repeat;
+		background-size: 100% 100%;
+		transform: rotateY(180deg) skewX(50deg) translateY(20px);
+	}
+	40% {
+		left: 25%;
+		background: url(/imageComputer/bird6.png) no-repeat;
+		background-size: 100% 100%;
+		transform: rotateY(180deg) skewX(30deg) translateY(10px);
+	}
+	60% {
+		left: 45%;
+		background: url(/imageComputer/bird4.png) no-repeat;
+		background-size: 100% 100%;
+		transform: rotateY(180deg) skewX(0deg) translateY(0px);
+	}
+	80% {
+		left: 70%;
+		background: url(/imageComputer/bird5.png) no-repeat;
+		background-size: 100% 100%;
+		transform: rotateY(180deg) skewX(-30deg) translateY(-10px);
+	}
+	100% {
+		left: 100%;
+		background: url(/imageComputer/bird6.png) no-repeat;
+		background-size: 100% 100%;
+		transform: rotateY(180deg) skewX(0deg) translateY(0px);
+	}
 }
 
-.comMenu2{
-	/*
-	width:5vw;
-	height:5vw;
-	position:absolute;
-	background:url(/imageComputer/chrome.png) no-repeat;
+.comLogo {
+	cursor: pointer;
+	z-index: 1;
+}
+.comTop {
+	width: 100%;
+	height: 2vh;
+	background: #1d1d1d;
+	display: flex;
+}
+.comTopLeft {
+	width: 20%;
+	height: 100%;
+	background: url(/imageComputer/windowTop2.png) no-repeat;
+	background-size: 100% 100%;
+}
+.comTopCenter {
+	width: 60%;
+	height: 100%;
+	color: #f2f2f2;
+	text-align: center;
+	font-size: 0.8rem;
+}
+.comTopRight {
+	width: 20%;
+	height: 100%;
+	background: url(/imageComputer/windowTop1.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.comBackFont {
+	color: white;
+	text-shadow: 2px 2px black;
+	width: 10vw;
+	font-size: 0.3rem;
+	align-items: center;
+	margin-left: 10px;
+}
+/* 처음에만 top=0, 그후 top+=9 */
+.comImage {
+	width: 100%;
+}
+.comMenu1 {
+	margin: 10px;
+	width: 4vw;
+	background-size: 100% 100%;
+}
+
+.comMenu2 {
+	margin: 10px;
+	width: 4vw;
+	background-size: 100% 100%;
+}
+.comMenu3 {
+	margin: 10px;
+	width: 4vw;
+	background-size: 100% 100%;
+}
+.comMenu4 {
+	margin: 10px;
+	width: 4vw;
+	background-size: 100% 100%;
+}
+.talk {
+	margin: 10px;
+	width: 4vw;
+	border-radius: 50%;
+	background: white;
+	background-size: 100% 100%;
+}
+.html {
+	margin: 10px;
+	width: 4vw;
+	background-size: 100% 100%;
+}
+.github {
+	margin: 10px;
+	width: 4vw;
+	background-size: 100% 100%;
+}
+.folder {
+	margin: 10px;
+	width: 4vw;
+	background-size: 100% 100%;
+}
+.tistory {
+	margin: 10px;
+	width: 4vw;
+	background-size: 100% 100%;
+}
+.cmd {
+	margin: 10px;
+	width: 4vw;
+	background-size: 100% 100%;
+}
+
+.htmlContainer {
+	/*display: none;*/
+	width: 80%;
+	max-width:1280px;
+	height: 70%;
+	position: absolute;
+	top: 7%;
+	left: 10%;
+	z-index: 2;
+	background: white;
+	box-sizing: border-box;
+    border: 1px solid #CED1D3;}
+.htmlContainer > * {
+	display: flex;
+}
+.htmlTop {
+	width: 100%;
+	height: 5%;
+	position: absolute;
+}
+.htmlBottom {
+	width: 96%;
+	height: 90%;
+	position: absolute;
+	top: 10%;
+	margin: 0 auto;
+	flex-direction: column;
+	overflow: auto;
+	padding-left:2%;
+	padding-right:2%;
+}
+.htmlBottom > * {
+	display: flex;
+}
+.htmlNav{
+	display: flex;
+    flex-direction: row;
+}
+.htmlNav ul {
+	display: flex;
+	align-items: center;
+}
+.htmlBuckets {
+	justify-content: space-between;
+}
+.htmlBuckets div{
+	/*버켓 크기 유동적*/
+	width:24%;
+}
+.htmlRunner{
+	background:url(/imageComputer/temporary.jpeg) right no-repeat;
 	background-size:100% 100%;
-	margin:10px;z-index:1;
-	top:16vw;*/
 }
-.comMenu3{
-	/*
-	width:5vw;
-	height:5vw;
-	position:absolute;
-	background:url(/imageComputer/github.png) no-repeat;
-	background-size:100% 100%;
-	margin:10px;z-index:1;
-	top:25vw;*/
+
+.sidebar-left {
+	order: -1;
 }
-.comMenu4{
-	
+.sidebar-left {
+	order: -1;
+	flex: 1;
 }
-.talk{
-	
+.htmlContent {
+	flex: 6;
 }
-.html{
-	
+.sidebar-right {
+	flex: 2;
 }
-.github{
-	
+#htmlE1 {
+	background: url(/imageComputer/htmlTop1.png) no-repeat;
+    background-size: 100% 100%;
+    width: 70%;
+    height: 100%;
 }
-.folder{
-	
+#htmlE2 {
+	background: url(/imageComputer/htmlTop0.png) no-repeat;
+    background-size: 100% 100%;
+    width: 30%;
+    height: 100%;
 }
-.tistory{
-	
+#htmlE12 {
+	background: #e7eaed;
+    width: 0%;
+    height: 100%;
 }
-.cmd{
-	
+#htmlE3 {
+	    background: url(/imageComputer/htmlTop2.png) no-repeat;
+    background-size: 100% 100%;
+    width: 70%;
+    height: 100%;
+}
+#htmlE4 {
+	background: url(/imageComputer/htmlTop3.png) no-repeat;
+    background-size: 100% 100%;
+    width: 30%;
+	height: 100%;
+}
+#htmlE34 {
+	background: white;
+    width: 0%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+}
+@media screen and (max-width:463px){
+	.htmlNav-btn{
+		display:block;
+	}	
+	.htmlNav{
+		display:none;
+	}
+}
+@media screen and (max-width:720px){
+	header{
+		flex-wrap:wrap;
+	}
+}
+@media screen and (min-width: 1025px) {
+	.comBackFont {
+		width: 4vw;
+		font-size: 0.8rem;
+	}
+	#htmlE1 {
+		width: 30%;
+	}
+	#htmlE2 {
+		width: 20%;
+	}
+	#htmlE12 {
+		width: 50%;
+	}
+	#htmlE3 {
+		width: 40%;
+	}
+	#htmlE4 {
+		 width: 20%;
+	}
+	#htmlE34 {
+		width: 40%;
+	}
 }
