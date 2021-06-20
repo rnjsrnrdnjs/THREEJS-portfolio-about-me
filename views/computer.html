@@ -1,21 +1,5 @@
 {% extends 'index.html' %} {% block content %}
-<!--
-포트폴리오 구성
-사이트명: 이름 혹은 닉네임 ( 로고를 만들면 더 좋다 )
-들어가야 할 내용
-자기 소개: 장황하게 써놓기 보다는 간단한 개발자로서의 좌우명
-이력 및 학력: 인턴, 외주, 산학, 수상경력 등
-연락처: 이메일, 핸드폰 번호, SNS, Linked in, Github
-프로젝트
-프로젝트 이름 
-기술 스택: 큰 기술 위주 세부적인 라이브러리 수준까지는 기술하지 않아도 된다.
-프로젝트 기간
-프로젝트 내용: 최대한 자세하게 서술
-프로젝트 데모: 사진, 동영상, 웹사이트 형식 웹 프로젝트라면 웹사이트 형식이 가장 좋다.
 
-
-출처: https://geonlee.tistory.com/9 [빠리의 택시 운전사]
--->
 <div class="computer">
 	<div class="comTop">
 		<div class="comTopLeft"></div>
@@ -27,101 +11,177 @@
 	<div class="comBackground">
 		<div class="htmlContainer">
 			<div class="htmlTop">
-				<div
-					id="htmlE1"
-				></div>
-				<div id="htmlE12" ></div>
-				<div
-					id="htmlE2"
-				></div>
+				<div id="htmlE1"></div>
+				<div id="htmlE12"></div>
+				<div id="htmlE2"></div>
 			</div>
 			<div class="htmlTop" style="top: 5%; border-bottom: 1px solid #d2d2d2;">
-				<div
-					id="htmlE3"
-				></div>
-				<div
-					 id="htmlE34"
-				>
+				<div id="htmlE3"></div>
+				<div id="htmlE34">
 					<div style="background: #e7eaed; width: 100%; height: 80%;"></div>
 				</div>
-				<div
-					id="htmlE4"
-				></div>
+				<div id="htmlE4"></div>
 			</div>
 
 			<div class="htmlBottom">
-				<header>
-					<img src="/imageComputer/temporary.jpeg" style="width: 20%;">
-					로고
+				<header style="margin-bottom: 2%;background:url(/imageComputer/comHead2.jpg) no-repeat; background-size:cover;">
+					<img
+						src="/imageComputer/logo.png"
+						style="min-width: 120px;width: 20%; border: 1px solid #57d1c9;"
+					/>
+					<div style="flex:1">
+						
+					<nav class="htmlNav-btn">
+						<div style="color: #E7648D;
+    padding: 10px;
+    cursor: pointer;
+	margin-right: 5px;
+    border-radius: 10px;
+    border: 1px solid mintcream;
+    background: black;">
+							Menu
+						</div>
+						
+					</nav>
+					</div>
 					<nav class="htmlNav">
-						<ul>
+						<div>
+							nav
+						</div>
+						<div>
 							자기 소개
-						</ul>
-						<ul>
+						</div>
+						<div>
 							포트폴리오
-						</ul>
-						<ul>
+						</div>
+						<div>
 							프로젝트
-						</ul>
-						<ul>
+						</div>
+						<div>
 							알고리즘
-						</ul>
+						</div>
 					</nav>
 				</header>
-				<section class="htmlRunner">
+				<div class="htmlvert-Nav">
 					<div>
-						<div>
-						여기는 이사진과 함께 글을 적어용
+							자기 소개
 						</div>
 						<div>
-						여기는 이사진과 함께 글을 적어용
+							포트폴리오
 						</div>
 						<div>
-						여기는 이사진과 함께 글을 적어용
+							프로젝트
 						</div>
 						<div>
-						여기는 이사진과 함께 글을 적어용
+							알고리즘
 						</div>
-						<div>
-						여기는 이사진과 함께 글을 적어용
-						</div>
-						<div>
-						여기는 이사진과 함께 글을 적어용
+				</div>
+				<section class="htmlRunner">
+					<div id="portPolio"
+						style="height: 300px; align-items: center; display: flex; max-width: 300px;"
+					>
+						<div
+							style="
+								background: white;
+								height: 200px;
+								opacity: 0.8;
+								margin-left: 4vw;
+							"
+						>
+							<h1 style="margin-left: 5px;">
+								090's PortPolio
+							</h1>
+							<div style="margin: 5px;">
+								<div style="font-size: 0.8rem;
+    font-weight: bold;">오늘의 나는 어제의 나보다 발전한다.</div>
+								<div style="font-weight: bold;">풀스택 개발자를 지향하는 개발자 권국원입니다.</div>
+							</div>
+							<div style="display:flex; flex-direction:row;">
+								
+							<img src="/imageComputer/comTree.png" style="width:20%;height:20%;" />
+							<div style="margin-left: 5px;
+    align-self: center;
+    border-radius: 10px;
+    padding: 10px;
+    font: 20px Bebas;
+    background: #57D1C9;
+    color: white;">
+								성장중!!
+							</div>
+							</div>
 						</div>
 					</div>
 				</section>
 				<section class="htmlBuckets">
-					<div>123
-										<img src="/imageComputer/temporary.jpeg" style="width: 30%;height:100px;">
-</div>
-					<div>234
-										<img src="/imageComputer/temporary.jpeg" style="width: 30%;height:100px;">
-</div>
-					<div>345
-										<img src="/imageComputer/temporary.jpeg" style="width: 30%;height:100px; ">
-</div>
+					<div>
+						<img class="htmlMe" src="/imageComputer/me1.jpg"/>
+						스물1살
+					</div>
+					<div>
+						<img class="htmlMe" src="/imageComputer/me2.jpg"/>
+						스물1살
+					</div>
+					<div>
+						<img class="htmlMe" src="/imageComputer/me3.jpg"/>
+						스무살
+					</div>
+					<div>
+						<img class="htmlMe" src="/imageComputer/me4.jpg"/>
+						열9살
+					</div>
+					<div>
+						<img class="htmlMe" src="/imageComputer/me6.jpg"/>
+						스물1살
+					</div>
+					<div>
+						<img class="htmlMe" src="/imageComputer/me7.jpg"/>
+						스물2살
+					</div>
 				</section>
 				<section class="htmlMain">
 					<article class="htmlContent">
-						이것은 메인글을 체우기위한 복붙입니다.
-						이것은 메인글을 체우기위한 복붙입니다.
-						이것은 메인글을 체우기위한 복붙입니다.
-						이것은 메인글을 체우기위한 복붙입니다.
-						이것은 메인글을 체우기위한 복붙입니다.
-						이것은 메인글을 체우기위한 복붙입니다.
-						이것은 메인글을 체우기위한 복붙입니다.
-						이것은 메인글을 체우기위한 복붙입니다.
-						이것은 메인글을 체우기위한 복붙입니다.
+						포트폴리오 구성
+사이트명: 이름 혹은 닉네임 ( 로고를 만들면 더 좋다 )
+들어가야 할 내용
+자기 소개: 장황하게 써놓기 보다는 간단한 개발자로서의 좌우명
+이력 및 학력: 인턴, 외주, 산학, 수상경력 등
+연락처: 이메일, 핸드폰 번호, SNS, Linked in, Github
+프로젝트
+프로젝트 이름 
+기술 스택: 큰 기술 위주 세부적인 라이브러리 수준까지는 기술하지 않아도 된다.
+프로젝트 기간
+프로젝트 내용: 최대한 자세하게 서술
+프로젝트 데모: 사진, 동영상, 웹사이트 형식 웹 프로젝트라면 웹사이트 형식이 가장 좋다.
 					</article>
-					<aside class="sidebar-left">
-					왼쪽
-					</aside>
 					<aside class="sidebar-right">
-					오른쪽
+						<div>
+							알고리즘 공부1
+							<img src="/imageComputer/a1.jpg" style="width:100%;"/>
+						</div>
+						<div>
+							알고리즘 공부2
+							<img src="/imageComputer/a2.jpg" style="width:100%;"/>
+						</div>
+						<div>
+							내사랑 리눅스1
+							<img src="/imageComputer/c1.jpg" style="width:100%;"/>
+						</div>
+						<div>
+							내사랑 리눅스2
+							<img src="/imageComputer/c2.jpg" style="width:100%;"/>
+						</div>
+						<div>
+							내사랑 리눅스3
+							<img src="/imageComputer/c3.jpg" style="width:100%;"/>
+						</div>
+						
 					</aside>
 				</section>
-				<footer>
-					개발자 090이에용
+				<footer >
+					<div style="height:200px; width:100%; background:#CCCCCC">
+						개발자 090이에용
+						
+					</div>
 				</footer>
 			</div>
 		</div>
@@ -230,6 +290,8 @@
 </div>
 <div class="computerBottom"></div>
 
+
+<div style="display:none">아이콘 제작자 <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
 {% endblock %} {% block script %}
 <script>
 	window.removeEventListener('resize', onResize);
@@ -246,15 +308,29 @@
 	const folder = document.getElementsByClassName('folder')[0];
 	const tistory = document.getElementsByClassName('tistory')[0];
 	const cmd = document.getElementsByClassName('cmd')[0];
-
+	const htmlNavBtn=document.getElementsByClassName('htmlNav-btn')[0];
+	const htmlvertNav=document.getElementsByClassName('htmlvert-Nav')[0];
+	
+	let vertNavTOF=false;
+	htmlNavBtn.addEventListener('click',()=>{
+		if(vertNavTOF==false){
+			htmlvertNav.style.display="none";
+			vertNavTOF=true;
+		}
+		else{
+			htmlvertNav.style.display="flex";
+			vertNavTOF=false;
+		}
+	});
+	
 	const htmlContainer = document.getElementsByClassName('htmlContainer')[0];
 	html.addEventListener('click', (e) => {
 		htmlContainer.style.display = 'flex';
 	});
-	const htmlClose=document.getElementById('htmlE2');
-	htmlClose.addEventListener('click',(e)=>{
+	const htmlClose = document.getElementById('htmlE2');
+	htmlClose.addEventListener('click', (e) => {
 		htmlContainer.style.display = 'none';
-	})
+	});
 	//드래그 앤 드롭
 
 	//소켓 프로그래밍
